@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-
+const SignUp = () => {
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col ">
@@ -29,13 +29,13 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
-                </div>
-                <div>
-                    <Link to="/auth/signUp">Have a account? Login</Link>
+                    <div>
+                        <Link to="/auth/login">Have a account? Login</Link>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default SignUp;
