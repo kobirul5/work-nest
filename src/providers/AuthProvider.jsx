@@ -25,6 +25,10 @@ const AuthProvider = ({children}) => {
             setUser(currentUser)
             setLoading(false)
         })
+        return ()=>{
+            return unsubscribe()
+        }
+        
     },[])
 
     const authInfo = {
@@ -32,6 +36,7 @@ const AuthProvider = ({children}) => {
        loading,
        userCreate,
     }
+    console.log(user)
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
