@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { AuthContext } from "../../../providers/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const EmployWorkSheet = () => {
     const { register, handleSubmit, setValue, reset, watch } = useForm({
@@ -13,33 +16,39 @@ const EmployWorkSheet = () => {
             date: new Date(),
         },
     });
-    const [tasks, setTasks] = useState([
-        { id: 1, task: "Sales", hours: 8, date: new Date("2025-01-10") },
-        { id: 2, task: "Support", hours: 6, date: new Date("2025-01-11") },
-        { id: 3, task: "Content", hours: 4, date: new Date("2025-01-12") },
-        { id: 4, task: "Paper-work", hours: 5, date: new Date("2025-01-13") },
-        { id: 5, task: "Sales", hours: 7, date: new Date("2025-01-14") },
-        { id: 6, task: "Support", hours: 3, date: new Date("2025-01-15") },
-        { id: 7, task: "Content", hours: 6, date: new Date("2025-01-16") },
-        { id: 8, task: "Paper-work", hours: 2, date: new Date("2025-01-17") },
-        { id: 9, task: "Sales", hours: 9, date: new Date("2025-01-18") },
-        { id: 10, task: "Support", hours: 5, date: new Date("2025-01-19") },
-    ] );
+    // const [tasks, setTasks] = useState([]);
     const [modalData, setModalData] = useState(null);
+    const {user} = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic()
 
     const selectedDate = watch("date");
 
+    // data show
+    const { data: tasks = [], refetch } = useQuery({
+        queryKey: ['work-sheet'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/work-sheet/${user?.email}`);
+            return res.data; 
+        }
+    })
+ console.log(tasks)
     // Add Task
     const onSubmit = (data) => {
         const newTask = {
-            id: Date.now(),
             task: data.task,
             hours: parseInt(data.hours, 10),
             date: data.date,
+            employEmail: user?.email
         };
-        setTasks([newTask, ...tasks]);
-        reset(); // Clear the form
+        console.log(newTask)
+        // setTasks([newTask, ...tasks]);
+       // reset();  Clear the form
         // Save to DB (e.g., use Axios to POST data to your API)
+        axiosPublic.post('/work-sheet', newTask)
+        .then((res)=>{
+            console.log(res)
+        })
+        // 
     };
 
     // Update Task
@@ -86,7 +95,7 @@ const EmployWorkSheet = () => {
                     onChange={(date) => setValue("date", date)}
                 />
                 <button className="btn btn-primary" type="submit">
-                    Add / Submit
+                    Add 
                 </button>
             </form>
 
@@ -102,7 +111,7 @@ const EmployWorkSheet = () => {
                 </thead>
                 <tbody>
                     {tasks.map((t) => (
-                        <tr key={t.id}>
+                        <tr key={t._id}>
                             <td>{t.task}</td>
                             <td>{t.hours}</td>
                             <td>{new Date(t.date).toLocaleDateString()}</td>
