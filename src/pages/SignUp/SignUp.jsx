@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
-
+const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}` 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { userCreate } = useContext(AuthContext);
+    const { userCreate, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
 
     const onSubmit = data => {
@@ -14,8 +16,10 @@ const SignUp = () => {
         userCreate(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                navigate("/")
-                reset()
+                updateUserProfile(data.name, data.photo)
+
+                // navigate(
+                
                 toast.success('Sign up Successful', {
                     duration: 4000,
                     position: 'top-center',

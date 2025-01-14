@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import LogoutBtn from '../../../components/LogoutBtn';
 
 const Navbar = () => {
     const {name} = useContext(AuthContext)
@@ -56,7 +57,7 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Logout</a></li>
+                        <li><LogoutBtn></LogoutBtn></li>
                     </ul>
                 </div>
             </div>
