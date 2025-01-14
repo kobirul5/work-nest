@@ -36,7 +36,7 @@ const SignUp = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Sign Up now!</h1>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         {/* name */}
                         <div className="form-control">
@@ -53,6 +53,14 @@ const SignUp = () => {
                             </label>
                             <input type="email" {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
                             {errors.email && <span className='text-red-600'>Email is required</span>}
+                        </div>
+                        {/* name */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Salary</span>
+                            </label>
+                            <input type="number" {...register("salary", { required: true })} placeholder="Salary" className="input input-bordered" />
+                            {errors.salary && <span className='text-red-600'>Name is required</span>}
                         </div>
                         {/* Photo */}
                         <div className="form-control">
@@ -73,11 +81,27 @@ const SignUp = () => {
                                 <span className="label-text">Select Your Role</span>  
                             </div>
                             <select className="select select-bordered"
-                            {...register("role")}
+                            {...register("role", {required: true})}
                             >
                                 <option value="employ">Employ</option>
                                 <option value="hr">HR</option>
                             </select>
+                            {errors.role && <span className='text-red-600'>Role is required</span>}
+                            
+                        </label>
+                        {/* options 2 */}
+                        <label className="form-control w-full max-w-xs">
+                            <div className="label">
+                                <span className="label-text">Select Your Designation</span>  
+                            </div>
+                            <select className="select select-bordered"
+                            {...register("designation", {required: true})}
+                            >
+                                <option value="employ">Web developer</option>
+                                <option value="employ">Digital Marketer</option>
+                                <option value="hr">Graphics Designer</option>
+                            </select>
+                            {errors.designation && <span className='text-red-600'>designation is required</span>}
                             
                         </label>
                         {/* password */}

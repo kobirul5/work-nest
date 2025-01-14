@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -38,7 +39,7 @@ const Login = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0 shadow-2xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         {/* email */}
                         <div className="form-control">
@@ -64,8 +65,9 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
-                    <div>
+                    <div className="px-8 pb-8">
                         <Link to="/auth/signUp">Don't Have a account? Sign Up</Link>
+                        <GoogleLogin></GoogleLogin>
                     </div>
                 </div>
             </div>

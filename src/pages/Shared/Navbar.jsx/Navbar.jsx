@@ -5,10 +5,10 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import LogoutBtn from '../../../components/LogoutBtn';
 
 const Navbar = () => {
-    const {name} = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar sticky top-0 z-10 bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,23 +43,30 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NavLink to="/auth/login" className="btn" >Login</NavLink>
-                <NavLink to="/auth/signUp" className="btn" >Sign Up</NavLink>
+                {
+                    !user ? <>
+                     <NavLink to="/auth/login" className="btn" >Login</NavLink>
+                     <NavLink to="/auth/signUp" className="btn" >Sign Up</NavLink>
+                    </>:
+                     <div className="dropdown dropdown-end">
+                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                         <div className="w-10 rounded-full">
+                             <img
+                                 alt="Tailwind CSS Navbar component"
+                                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                         </div>
+                     </div>
+                     <ul
+                         tabIndex={0}
+                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                         <li><LogoutBtn></LogoutBtn></li>
+                     </ul>
+                 </div>
+
+                }
+               
                 {/* logged in */}
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                        </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><LogoutBtn></LogoutBtn></li>
-                    </ul>
-                </div>
+               
             </div>
         </div>
     );
