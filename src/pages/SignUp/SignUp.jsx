@@ -3,27 +3,59 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
-const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}` 
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
+
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { userCreate, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = data => {
         console.log(data)
         userCreate(data.email, data.password)
-            .then(result => {
+            .then((result) => {
                 const user = result.user;
-                updateUserProfile(data.name, data.photo)
-
-                // navigate(
-                
-                toast.success('Sign up Successful', {
-                    duration: 4000,
-                    position: 'top-center',
+                const imageFile = { image: data.photo[0] }
+                axiosPublic.post(imageHostingApi, imageFile, {
+                    headers: { "content-type": "multipart/form-data" },
                 })
+                .then(res => {
+                        const photoUrl = res.data.data.display_url
+                        updateUserProfile(data.name, photoUrl)
+                            .then(() => {
+                                const userData = {
+                                    name: data.name,
+                                    email: data.email,
+                                    image: photoUrl,
+                                    role: data.role,
+                                    bankAccountNo: data.bankAccount,
+                                    salary: data.salary,
+                                    designation: data.designation,
+                                }
+                                console.log(userData)
+                                axiosPublic.post("/users", userData)
+                                    .then(res => {
+                                        if (res.data.insertedId) {
+                                            navigate("/")
+                                            reset()
+                                            toast.success('Sign up Successful', {
+                                                duration: 4000,
+                                                position: 'top-center',
+                                            })
+                                        }
+                                    })
+
+                            }).catch((error) => {
+                                console.log(error.messages)
+                            });
+
+                    })
+
+
             })
 
     };
@@ -31,7 +63,7 @@ const SignUp = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen">
-            
+
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Sign Up now!</h1>
@@ -54,7 +86,7 @@ const SignUp = () => {
                             <input type="email" {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
                             {errors.email && <span className='text-red-600'>Email is required</span>}
                         </div>
-                        {/* name */}
+                        {/* salary */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Salary</span>
@@ -62,47 +94,55 @@ const SignUp = () => {
                             <input type="number" {...register("salary", { required: true })} placeholder="Salary" className="input input-bordered" />
                             {errors.salary && <span className='text-red-600'>Name is required</span>}
                         </div>
+                        {/* Bank Account */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Bank Account</span>
+                            </label>
+                            <input type="number" {...register("bankAccount", { required: true })} placeholder="Salary" className="input input-bordered" />
+                            {errors.salary && <span className='text-red-600'>Bank Account number is required</span>}
+                        </div>
                         {/* Photo */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Photo</span>
                             </label>
-                            <input 
-                            type="file" 
-                            {...register("photo", { required: true })}
-                            placeholder="email"
-                            className="file-input file-input-bordered w-full max-w-xs"
-                              />
+                            <input
+                                type="file"
+                                {...register("photo", { required: true })}
+                                placeholder="email"
+                                className="file-input file-input-bordered w-full max-w-xs"
+                            />
                             {errors.email && <span className='text-red-600'>Email is required</span>}
                         </div>
                         {/* options */}
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Select Your Role</span>  
+                                <span className="label-text">Select Your Role</span>
                             </div>
                             <select className="select select-bordered"
-                            {...register("role", {required: true})}
+                                {...register("role", { required: true })}
                             >
                                 <option value="employ">Employ</option>
                                 <option value="hr">HR</option>
                             </select>
                             {errors.role && <span className='text-red-600'>Role is required</span>}
-                            
+
                         </label>
                         {/* options 2 */}
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
-                                <span className="label-text">Select Your Designation</span>  
+                                <span className="label-text">Select Your Designation</span>
                             </div>
                             <select className="select select-bordered"
-                            {...register("designation", {required: true})}
+                                {...register("designation", { required: true })}
                             >
                                 <option value="employ">Web developer</option>
                                 <option value="employ">Digital Marketer</option>
                                 <option value="hr">Graphics Designer</option>
                             </select>
                             {errors.designation && <span className='text-red-600'>designation is required</span>}
-                            
+
                         </label>
                         {/* password */}
                         <div className="form-control">

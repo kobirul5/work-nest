@@ -1,12 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const LogoutBtn = () => {
     const {logOut} = useContext(AuthContext);
+    const navigate = useNavigate()
     
     const handleLogOut=()=>{
         logOut()
-        .then(()=>{})
+        .then(()=>{
+            navigate("/auth/login")
+        })
         .catch(error=>{
             console.log(error)
         })
@@ -14,7 +18,7 @@ const LogoutBtn = () => {
 
     return (
         <div>
-            <button className="btn" onClick={handleLogOut}>Log Out</button>
+            <button className="" onClick={handleLogOut}>Log Out</button>
         </div>
     );
 };
