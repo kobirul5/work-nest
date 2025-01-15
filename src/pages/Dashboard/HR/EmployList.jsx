@@ -1,6 +1,8 @@
-import { useReactTable, flexRender, getCoreRowModel, } from '@tanstack/react-table';
+import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { TiTick } from "react-icons/ti";
+import { MdOutlineCancel } from 'react-icons/md';
 
 const EmployList = () => {
     const axiosSecure = useAxiosSecure()
@@ -13,38 +15,88 @@ const EmployList = () => {
         }
     })
 
+
+    const  handleVerified =(verifiedData)=>{
+        console.log(verifiedData)
+        axiosSecure.patch(`/users/${verifiedData._id}`)
+        .then(res=>{
+            console.log(res)
+            refetch()
+        })
+    }
+
+    const handlePay=(id)=>{
+        console.log(id)
+    }
+
+    // const handleDetails =()=>{
+
+    // }
+
     const columns = [
         {
-            Headers: "Name",
+            headers: "Id",
+            accessorKey: "id",
+            cell: (info) => info.row.index + 1,
+        },
+        {
+            headers: "Name",
             accessorKey: "name"
         },
         {
-            Headers: "Email",
+            headers: "Email",
             accessorKey: "email"
         },
         {
-            Headers: "Verified",
-            accessorKey: "verified"
+            headers: "Verified",
+            accessorKey: "isVerified",
+            cell: ({row}) => (row.original.isVerified ? <><button onClick={()=>handleVerified(row.original)}><TiTick className="text-green-600 text-2xl" /></button>
+            </> : <>
+            <button onClick={()=>handleVerified(row.original)}><MdOutlineCancel className="text-red-600 text-2xl" /></button>
+            </>)
         },
         {
-            Headers: "Bank Account",
+            headers: "Bank Account",
             accessorKey: "bankAccountNo"
         },
         {
-            Headers: "Salary",
+            headers: "Salary",
             accessorKey: "salary"
         },
         {
-            Headers: "Pay",
-            accessorKey: "pay"
+            headers: "Pay",
+            accessorKey: "pay",
+            cell: ({row}) => (
+                <button
+                    className="btn btn-primary"
+                    onClick={() => handlePay(row.original._id)} // Custom function for the Pay button
+                >
+                    Pay
+                </button>
+                
+            ),
         },
         {
-            Headers: "Details",
-            accessorKey: "Details"
+            headers: "Details",
+            accessorKey: "Details",
+            cell: ({ row }) => (
+                <button
+                    className="btn btn-primary"
+                    onClick={() => handleDetails(row.original)} // Custom function for the Pay button
+                >
+                    Details
+                </button>
+                
+            ),
         },
     ]
 
-    const table = useReactTable({ data: allUser, columns, getCoreRowModel: getCoreRowModel() })
+    const table = useReactTable({
+        data: allUser,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel()
+    })
 
     return (
         <div>
@@ -71,6 +123,14 @@ const EmployList = () => {
                         </tr>)}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                {/* disabled={!table.getCanPreviousPage()} */}
+                {/* disabled={!table.getCanNextPage()} */}
+                <button className='btn' onClick={()=>table.setPageIndex(0)}>First Page</button>
+                <button className='btn' disabled={!table.getCanPreviousPage()}  onClick={()=>table.previousPage()}>Previous Page</button>
+                <button className='btn' disabled={!table.getCanNextPage()} onClick={()=>table.nextPage()}>Next Page</button>
+                <button className='btn' onClick={()=>table.lastPage()}>Last Page</button>
             </div>
         </div>
     );
