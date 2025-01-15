@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const EmployWorkSheet = () => {
     const { register, handleSubmit, setValue, reset, watch } = useForm({
@@ -18,7 +19,7 @@ const EmployWorkSheet = () => {
     });
     // const [tasks, setTasks] = useState([]);
     const [modalData, setModalData] = useState(null);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic()
 
     const selectedDate = watch("date");
@@ -28,43 +29,71 @@ const EmployWorkSheet = () => {
         queryKey: ['work-sheet'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/work-sheet/${user?.email}`);
-            return res.data; 
+            const sortedTasks = res?.data.sort((a, b) => b.taskId - a.taskId);
+            return sortedTasks;
         }
     })
- console.log(tasks)
-    // Add Task
+
     const onSubmit = (data) => {
         const newTask = {
+            taskId: tasks.length + 1,
             task: data.task,
             hours: parseInt(data.hours, 10),
             date: data.date,
             employEmail: user?.email
         };
-        console.log(newTask)
-        // setTasks([newTask, ...tasks]);
-       // reset();  Clear the form
         // Save to DB (e.g., use Axios to POST data to your API)
         axiosPublic.post('/work-sheet', newTask)
-        .then((res)=>{
-            console.log(res)
-        })
+            .then((res) => {
+                if (res.data.insertedId) {
+                    toast.success("Task added successfully", {
+                        duration: 4000,
+                        position: 'top-center',
+                    })
+                    reset();
+                    refetch()
+                }
+            })
         // 
     };
 
     // Update Task
-    const handleUpdateTask = () => {
-        const updatedTasks = tasks.map((t) =>
-            t.id === modalData.id ? modalData : t
-        );
-        setTasks(updatedTasks);
-        setModalData(null);
+    const handleUpdateTask = (e) => {
+        e.preventDefault();
+
+        // axiosPublic.patch(`/work-sheet/${modalData.taskId}`, updateTask)
+        //     .then((res) => {
+        //         if (res.data.insertedId) {
+        //             toast.success("Task added successfully", {
+        //                 duration: 4000,
+        //                 position: 'top-center',
+        //             })
+        //             // reset();
+        //             refetch()
+        //             // setModalData(null);
+        //         }
+        //     })
+
+        // const updatedTasks = tasks.map((t) =>
+        //     t.id === modalData.id ? modalData : t
+        // );
+        // setTasks(updatedTasks);
+
     };
 
     // Delete Task
     const handleDeleteTask = (id) => {
-        const filteredTasks = tasks.filter((t) => t.id !== id);
-        setTasks(filteredTasks);
-        // Delete from DB (e.g., use Axios to DELETE data from your API)
+        axiosPublic.delete(`/work-sheet/${id}`)
+            .then((res) => {
+                if (res.data.deletedCount > 0) {
+                    toast.error("deleted task successfully", {
+                        duration: 4000,
+                        position: 'top-center',
+                    })
+                    refetch();
+                }
+            })
+
     };
 
     return (
@@ -95,7 +124,7 @@ const EmployWorkSheet = () => {
                     onChange={(date) => setValue("date", date)}
                 />
                 <button className="btn btn-primary" type="submit">
-                    Add 
+                    Add
                 </button>
             </form>
 
@@ -124,7 +153,7 @@ const EmployWorkSheet = () => {
                                 </button>
                                 <button
                                     className="btn btn-sm btn-error"
-                                    onClick={() => handleDeleteTask(t.id)}
+                                    onClick={() => handleDeleteTask(t._id)}
                                 >
                                     <MdDelete />
                                 </button>
@@ -139,42 +168,37 @@ const EmployWorkSheet = () => {
                 <div className="modal modal-open">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Edit Task</h3>
-                        <div className="mt-4">
+                        <form onSubmit={() => handleUpdateTask()} className="mt-4">
                             <select
                                 className="select select-bordered w-full mb-2"
-                                value={modalData.task}
-                                onChange={(e) =>
-                                    setModalData({ ...modalData, task: e.target.value })
-                                }
+                                defaultValue={modalData.task}
+                                name="tasks"
                             >
-                                <option value="Sales">Sales</option>
-                                <option value="Support">Support</option>
-                                <option value="Content">Content</option>
-                                <option value="Paper-work">Paper-work</option>
+                                <option defaultValue="Sales">Sales</option>
+                                <option defaultValue="Support">Support</option>
+                                <option defaultValue="Content">Content</option>
+                                <option defaultValue="Paper-work">Paper-work</option>
                             </select>
                             <input
                                 type="number"
                                 className="input input-bordered w-full mb-2"
-                                value={modalData.hours}
-                                onChange={(e) =>
-                                    setModalData({ ...modalData, hours: e.target.value })
-                                }
+                                defaultValue={modalData.hours}
+                                name="hours"
                             />
                             <DatePicker
                                 className="input input-bordered w-full"
                                 selected={new Date(modalData.date)}
-                                onChange={(date) =>
-                                    setModalData({ ...modalData, date: date })
-                                }
+                                name="date"
                             />
-                        </div>
-                        <div className="modal-action">
                             <button
                                 className="btn btn-primary"
                                 onClick={handleUpdateTask}
                             >
                                 Update
                             </button>
+                        </form>
+                        <div className="modal-action">
+
                             <button
                                 className="btn"
                                 onClick={() => setModalData(null)}

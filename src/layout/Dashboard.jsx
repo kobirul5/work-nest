@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -8,10 +9,11 @@ const Dashboard = () => {
                 {/* employ */}
                 <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
                 {/* HR */}
-                
+                <Link to="/dashboard/employee-list" className="btn">Employ List</Link>
                 {/* admin */}
             </div>
-            <section>
+            <Toaster></Toaster>
+            <section className="flex-grow">
                 <Outlet></Outlet>
             </section>
         </div>

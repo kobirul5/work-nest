@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 const MainLayout = () => {
     return (
         <div>
-            <Toaster></Toaster>
+
             <Navbar></Navbar>
             <section >
                 <Outlet></Outlet>

@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../layout/Dashboard";
 import EmployWorkSheet from "../pages/Dashboard/EmployWorkSheet/EmployWorkSheet";
 import PrivateRoute from "./PrivateRoute";
+import EmployList from "../pages/Dashboard/HR/EmployList";
 
 export const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
             {
                 path: 'work-sheet',
                 element: <EmployWorkSheet></EmployWorkSheet>
+            },
+            {
+                path: 'employee-list',
+                element: <EmployList></EmployList>
             }
         ]
     }
