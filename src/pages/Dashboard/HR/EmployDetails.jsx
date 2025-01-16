@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Legend, Tooltip } from "recharts"
+import Spinner from "../../Shared/Spinner/Spinner";
 
 const EmployDetails = () => {
     const { slug } = useParams()
@@ -14,7 +15,9 @@ const EmployDetails = () => {
             return res.data;
         }
     })
-    console.log(payData)
+    if(loading){
+        return <Spinner></Spinner>
+    }
     return (
         <div>
             {
