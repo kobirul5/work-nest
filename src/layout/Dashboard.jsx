@@ -13,7 +13,7 @@ const Dashboard = () => {
                 {/* admin */}
             </div>
             <Toaster></Toaster>
-            <section className="flex-grow">
+            <section className="flex-grow px-5">
                 <Outlet></Outlet>
             </section>
         </div>

@@ -8,6 +8,7 @@ import Dashboard from "../layout/Dashboard";
 import EmployWorkSheet from "../pages/Dashboard/EmployWorkSheet/EmployWorkSheet";
 import PrivateRoute from "./PrivateRoute";
 import EmployList from "../pages/Dashboard/HR/EmployList";
+import EmployDetails from "../pages/Dashboard/HR/EmployDetails";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +46,11 @@ export const router = createBrowserRouter([
             {
                 path: 'employee-list',
                 element: <EmployList></EmployList>
-            }
+            },
+            {
+                path: 'details/:slug',
+                element: <EmployDetails></EmployDetails>
+            },
         ]
     }
 ]);

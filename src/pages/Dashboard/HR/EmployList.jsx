@@ -3,13 +3,14 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { TiTick } from "react-icons/ti";
 import { MdOutlineCancel } from 'react-icons/md';
-import Swal from 'sweetalert2'
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const EmployList = () => {
     const axiosSecure = useAxiosSecure()
     const [paymentEmploy, setPaymentEmploy] = useState({})
+    const navigate = useNavigate()
 
     const { data: allUser = [], isPending: loading, refetch } = useQuery({
         queryKey: ['allUser'],
@@ -46,18 +47,16 @@ const EmployList = () => {
         }
         axiosSecure.post('/payroll', payrollEmploy)
         .then(res=>{
-            console.log(res.data)
-            payModal.close(); 
+            if(res.data.insertedId){
+                payModal.close(); 
+                toast.success("Payment Successfully")
+            }
         })
-
-
-        // toast.success("hi")
-
     }
 
-    // const handleDetails =()=>{
-
-    // }
+    const handleDetails =(id)=>{
+        navigate(`/dashboard/details/${id}`)
+    }
 
     const columns = [
         {
@@ -111,7 +110,7 @@ const EmployList = () => {
             cell: ({ row }) => (
                 <button
                     className="btn btn-primary"
-                    onClick={() => handleDetails(row.original)} // Custom function for the Pay button
+                    onClick={() => handleDetails(row.original._id)} // Custom function for the Pay button
                 >
                     Details
                 </button>
@@ -164,17 +163,17 @@ const EmployList = () => {
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="pay_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">{paymentEmploy?.name}</h3>
-                    <p className="py-2">Salary- {paymentEmploy?.salary}</p>
+                    <h3 className="font-bold text-2xl">{paymentEmploy?.name}</h3>
+                    <p className="py-2 font-bold">Salary- {paymentEmploy?.salary}tk</p>
                     <div className=''>
                         <form onSubmit={handlePay}>
                             <label className="form-control w-full ">
                                 <div className="label">
-                                    <span className="label-text">month</span>
+                                    <span className="label-text">Select month and year</span>
                                 </div>
                                 <input type="month" defaultValue={new Date().toISOString().slice(0, 7)} name='month' placeholder="Type month" className="input input-bordered w-full " />
                             </label>
-                            <input type="submit" className='btn' />
+                            <input type="submit" className='btn w-full my-2' />
                         </form>
                     </div>
                     <div className="modal-action">
