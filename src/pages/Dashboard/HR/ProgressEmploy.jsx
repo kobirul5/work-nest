@@ -90,6 +90,7 @@ const ProgressEmploy = () => {
                 value={selectedEmployee}
                 onChange={(e)=> setSelectedEmployee(e.target.value)}
                 >
+                    <option value="">All Employee</option>
                     {
                         employeeNames.map((i, idx) => <option
                             key={idx}
@@ -114,7 +115,7 @@ const ProgressEmploy = () => {
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                 >
-                    <option value="year">2025</option>
+                    <option value="year">Years</option>
                 </select>
             </div>
             <div className="overflow-x-auto">

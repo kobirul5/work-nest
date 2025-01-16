@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import EmployList from "../pages/Dashboard/HR/EmployList";
 import EmployDetails from "../pages/Dashboard/HR/EmployDetails";
 import ProgressEmploy from "../pages/Dashboard/HR/ProgressEmploy";
+import AllEmployeeList from "../pages/Dashboard/Admin/AllEmployeeList";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ export const router = createBrowserRouter([
                 path: 'progress',
                 element: <ProgressEmploy></ProgressEmploy>
             },
+            // admin route
+            {
+                path: 'all-employee-list',
+                element:<AllEmployeeList></AllEmployeeList>
+            }
         ]
     }
 ]);

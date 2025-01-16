@@ -12,6 +12,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/employee-list" className="btn">Employ List</Link>
                 <Link to="/dashboard/progress" className="btn">Progress</Link>
                 {/* admin */}
+                <Link to="/dashboard/all-employee-list" className="btn">All employee</Link>
             </div>
             <Toaster></Toaster>
             <section className="flex-grow px-5">
