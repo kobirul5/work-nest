@@ -49,7 +49,7 @@ const EmployList = () => {
         .then(res=>{
             if(res.data.insertedId){
                 payModal.close(); 
-                toast.success("Payment Successfully")
+                toast.success("Send payment Request Successfully")
             }
         })
     }

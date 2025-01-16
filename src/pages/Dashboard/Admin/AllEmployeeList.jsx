@@ -3,6 +3,7 @@ import useVerifiedUser from "../../../hooks/useVerifiedUser";
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import { FaFire } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AllEmployeeList = () => {
     const [verifiedUser, refetch] = useVerifiedUser()
@@ -18,8 +19,14 @@ const AllEmployeeList = () => {
     }
 
 
-    const handleMakeHR = (data) => {
-        console.log(data)
+    const handleMakeHR = (hrData) => {
+        axiosSecure.patch(`/users/hr/${hrData._id}`, hrData)
+        .then((res)=>{
+            if(res.data.modifiedCount >0){
+                refetch()
+                toast.success("Update to HR")
+            }
+        })
     }
 
 
@@ -40,7 +47,7 @@ const AllEmployeeList = () => {
         },
         {
             headers: "HR",
-            accessorKey: "makeHR",
+             accessorKey: "hr",
             cell: ({ row }) => (row.original.designation === "HR" ? <>
                 <p className="text-green-600 text-2xl"><TiTick></TiTick></p>
             </> : <>
