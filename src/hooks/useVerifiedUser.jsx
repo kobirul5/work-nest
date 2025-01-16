@@ -3,7 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useVerifiedUser = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: verifiedUser = [], isPending: loading, refetch } = useQuery({
+    const { data: verifiedUser = [], refetch } = useQuery({
         queryKey: ['verifiedUser'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -11,7 +11,7 @@ const useVerifiedUser = () => {
             return filterData;
         }
     })
-    return [verifiedUser, loading, refetch]
+    return [verifiedUser, refetch]
 };
 
 export default useVerifiedUser;

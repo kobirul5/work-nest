@@ -1,19 +1,24 @@
 import { TiTick } from "react-icons/ti";
 import useVerifiedUser from "../../../hooks/useVerifiedUser";
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
-import { MdOutlineCancel } from "react-icons/md";
 import { FaFire } from "react-icons/fa";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllEmployeeList = () => {
-    const [verifiedUser] = useVerifiedUser()
+    const [verifiedUser, refetch] = useVerifiedUser()
+    const axiosSecure = useAxiosSecure()
 
-
-
-
-    const handleMakeHR = (data)=>{
-        console.log(data)
+    const handleFired = (fireData) => {
+        console.log(fireData)
+        axiosSecure.patch(`/users/fired/${fireData._id}`)
+            .then(res => {
+                console.log(res)
+                refetch()
+            })
     }
-    const handleFired = (data)=>{
+
+
+    const handleMakeHR = (data) => {
         console.log(data)
     }
 
@@ -40,8 +45,8 @@ const AllEmployeeList = () => {
                 <p className="text-green-600 text-2xl"><TiTick></TiTick></p>
             </> : <>
                 <button
-                className="btn btn-xs"
-                    onClick={() =>handleMakeHR(row.original)}
+                    className="btn btn-xs"
+                    onClick={() => handleMakeHR(row.original)}
                 >
                     Make HR
                 </button>
@@ -49,19 +54,17 @@ const AllEmployeeList = () => {
         },
         {
             headers: "Fire",
-            accessorKey: "isFire",
-            cell: ({ row }) => (!row.original.isFire ? <>
+            accessorKey: "isFired",
+            cell: ({ row }) => (!row.original.isFired ? <>
                 <button
-                    onClick={() =>handleFired(row.original)}
+                    onClick={() => handleFired(row.original)}
                 >
                     <FaFire className="text-red-600 text-2xl" />
                 </button>
             </> : <>
-                <button
-                    onClick={() =>handleFired(row.original)}
-                >
-                   Fired <TiTick className="text-green-600 text-2xl" />
-                </button>
+                <p>
+                    Fired <TiTick className="text-green-600 text-2xl" />
+                </p>
             </>)
         },
     ]
