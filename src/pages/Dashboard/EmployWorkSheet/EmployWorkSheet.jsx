@@ -1,4 +1,4 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -144,7 +144,11 @@ const EmployWorkSheet = () => {
                         <tr key={t._id}>
                             <td>{t.task}</td>
                             <td>{t.hours}</td>
-                            <td>{new Date(t.date).toLocaleDateString()}</td>
+                            <td>{new Date(t.date).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "2-digit", 
+                                year: "numeric",
+                            })}</td>
                             <td>
                                 <button
                                     className="btn btn-sm btn-info mr-2"

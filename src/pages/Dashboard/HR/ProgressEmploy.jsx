@@ -2,21 +2,33 @@ import useWorkSheet from "../../../hooks/useWorkSheet";
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import Spinner from "../../Shared/Spinner/Spinner";
 import { useMemo, useState } from "react";
+import { data } from "react-router-dom";
 
 const ProgressEmploy = () => {
     const [workSheet, loading, refetch] = useWorkSheet()
-    // const [employeeWorkSheet, setEmployWorkSheet] = useState(workSheet)
+    const [employeeWorkSheet, setEmployWorkSheet] = useState(workSheet)
     const [selectedEmployee, setSelectedEmployee] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
-    console.log(workSheet)
 
-    const employeeNames = useMemo(()=>{
+    const employeeNames = useMemo(() => {
         return Array.from(
-            new Set(workSheet.map((item)=> item.employName || "Unknown"))
+            new Set(workSheet.map((item) => item.employName || "Unknown"))
         )
-    },[workSheet])
+    }, [workSheet])
+    console.log(selectedEmployee)
 
 
+    const filteredWorkSheet = useMemo(() => {
+        return workSheet.filter((item) => {
+          const byEmployee = selectedEmployee
+            ? item.employName === selectedEmployee
+            : true;
+          const byMonth = selectedMonth
+            ? new Date(item.date).getMonth() + 1 === Number(selectedMonth)
+            : true;
+          return byEmployee && byMonth;
+        });
+      }, [workSheet, selectedEmployee, selectedMonth]);
 
 
     const columns = [
@@ -43,13 +55,23 @@ const ProgressEmploy = () => {
         },
         {
             Headers: "Date",
-            accessorKey: "date"
+            accessorKey: "date",
+            cell: ({ getValue }) => {
+                const dateValue = getValue(); // Get the raw date value
+                const formattedDate = new Date(dateValue).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }); // Format the date
+                return formattedDate;
+              },
+            
         },
 
     ]
 
     const table = useReactTable({
-        data: workSheet,
+        data: filteredWorkSheet,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel()
@@ -62,22 +84,37 @@ const ProgressEmploy = () => {
     return (
         <div>
             progress list {workSheet.length}
-            <div>
-                <select className="select select-primary w-full max-w-xs">
+            <div className="flex flex-wrap justify-center items-center gap-6">
+                <select 
+                className="select select-primary w-full max-w-xs"
+                value={selectedEmployee}
+                onChange={(e)=> setSelectedEmployee(e.target.value)}
+                >
                     {
-                        employeeNames.map((i, idx)=><option
-                        key={idx}
-                         value="Sales"
-                         >{i}</option>)
+                        employeeNames.map((i, idx) => <option
+                            key={idx}
+                            
+                        >{i}</option>)
                     }
                 </select>
-                <select className="select select-primary w-full max-w-xs">
-                    {
-                        employeeNames.map((i, idx)=><option
-                        key={idx}
-                         value="Sales"
-                         >{i}</option>)
-                    }
+                <select
+                    className="select select-primary w-full max-w-xs"
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(e.target.value)}
+                >
+                    <option value="">All Months</option>
+                    {Array.from({ length: 12 }, (_, i) => (
+                        <option key={i + 1} value={i + 1}>
+                            {new Date(0, i).toLocaleString("default", { month: "long" })}
+                        </option>
+                    ))}
+                </select>
+                <select
+                    className="select select-primary w-full max-w-xs"
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(e.target.value)}
+                >
+                    <option value="year">2025</option>
                 </select>
             </div>
             <div className="overflow-x-auto">
