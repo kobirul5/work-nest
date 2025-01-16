@@ -9,6 +9,7 @@ import EmployWorkSheet from "../pages/Dashboard/EmployWorkSheet/EmployWorkSheet"
 import PrivateRoute from "./PrivateRoute";
 import EmployList from "../pages/Dashboard/HR/EmployList";
 import EmployDetails from "../pages/Dashboard/HR/EmployDetails";
+import ProgressEmploy from "../pages/Dashboard/HR/ProgressEmploy";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             {
                 path: 'details/:slug',
                 element: <EmployDetails></EmployDetails>
+            },
+            {
+                path: 'progress',
+                element: <ProgressEmploy></ProgressEmploy>
             },
         ]
     }

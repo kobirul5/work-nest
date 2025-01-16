@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useWorkSheet = () => {
@@ -5,8 +6,8 @@ const useWorkSheet = () => {
     const { data: workSheet = [], isPending: loading, refetch } = useQuery({
         queryKey: ['workSheet'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payroll/${slug}`);
-            return res;
+            const res = await axiosSecure.get('/work-sheet');
+            return res.data;
         }
     })
     return [workSheet, loading, refetch]

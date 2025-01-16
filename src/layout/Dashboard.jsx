@@ -10,6 +10,7 @@ const Dashboard = () => {
                 <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
                 {/* HR */}
                 <Link to="/dashboard/employee-list" className="btn">Employ List</Link>
+                <Link to="/dashboard/progress" className="btn">Progress</Link>
                 {/* admin */}
             </div>
             <Toaster></Toaster>

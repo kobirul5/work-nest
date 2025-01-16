@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -40,7 +40,8 @@ const EmployWorkSheet = () => {
             task: data.task,
             hours: parseInt(data.hours, 10),
             date: data.date,
-            employEmail: user?.email
+            employEmail: user?.email,
+            employName: user?.displayName
         };
         // Save to DB (e.g., use Axios to POST data to your API)
         axiosPublic.post('/work-sheet', newTask)
