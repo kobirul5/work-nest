@@ -43,6 +43,7 @@ const EmployList = () => {
             bankAccountNo: paymentEmploy.bankAccountNo,
             salary: paymentEmploy.salary,
             designation: paymentEmploy.designation,
+            paymentStatus: "pending",
             date: date
         }
         axiosSecure.post('/payroll', payrollEmploy)
