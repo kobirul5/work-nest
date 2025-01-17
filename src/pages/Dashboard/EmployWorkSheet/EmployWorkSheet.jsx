@@ -34,7 +34,6 @@ const EmployWorkSheet = () => {
             return sortedTasks;
         }
     })
-
     const onSubmit = (data) => {
         const newTask = {
             taskId: tasks.length + 1,
@@ -51,12 +50,11 @@ const EmployWorkSheet = () => {
                         duration: 4000,
                         position: 'top-center',
                     })
-                    reset();
                     refetch()
                 }
             })
     };
-    console.log(modalData)
+
     // Update Task
     const handleUpdateTask = (e) => {
         e.preventDefault()
@@ -67,27 +65,20 @@ const EmployWorkSheet = () => {
             hours: formData.get("hours"),
             date: formData.get("date")
           };
-        console.log(updatedTask)
 
           
-        // axiosPublic.patch(`/work-sheet/${modalData.taskId}`, updatedTask)
-        //     .then((res) => {
-        //         if (res.data.insertedId) {
-        //             toast.success("Task added successfully", {
-        //                 duration: 4000,
-        //                 position: 'top-center',
-        //             })
-        //             // reset();
-        //             refetch()
-        //             // setModalData(null);
-        //         }
-        //     })
-
-        // const updatedTasks = tasks.map((t) =>
-        //     t.id === modalData.id ? modalData : t
-        // );
-        // setTasks(updatedTasks);
-
+        axiosPublic.patch(`/work-sheet/${modalData._id}`, updatedTask)
+            .then((res) => {
+                if (res.data.modifiedCount> 0) {
+                    setModalData(null);
+                    refetch()
+                    Swal.fire({
+                        title: "Update successfully",
+                        icon: "success",
+                        draggable: true
+                      });
+                }
+            })
     };
 
     // Delete Task
