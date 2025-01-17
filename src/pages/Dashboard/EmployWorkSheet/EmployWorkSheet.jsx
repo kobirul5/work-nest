@@ -8,6 +8,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import Swal from 'sweetalert2'
 
 const EmployWorkSheet = () => {
     const { register, handleSubmit, setValue, reset, watch } = useForm({
@@ -43,7 +44,6 @@ const EmployWorkSheet = () => {
             employEmail: user?.email,
             employName: user?.displayName
         };
-        // Save to DB (e.g., use Axios to POST data to your API)
         axiosPublic.post('/work-sheet', newTask)
             .then((res) => {
                 if (res.data.insertedId) {
@@ -55,14 +55,22 @@ const EmployWorkSheet = () => {
                     refetch()
                 }
             })
-        // 
     };
-
+    console.log(modalData)
     // Update Task
     const handleUpdateTask = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        // axiosPublic.patch(`/work-sheet/${modalData.taskId}`, updateTask)
+        const formData = new FormData(e.target);
+        const updatedTask = {
+            task: formData.get("task"), 
+            hours: formData.get("hours"),
+            date: formData.get("date")
+          };
+        console.log(updatedTask)
+
+          
+        // axiosPublic.patch(`/work-sheet/${modalData.taskId}`, updatedTask)
         //     .then((res) => {
         //         if (res.data.insertedId) {
         //             toast.success("Task added successfully", {
@@ -84,17 +92,29 @@ const EmployWorkSheet = () => {
 
     // Delete Task
     const handleDeleteTask = (id) => {
-        axiosPublic.delete(`/work-sheet/${id}`)
-            .then((res) => {
-                if (res.data.deletedCount > 0) {
-                    toast.error("deleted task successfully", {
-                        duration: 4000,
-                        position: 'top-center',
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Once you do it, there's no going back!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/work-sheet/${id}`)
+                    .then((res) => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Work has been deleted.",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
                     })
-                    refetch();
-                }
-            })
-
+            }
+        });
     };
 
     return (
@@ -146,7 +166,7 @@ const EmployWorkSheet = () => {
                             <td>{t.hours}</td>
                             <td>{new Date(t.date).toLocaleDateString("en-US", {
                                 month: "short",
-                                day: "2-digit", 
+                                day: "2-digit",
                                 year: "numeric",
                             })}</td>
                             <td>
@@ -173,11 +193,11 @@ const EmployWorkSheet = () => {
                 <div className="modal modal-open">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Edit Task</h3>
-                        <form onSubmit={() => handleUpdateTask()} className="mt-4">
+                        <form onSubmit={handleUpdateTask} className="mt-4">
                             <select
                                 className="select select-bordered w-full mb-2"
                                 defaultValue={modalData.task}
-                                name="tasks"
+                                name="task"
                             >
                                 <option defaultValue="Sales">Sales</option>
                                 <option defaultValue="Support">Support</option>
@@ -190,17 +210,13 @@ const EmployWorkSheet = () => {
                                 defaultValue={modalData.hours}
                                 name="hours"
                             />
-                            <DatePicker
-                                className="input input-bordered w-full"
-                                selected={new Date(modalData.date)}
-                                name="date"
+                            <input 
+                            type="date" 
+                            className="input input-bordered"
+                            defaultValue={modalData.date}
+                            name="date" 
                             />
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleUpdateTask}
-                            >
-                                Update
-                            </button>
+                            <input type="submit" className="btn" />
                         </form>
                         <div className="modal-action">
 

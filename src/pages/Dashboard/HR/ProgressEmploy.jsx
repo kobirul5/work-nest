@@ -2,7 +2,6 @@ import useWorkSheet from "../../../hooks/useWorkSheet";
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import Spinner from "../../Shared/Spinner/Spinner";
 import { useMemo, useState } from "react";
-import { data } from "react-router-dom";
 
 const ProgressEmploy = () => {
     const [workSheet, loading, refetch] = useWorkSheet()
@@ -15,7 +14,7 @@ const ProgressEmploy = () => {
             new Set(workSheet.map((item) => item.employName || "Unknown"))
         )
     }, [workSheet])
-    console.log(selectedEmployee)
+   
 
 
     const filteredWorkSheet = useMemo(() => {
@@ -57,12 +56,12 @@ const ProgressEmploy = () => {
             Headers: "Date",
             accessorKey: "date",
             cell: ({ getValue }) => {
-                const dateValue = getValue(); // Get the raw date value
+                const dateValue = getValue(); 
                 const formattedDate = new Date(dateValue).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
-                }); // Format the date
+                }); 
                 return formattedDate;
               },
             
