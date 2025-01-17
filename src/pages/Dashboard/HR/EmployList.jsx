@@ -6,13 +6,14 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 const EmployList = () => {
     const axiosSecure = useAxiosSecure()
     const [paymentEmploy, setPaymentEmploy] = useState({})
     const navigate = useNavigate()
 
-    const { data: allUser = [], isPending: loading, refetch } = useQuery({
+    const { data: allUser = [], isLoading, refetch } = useQuery({
         queryKey: ['allUser'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -126,6 +127,10 @@ const EmployList = () => {
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     })
+
+    if(isLoading){
+        return <Spinner></Spinner>
+    }
 
     return (
         <div>

@@ -1,8 +1,14 @@
 import { Toaster } from "react-hot-toast";
 import { Link, Outlet } from "react-router-dom";
 import UserProfile from "../pages/Shared/UserProfile/UserProfile";
+import useAllUsers from "../hooks/useAllUsers";
+import Spinner from "../pages/Shared/Spinner/Spinner";
 
 const Dashboard = () => {
+    const [isLoading] = useAllUsers()
+    if(isLoading){
+        <Spinner></Spinner>
+    }
     return (
         <div className="flex flex-col md:flex-row">
             <div className="min-w-[250px] min-h-screen flex flex-col text-white bg-[#014E4E] p-5 gap-4" >
