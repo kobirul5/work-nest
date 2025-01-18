@@ -124,7 +124,7 @@ const SignUp = () => {
                             <select className="select select-bordered"
                                 {...register("role", { required: true })}
                             >
-                                <option value="employ">Employ</option>
+                                <option value="employee">Employee</option>
                                 <option value="hr">HR</option>
                             </select>
                             {errors.role && <span className='text-red-600'>Role is required</span>}
@@ -138,9 +138,9 @@ const SignUp = () => {
                             <select className="select select-bordered"
                                 {...register("designation", { required: true })}
                             >
-                                <option value="employ">Web developer</option>
-                                <option value="employ">Digital Marketer</option>
-                                <option value="hr">Graphics Designer</option>
+                                <option value="Web developer">Web developer</option>
+                                <option value="Digital Marketer">Digital Marketer</option>
+                                <option value="Graphics Designer">Graphics Designer</option>
                             </select>
                             {errors.designation && <span className='text-red-600'>designation is required</span>}
 

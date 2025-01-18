@@ -19,7 +19,9 @@ const Dashboard = () => {
                 <UserProfile></UserProfile>
                 <Link className="btn" to="/">Home</Link>
                 {/* employ */}
-                <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
+                {
+                    filterData?.role == "employee" && <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
+                }
                 {/* HR */}
                 {
                     filterData?.role === "hr" && <>

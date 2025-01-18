@@ -5,29 +5,46 @@ import { FaFire } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Heading from "../../Shared/Heading/Heading";
+import Swal from "sweetalert2";
 
 const AllEmployeeList = () => {
     const [verifiedUser, refetch] = useVerifiedUser()
     const axiosSecure = useAxiosSecure()
 
     const handleFired = (fireData) => {
-        console.log(fireData)
-        axiosSecure.patch(`/users/fired/${fireData._id}`)
-            .then(res => {
-                console.log(res)
-                refetch()
-            })
+
+        Swal.fire({
+            title: "Are you sure you want to fire this employee?",
+            text: "Once fired, they will no longer be able to log in to their account. This action cannot be undone",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/fired/${fireData._id}`)
+                    .then(res => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+                        refetch()
+                    })
+            }
+        });
     }
 
 
     const handleMakeHR = (hrData) => {
         axiosSecure.patch(`/users/hr/${hrData._id}`, hrData)
-        .then((res)=>{
-            if(res.data.modifiedCount >0){
-                refetch()
-                toast.success("Update to HR")
-            }
-        })
+            .then((res) => {
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    toast.success("Update to HR")
+                }
+            })
     }
 
 
@@ -48,7 +65,7 @@ const AllEmployeeList = () => {
         },
         {
             headers: "HR",
-             accessorKey: "HR",
+            accessorKey: "HR",
             cell: ({ row }) => (row.original.role === "hr" ? <>
                 <p className="text-green-600 text-2xl"><TiTick></TiTick></p>
             </> : <>
@@ -89,8 +106,8 @@ const AllEmployeeList = () => {
         <div className="">
             <div className="py-10 text-center">
                 <Heading
-                title={"Employee Management Dashboard"}
-                subtile={"View, manage, and update roles for all verified employees seamlessly"}
+                    title={"Employee Management Dashboard"}
+                    subtile={"View, manage, and update roles for all verified employees seamlessly"}
                 ></Heading>
             </div>
 

@@ -3,10 +3,10 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from 'react-hot-toast';
+import Heading from '../../Shared/Heading/Heading';
 
 const PaymentEmployee = () => {
     const axiosSecure = useAxiosSecure()
-    // const [paymentEmploy, setPaymentEmploy] = useState({})
     const { data: paymentData = [], refetch } = useQuery({
         queryKey: ['payroll'],
         queryFn: async () => {
@@ -121,7 +121,12 @@ const PaymentEmployee = () => {
     })
     return (
         <div>
-            Employ list {paymentData.length}
+            <div className='my-14 text-center'>
+                <Heading
+                title={"Payroll Management System"}
+                subtile={"Track, manage, and process employee salaries seamlessly and efficiently."}
+                ></Heading>
+            </div>
 
             <div className="overflow-x-auto">
                 <table className="table">
