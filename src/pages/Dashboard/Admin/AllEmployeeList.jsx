@@ -4,6 +4,7 @@ import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } fro
 import { FaFire } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import Heading from "../../Shared/Heading/Heading";
 
 const AllEmployeeList = () => {
     const [verifiedUser, refetch] = useVerifiedUser()
@@ -47,8 +48,8 @@ const AllEmployeeList = () => {
         },
         {
             headers: "HR",
-             accessorKey: "hr",
-            cell: ({ row }) => (row.original.designation === "HR" ? <>
+             accessorKey: "HR",
+            cell: ({ row }) => (row.original.role === "hr" ? <>
                 <p className="text-green-600 text-2xl"><TiTick></TiTick></p>
             </> : <>
                 <button
@@ -61,7 +62,7 @@ const AllEmployeeList = () => {
         },
         {
             headers: "Fire",
-            accessorKey: "isFired",
+            accessorKey: "Fired",
             cell: ({ row }) => (!row.original.isFired ? <>
                 <button
                     onClick={() => handleFired(row.original)}
@@ -85,8 +86,13 @@ const AllEmployeeList = () => {
 
 
     return (
-        <div>
-            Employ list {verifiedUser.length}
+        <div className="">
+            <div className="py-10 text-center">
+                <Heading
+                title={"Employee Management Dashboard"}
+                subtile={"View, manage, and update roles for all verified employees seamlessly"}
+                ></Heading>
+            </div>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -110,7 +116,7 @@ const AllEmployeeList = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div className="space-x-4 mt-5">
                 <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
                 <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
                 <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>

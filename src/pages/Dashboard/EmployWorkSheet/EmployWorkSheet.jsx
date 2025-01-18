@@ -9,6 +9,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Swal from 'sweetalert2'
+import Heading from "../../Shared/Heading/Heading";
 
 const EmployWorkSheet = () => {
     const { register, handleSubmit, setValue, reset, watch } = useForm({
@@ -110,6 +111,12 @@ const EmployWorkSheet = () => {
 
     return (
         <div className="p-4">
+            <div className="text-center mb-10">
+                <Heading
+                title={"Track Your Daily Tasks"}
+                subtile={"Log your work hours, manage tasks, and review your activity history efficiently"}
+                ></Heading>
+            </div>
             {/* Form */}
             <form
                 className="flex flex-col md:flex-row gap-4 items-center mb-4"

@@ -4,15 +4,24 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
+import useAllUsers from "../../hooks/useAllUsers";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [allUser] = useAllUsers()
     const { userLogin } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     console.log(location)
+
+
+
     const onSubmit = data => {
-        console.log(data)
+        const filterData = allUser.find((item)=> item?.email === data?.email)
+        if(filterData?.isFired) {
+            return toast.error("Your are Fired by Admin")
+        }
+
         userLogin(data.email, data.password)
             .then(result => {
                 const user = result.user;
