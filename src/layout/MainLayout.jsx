@@ -4,10 +4,12 @@ import Footer from "../pages/Shared/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
 const MainLayout = () => {
     return (
-        <div>
+        <div className="">
+            <section className="">
+                <Navbar></Navbar>
 
-            <Navbar></Navbar>
-            <section >
+            </section>
+            <section  className="">
                 <Outlet></Outlet>
             </section>
             <Footer></Footer>
