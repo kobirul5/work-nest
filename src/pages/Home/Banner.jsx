@@ -2,7 +2,7 @@ import bannerImage from "../../assets/images/B.jpg"
 
 const Banner = () => {
     return (
-        <div
+        <div 
             className="hero relative  p-0 h-[550px] "
             style={{
                 backgroundImage: `url(${bannerImage})`,

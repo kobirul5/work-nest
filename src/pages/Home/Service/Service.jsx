@@ -1,3 +1,4 @@
+import Heading from "../../Shared/Heading/Heading";
 
 const Service = () => {
     const services = [
@@ -29,13 +30,11 @@ const Service = () => {
     return (
         <div className="">
             <div className="container mx-auto text-center">
-                <h2 className="text-2xl md:text-4xl: lg:text-5xl  font-bold mb-8 ">
-                    Our Services
-                </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-                    Explore the various services we provide to ensure smooth management
-                    of employees and HR operations.
-                </p>
+                <Heading
+                    title={"Our Services"}
+                    subtile={"Explore the various services we provide to ensure smooth management of employees and HR operations."}
+                ></Heading>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {services.map((service, index) => (
                         <div
