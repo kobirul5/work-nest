@@ -1,6 +1,10 @@
 import Heading from "../../Shared/Heading/Heading";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, } from 'swiper/react';
+import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules"
 import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
 
 const Testimonial = () => {
 
@@ -89,10 +93,33 @@ const Testimonial = () => {
             </div>
 
             <Swiper
-                spaceBetween={50}
-                slidesPerView={3}
-                onSlideChange={() => { }}
-                onSwiper={(swiper) => { }}
+                modules={[Autoplay, Pagination, EffectCoverflow]}
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                autoplay={{
+                    delay: 1500, // Delay between slides (in milliseconds)
+                    disableOnInteraction: false, // Continue autoplay after interaction
+                  }}
+                breakpoints={{
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 4,
+                      spaceBetween: 40,
+                    },
+                    
+                  }}
             >
                 {
                     testimonial.map((i, idx) => <SwiperSlide key={idx}><div className="bg-white shadow-xl rounded-lg p-6 md:p-8 border border-gray-300 flex flex-col items-center space-y-4 text-center">

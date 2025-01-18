@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer sm:footer-horizontal text-white bg-[#1f1e1e] p-10">
+        <footer className="footer sm:footer-horizontal text-white container mx-auto p-10">
             <aside>
                 <h3 className="uppercase text-4xl font-bold">Work Nest</h3>
                 <p>

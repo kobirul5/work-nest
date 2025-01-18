@@ -9,10 +9,13 @@ const MainLayout = () => {
                 <Navbar></Navbar>
 
             </section>
-            <section  className="">
+            <section  className="min-h-[calc(100vh-220px)]">
                 <Outlet></Outlet>
             </section>
+            <section className="bg-[#1f1e1e]">
+
             <Footer></Footer>
+            </section>
         </div>
     );
 };
