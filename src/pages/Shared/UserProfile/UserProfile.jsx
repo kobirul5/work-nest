@@ -1,8 +1,6 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Spinner from "../Spinner/Spinner";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import useAllUsers from "../../../hooks/useAllUsers";
 
 const UserProfile = () => {
