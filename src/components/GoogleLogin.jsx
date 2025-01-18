@@ -3,32 +3,181 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
+
+const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
+const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
 
 const GoogleLogin = () => {
-    const {googleLoginUser} = useContext(AuthContext)
-    const navigate = useNavigate();
+    const { googleLoginUser, updateUserProfile } = useContext(AuthContext)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic();
 
-    const handleGoogleLogin = ()=>{
-        googleLoginUser()
-        .then((result) => {
-            const user = result.user;
-            navigate('/')
-            toast.success('Login with Google Successfully', {
-                duration: 4000,
-                position: 'top-center',
-            })
-           
-          }).catch((error) => {
-            const errorMessage = error.message;
-            toast.error('Login Failed', {
-                duration: 4000,
-                position: 'top-center',
-            })
-          });
-    }
+    const onSubmit = data => {
+        const imageFile = { image: data.photo[0] }
+        axiosPublic.post(imageHostingApi, imageFile, {
+            headers: { "content-type": "multipart/form-data" },
+        }).then(res => {
+            const photoUrl = res.data.data.display_url
+            const userData = {
+                name: data.name,
+                email: data.email,
+                image: photoUrl,
+                role: data.role,
+                bankAccountNo: data.bankAccount,
+                salary: data.salary,
+                designation: data.designation,
+            }
+            console.log(userData)
+            googleLoginUser()
+                .then((result) => {
+                    const user = result.user;
+                    axiosPublic.post("/users", userData)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                navigate("/")
+                                reset()
+                                toast.success('Sign up Successful', {
+                                    duration: 4000,
+                                    position: 'top-center',
+                                })
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }).catch((error) => {
+                    const errorMessage = error.message;
+                    toast.error('Login Failed', {
+                        duration: 4000,
+                        position: 'top-center',
+                    })
+                });
+
+        })
+    };
+
+
+    // const handleGoogleLogin = () => {
+    // googleLoginUser()
+    //     .then((result) => {
+    //         const user = result.user;
+    //         navigate('/')
+    //         toast.success('Login with Google Successfully', {
+    //             duration: 4000,
+    //             position: 'top-center',
+    //         })
+
+    //     }).catch((error) => {
+    //         const errorMessage = error.message;
+    //         toast.error('Login Failed', {
+    //             duration: 4000,
+    //             position: 'top-center',
+    //         })
+    //     });
+    // }
     return (
         <div>
-            <button onClick={handleGoogleLogin} className="btn btn-outline"><FaGoogle></FaGoogle></button>
+            <button onClick={() => {
+                // handleGoogleLogin()
+                document.getElementById('my_modal_5').showModal()
+            }} className="btn btn-outline"><FaGoogle></FaGoogle></button>
+            {/* modal */}
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">You Should  fill this from</h3>
+                    <div className="modal-action flex-col">
+                        <div>
+                            <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-4 md:grid md:grid-cols-2">
+                                {/* name */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Name</span>
+                                    </label>
+                                    <input type="text" {...register("name", { required: true })} placeholder="Your Name" className="input input-bordered" />
+                                    {errors.name && <span className='text-red-600'>Name is required</span>}
+                                </div>
+                                {/* email */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Email</span>
+                                    </label>
+                                    <input type="email" {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
+                                    {errors.email && <span className='text-red-600'>Email is required</span>}
+                                </div>
+                                {/* salary */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Salary</span>
+                                    </label>
+                                    <input type="number" {...register("salary", { required: true })} placeholder="Salary" className="input input-bordered" />
+                                    {errors.salary && <span className='text-red-600'>Name is required</span>}
+                                </div>
+                                {/* Bank Account */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Bank Account</span>
+                                    </label>
+                                    <input type="number" {...register("bankAccount", { required: true })} placeholder="Salary" className="input input-bordered" />
+                                    {errors.salary && <span className='text-red-600'>Bank Account number is required</span>}
+                                </div>
+                                {/* Photo */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Photo</span>
+                                    </label>
+                                    <input
+                                        type="file"
+                                        {...register("photo", { required: true })}
+                                        placeholder="email"
+                                        className="file-input file-input-bordered w-full "
+                                    />
+                                    {errors.email && <span className='text-red-600'>Email is required</span>}
+                                </div>
+                                {/* options */}
+                                <label className="form-control w-full ">
+                                    <div className="label">
+                                        <span className="label-text">Select Your Role</span>
+                                    </div>
+                                    <select className="select select-bordered"
+                                        {...register("role", { required: true })}
+                                    >
+                                        <option value="employ">Employ</option>
+                                        <option value="hr">HR</option>
+                                    </select>
+                                    {errors.role && <span className='text-red-600'>Role is required</span>}
+
+                                </label>
+                                {/* options 2 */}
+                                <label className="form-control w-full ">
+                                    <div className="label">
+                                        <span className="label-text">Select Your Designation</span>
+                                    </div>
+                                    <select className="select select-bordered"
+                                        {...register("designation", { required: true })}
+                                    >
+                                        <option value="employ">Web developer</option>
+                                        <option value="employ">Digital Marketer</option>
+                                        <option value="hr">Graphics Designer</option>
+                                    </select>
+                                    {errors.designation && <span className='text-red-600'>designation is required</span>}
+                                </label>
+
+                                <div className="form-control mt-6">
+                                    <button className="btn btn-primary">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };

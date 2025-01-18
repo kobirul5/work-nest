@@ -4,10 +4,12 @@ import { Toaster } from "react-hot-toast";
 
 const AuthLayout = () => {
     return (
-        <div>
+        <div className="">
             <Toaster></Toaster>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <section className="py-20">
+                <Outlet></Outlet>
+            </section>
         </div>
     );
 };

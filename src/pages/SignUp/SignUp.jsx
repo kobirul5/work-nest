@@ -23,7 +23,7 @@ const SignUp = () => {
                 axiosPublic.post(imageHostingApi, imageFile, {
                     headers: { "content-type": "multipart/form-data" },
                 })
-                .then(res => {
+                    .then(res => {
                         const photoUrl = res.data.data.display_url
                         updateUserProfile(data.name, photoUrl)
                             .then(() => {
@@ -54,22 +54,23 @@ const SignUp = () => {
                             });
 
                     })
-
-
             })
-
+        .catch((error)=>{
+            toast.error(error.message)
+        })
     };
 
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
-
+        <div className="hero min-h-screen">
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Sign Up now!</h1>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0 shadow-2xl">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                <div
+                    className="card bg-base-100 w-full  lg:w-[800px] shrink-0 shadow-2xl"
+                >
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-4 md:grid md:grid-cols-2">
                         {/* name */}
                         <div className="form-control">
                             <label className="label">
@@ -111,12 +112,12 @@ const SignUp = () => {
                                 type="file"
                                 {...register("photo", { required: true })}
                                 placeholder="email"
-                                className="file-input file-input-bordered w-full max-w-xs"
+                                className="file-input file-input-bordered w-full "
                             />
                             {errors.email && <span className='text-red-600'>Email is required</span>}
                         </div>
                         {/* options */}
-                        <label className="form-control w-full max-w-xs">
+                        <label className="form-control w-full ">
                             <div className="label">
                                 <span className="label-text">Select Your Role</span>
                             </div>
@@ -130,7 +131,7 @@ const SignUp = () => {
 
                         </label>
                         {/* options 2 */}
-                        <label className="form-control w-full max-w-xs">
+                        <label className="form-control w-full ">
                             <div className="label">
                                 <span className="label-text">Select Your Designation</span>
                             </div>
@@ -164,7 +165,7 @@ const SignUp = () => {
                             <button className="btn btn-primary">Sign Up</button>
                         </div>
                     </form>
-                    <div>
+                    <div className='px-8 pb-8 text-primary-color'>
                         <Link to="/auth/login">Have a account? Login</Link>
                     </div>
                 </div>

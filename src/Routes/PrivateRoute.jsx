@@ -11,9 +11,9 @@ const PrivateRoute = ({children}) => {
     const userV = allUser.filter((i)=>i?.email === user?.email)
     console.log(userV)
 
-    // if(loading || isLoading){
-    //     return <Spinner></Spinner>;
-    // }
+    if(loading ){
+        return <Spinner></Spinner>;
+    }
 
     // if(userV?.role === "admin"){
     //     return children;

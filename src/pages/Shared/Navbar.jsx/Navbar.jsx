@@ -3,12 +3,13 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import LogoutBtn from '../../../components/LogoutBtn';
+import './navbar.css'
 
 const Navbar = () => {
     const {user} = useContext(AuthContext)
 
     return (
-        <div className="navbar bg-gray-950 text-white backdrop-blur-lg fixed z-10 bg-opacity-30">
+        <div className="navbar bg-gray-950 text-white backdrop-blur-lg fixed z-10 bg-opacity-30 px-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -28,12 +29,12 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink className="" to="/">Home</NavLink></li>
                         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                         <li><a>Contact Us</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl pl-0 uppercase">Work Nest</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -45,8 +46,8 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     !user ? <>
-                     <NavLink to="/auth/login" className="btn" >Login</NavLink>
-                     <NavLink to="/auth/signUp" className="btn" >Sign Up</NavLink>
+                     <NavLink to="/auth/login" >Login</NavLink>
+                     <NavLink to="/auth/signUp" className="ml-4" >Sign Up</NavLink>
                     </>:
                      <div className="dropdown dropdown-end">
                      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -58,7 +59,7 @@ const Navbar = () => {
                      </div>
                      <ul
                          tabIndex={0}
-                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                         className="menu menu-sm dropdown-content text-black bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                          <li><LogoutBtn></LogoutBtn></li>
                      </ul>
                  </div>
