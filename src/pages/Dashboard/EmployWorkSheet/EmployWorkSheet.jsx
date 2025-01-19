@@ -67,7 +67,6 @@ const EmployWorkSheet = () => {
             date: formData.get("date")
         };
 
-
         axiosPublic.patch(`/work-sheet/${modalData._id}`, updatedTask)
             .then((res) => {
                 if (res.data.modifiedCount > 0) {
@@ -193,7 +192,7 @@ const EmployWorkSheet = () => {
                         <form onSubmit={handleUpdateTask} className="mt-4 ">
                             <select
                                 className="select select-bordered w-full mb-2"
-                                
+
                                 defaultValue={new Date(modalData?.date).toLocaleString("en-US", {
                                     year: "numeric",
                                     month: "long",

@@ -32,11 +32,15 @@ const EmployList = () => {
                 }
             })
     }
-
+    // handle pay
     const handlePay = (e) => {
         e.preventDefault()
         const date = e.target.month.value;
         const payModal = document.getElementById("pay_modal");
+        
+        const filterData = allUser.find((item) => item?.date === paymentEmploy?.date)
+        console.log(filterData.date)
+
         const payrollEmploy = {
             EmployId: paymentEmploy._id,
             name: paymentEmploy.name,
@@ -49,6 +53,7 @@ const EmployList = () => {
             paymentStatus: "pending",
             date: date
         }
+
         axiosSecure.post('/payroll', payrollEmploy)
         .then(res=>{
             if(res.data.insertedId){
@@ -61,7 +66,7 @@ const EmployList = () => {
     const handleDetails =(id)=>{
         navigate(`/dashboard/details/${id}`)
     }
-
+    //  table column
     const columns = [
         {
             headers: " ",

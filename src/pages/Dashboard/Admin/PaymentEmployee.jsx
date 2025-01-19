@@ -1,19 +1,13 @@
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import toast from 'react-hot-toast';
 import Heading from '../../Shared/Heading/Heading';
+import usePayroll from '../../../hooks/usePayroll';
 
 const PaymentEmployee = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: paymentData = [], refetch } = useQuery({
-        queryKey: ['payroll'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/payroll');
-            return res.data;
-        }
-    })
+    const [paymentData, refetch] = usePayroll()
+
 
     const handlePay = (data) => {
             const paymentEmploy = data;
@@ -28,6 +22,7 @@ const PaymentEmployee = () => {
             bankAccountNo: paymentEmploy.bankAccountNo,
             salary: paymentEmploy.salary,
             designation: paymentEmploy.designation,
+            transactionID: `tran${paymentEmploy._id.slice(0,6)}${paymentEmploy.name.slice(0,2)}`,
             paymentStatus: "success",
             date: date
         }
@@ -150,7 +145,7 @@ const PaymentEmployee = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div className='flex gap-5  my-5'>
                 <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
                 <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
                 <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>

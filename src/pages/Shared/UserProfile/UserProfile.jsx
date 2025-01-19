@@ -4,14 +4,12 @@ import Spinner from "../Spinner/Spinner";
 import useAllUsers from "../../../hooks/useAllUsers";
 
 const UserProfile = () => {
-    const {user, loading} = useContext(AuthContext)
-    const [allUser ,isLoading] = useAllUsers()
+    const {user} = useContext(AuthContext)
+    const [allUser ] = useAllUsers()
 
     const filterData = allUser.find((item)=> item?.email === user?.email) 
+    console.log(filterData)
 
-    if(loading || isLoading){
-        return <Spinner></Spinner>
-    }
     return (
         <div className="flex flex-col justify-center items-center text-center"> 
             <img className="w-[200px] h-[200px] object-cover rounded-full text-center" src={filterData?.image} alt="" />

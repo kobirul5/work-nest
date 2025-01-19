@@ -6,7 +6,6 @@ import Heading from "../../Shared/Heading/Heading";
 
 const ProgressEmploy = () => {
     const [workSheet, loading, refetch] = useWorkSheet()
-    const [employeeWorkSheet, setEmployWorkSheet] = useState(workSheet)
     const [selectedEmployee, setSelectedEmployee] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
 
@@ -149,7 +148,7 @@ const ProgressEmploy = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div className="flex gap-5 my-5">
                 <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
                 <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
                 <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>

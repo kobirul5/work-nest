@@ -18,6 +18,7 @@ const Dashboard = () => {
                 <Link className="btn" to="/">Home</Link>
                 {/* employ: TODO: fixed it  */}
                 <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
+                <Link className="btn" to="/dashboard/payment-history">History</Link>
 
                 {/* {
                     filterData?.role == "employee" && <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
