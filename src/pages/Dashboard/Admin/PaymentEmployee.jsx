@@ -24,7 +24,8 @@ const PaymentEmployee = () => {
             designation: paymentEmploy.designation,
             transactionID: `tran${paymentEmploy._id.slice(0,6)}${paymentEmploy.name.slice(0,2)}`,
             paymentStatus: "success",
-            date: date
+            date: paymentEmploy.date,
+            paymentDate: date
         }
         axiosSecure.patch(`/payroll/${data._id}`, payrollEmploy)
         .then(res=>{
@@ -44,21 +45,24 @@ const PaymentEmployee = () => {
         },
         {
             headers: "Name",
-            accessorKey: "name"
+            accessorKey: "Name",
+            cell: ({row})=> <p>{row.original.name}</p>
         },
         {
             headers: "Email",
-            accessorKey: "email"
+            accessorKey: "Email",
+            cell: ({row})=> <p>{row.original.email}</p>
         },
         {
             headers: "Designation",
-            accessorKey: "designation"
+            accessorKey: "Designation",
+            cell: ({row})=> <p>{row.original.designation}</p>
         },
         {
             headers: "Date",
-            accessorKey: "date",
-            cell: ({ getValue }) => {
-                const dateValue = getValue(); // Get the raw date value
+            accessorKey: "Date",
+            cell: ({ row }) => {
+                const dateValue = row.original.date; // Get the raw date value
                 const formattedDate = new Date(dateValue).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -94,7 +98,7 @@ const PaymentEmployee = () => {
             headers: "Pay Date",
             accessorKey: "paymentDate",
             cell: ({row})=> {
-                const formattedDate = new Date(row.original.date).toLocaleDateString("en-US", {
+                const formattedDate = new Date(row.original.paymentDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

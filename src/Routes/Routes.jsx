@@ -13,6 +13,7 @@ import ProgressEmploy from "../pages/Dashboard/HR/ProgressEmploy";
 import AllEmployeeList from "../pages/Dashboard/Admin/AllEmployeeList";
 import PaymentEmployee from "../pages/Dashboard/Admin/PaymentEmployee";
 import PaymentHistory from "../pages/Dashboard/EmployWorkSheet/PaymentHistory";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/contact-us',
+                element: <ContactUs></ContactUs>
             }
         ]
     },

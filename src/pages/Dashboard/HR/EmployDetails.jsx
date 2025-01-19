@@ -4,20 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Legend, Tooltip } from "recharts"
 import Spinner from "../../Shared/Spinner/Spinner";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const EmployDetails = () => {
     const { slug } = useParams()
+    const {user} = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     const { data: payData = [], isPending: loading, refetch } = useQuery({
         queryKey: ['payData'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payroll/${slug}`);
+            const res = await axiosSecure.get(`/payroll/${user?.email}`);
             return res.data;
         }
     })
     if(loading){
         return <Spinner></Spinner>
     }
+    console.log()
     return (
         <div>
             {

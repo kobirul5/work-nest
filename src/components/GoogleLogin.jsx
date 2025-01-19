@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAllUsers from "../hooks/useAllUsers";
 
 
 const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
@@ -12,11 +13,18 @@ const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
 
 const GoogleLogin = () => {
     const { googleLoginUser, updateUserProfile } = useContext(AuthContext)
+    const [allUser] = useAllUsers()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
 
     const onSubmit = data => {
+
+        const filterData = allUser.find((item)=> item?.email === data?.email)
+        if(filterData?.isFired) {
+            return toast.error("Your are Fired by Admin")
+        }
+
         const imageFile = { image: data.photo[0] }
         axiosPublic.post(imageHostingApi, imageFile, {
             headers: { "content-type": "multipart/form-data" },
