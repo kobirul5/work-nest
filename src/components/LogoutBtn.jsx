@@ -12,7 +12,7 @@ const LogoutBtn = () => {
             navigate("/auth/login")
         })
         .catch(error=>{
-            console.log(error)
+           toast.error(error?.message)
         })
     }
 

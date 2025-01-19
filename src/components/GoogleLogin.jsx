@@ -39,7 +39,6 @@ const GoogleLogin = () => {
                 salary: data.salary,
                 designation: data.designation,
             }
-            console.log(userData)
             googleLoginUser()
                 .then((result) => {
                     const user = result.user;
@@ -55,7 +54,7 @@ const GoogleLogin = () => {
                             }
                         })
                         .catch((error) => {
-                            console.log(error)
+                            toast.error(error.message)
                         })
                 }).catch((error) => {
                     const errorMessage = error.message;

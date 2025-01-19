@@ -15,7 +15,6 @@ const SignUp = () => {
     const axiosPublic = useAxiosPublic();
 
     const onSubmit = data => {
-        console.log(data)
         userCreate(data.email, data.password)
             .then((result) => {
                 const user = result.user;
@@ -36,7 +35,7 @@ const SignUp = () => {
                                     salary: data.salary,
                                     designation: data.designation,
                                 }
-                                console.log(userData)
+        
                                 axiosPublic.post("/users", userData)
                                     .then(res => {
                                         if (res.data.insertedId) {
@@ -50,7 +49,7 @@ const SignUp = () => {
                                     })
 
                             }).catch((error) => {
-                                console.log(error.messages)
+                                toast.error(error.messages)
                             });
 
                     })

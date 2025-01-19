@@ -6,22 +6,25 @@ import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Legend, Tooltip } fro
 import Spinner from "../../Shared/Spinner/Spinner";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useAllUsers from "../../../hooks/useAllUsers";
 
 const EmployDetails = () => {
     const { slug } = useParams()
+    const [allUser] = useAllUsers()
+    const findDetails = allUser?.find((i) => i._id === slug);
+    console.log(findDetails, slug, allUser)
     const {user} = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     const { data: payData = [], isPending: loading, refetch } = useQuery({
         queryKey: ['payData'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payroll/${user?.email}`);
+            const res = await axiosSecure.get(`/payroll/${findDetails?.email}`);
             return res.data;
         }
     })
     if(loading){
         return <Spinner></Spinner>
     }
-    console.log()
     return (
         <div>
             {

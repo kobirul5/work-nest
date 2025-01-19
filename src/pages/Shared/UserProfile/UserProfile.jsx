@@ -6,9 +6,8 @@ import useAllUsers from "../../../hooks/useAllUsers";
 const UserProfile = () => {
     const {user} = useContext(AuthContext)
     const [allUser ] = useAllUsers()
-
+    
     const filterData = allUser.find((item)=> item?.email === user?.email) 
-    console.log(filterData)
 
     return (
         <div className="flex flex-col justify-center items-center text-center"> 

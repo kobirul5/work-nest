@@ -112,7 +112,7 @@ const AllEmployeeList = () => {
             </div>
 
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table table-xs">
                     {/* head */}
                     <thead>
                         {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
@@ -133,7 +133,7 @@ const AllEmployeeList = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="space-x-4 mt-5">
+            <div className="flex flex-wrap gap-5 mt-5">
                 <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
                 <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
                 <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>

@@ -12,8 +12,6 @@ const Login = () => {
     const { userLogin } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location)
-
 
 
     const onSubmit = data => {

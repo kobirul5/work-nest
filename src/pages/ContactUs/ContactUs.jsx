@@ -12,7 +12,6 @@ const ContactUs = () => {
         const email = form.email.value;
         const message = form.message.value;
          const formData =({name, email, message})
-        console.log(formData)
         axiosPublic.post("/message", formData)
         .then((res)=>{
             if(res.data.insertedId){
@@ -24,8 +23,6 @@ const ContactUs = () => {
         })
 
     };
-
-
 
     return (
         <div className="container mx-auto px-4 py-8 pt-20">

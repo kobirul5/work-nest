@@ -8,9 +8,9 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const PaymentHistory = () => {
     const [paymentData, refetch] = usePayroll()
-    const {user} = useContext(AuthContext)
-    const filterData = paymentData?.filter((i)=>i.paymentStatus === "success")
-    const succussPaymentData = filterData?.filter((i)=>i?.email === user?.email)
+    const { user } = useContext(AuthContext)
+    const filterData = paymentData?.filter((i) => i.paymentStatus === "success")
+    const succussPaymentData = filterData?.filter((i) => i?.email === user?.email)
 
 
     const columns = [
@@ -22,19 +22,38 @@ const PaymentHistory = () => {
         {
             headers: "Date",
             accessorKey: "Date",
-            cell: ({ row }) => <p>{row.original.date}</p>
+            cell: ({ row }) => {
+                const formattedDate = new Date(row.original.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+                return <p>{formattedDate}</p>;
+            }
         },
         {
             Headers: "Salary",
             accessorKey: "Salary",
-            cell: ({row})=> <p>{row.original.salary}</p>
+            cell: ({ row }) => <p>{row.original.salary}</p>
         },
         {
             headers: "transactionID",
             accessorKey: "Transaction ID",
             cell: ({ row }) => <p>{row.original.transactionID}</p>
         },
-        
+        {
+            headers: "Date",
+            accessorKey: "Payment Released",
+            cell: ({ row }) => {
+                const formattedDate = new Date(row.original?.paymentDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+                return <p>{formattedDate}</p>;
+            }
+        },
+
     ]
 
     const table = useReactTable({
@@ -44,10 +63,10 @@ const PaymentHistory = () => {
         getPaginationRowModel: getPaginationRowModel()
     })
 
-    
+
     return (
         <div>
-            <div className='text-center mx-auto mb-10'>
+            <div className='text-center mx-auto pt-14 mb-10'>
                 <Heading
                     title={"Payment History"}
                     subtile={"Comprehensive Overview of Employee Information and Actions"}

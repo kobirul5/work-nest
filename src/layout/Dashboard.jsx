@@ -17,36 +17,30 @@ const Dashboard = () => {
                 <UserProfile></UserProfile>
                 <Link className="btn" to="/">Home</Link>
                 {/* employ: TODO: fixed it  */}
-                <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
-                <Link className="btn" to="/dashboard/payment-history">History</Link>
-
-                {/* {
-                    filterData?.role == "employee" && <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
-                } */}
+                {
+                    filterData?.role == "employee" && <>
+                        <Link className="btn" to="/dashboard/work-sheet">Employ Task</Link>
+                        <Link className="btn" to="/dashboard/payment-history">History</Link>
+                    </>
+                }
                 {/* HR */}
-
-                <Link to="/dashboard/employee-list" className="btn">Employ List</Link>
-                <Link to="/dashboard/progress" className="btn">Progress</Link>
-                {/* {
+                {
                     filterData?.role === "hr" && <>
                         <Link to="/dashboard/employee-list" className="btn">Employ List</Link>
                         <Link to="/dashboard/progress" className="btn">Progress</Link>
                     </>
-                } */}
+                }
                 {/* admin */}
-
-                <Link to="/dashboard/all-employee-list" className="btn">All employee</Link>
-                <Link to="/dashboard/payroll" className="btn">Payment </Link>   
-                {/* {
+                {
                     filterData?.role === "admin" && <>
                         <Link to="/dashboard/all-employee-list" className="btn">All employee</Link>
                         <Link to="/dashboard/payroll" className="btn">Payment </Link>
                     </>
-                } */}
+                }
 
             </div>
             <Toaster></Toaster>
-            <section className="flex-grow px-5">
+            <section className="flex-grow px-5 w-full ">
                 <Outlet></Outlet>
             </section>
         </div>

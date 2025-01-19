@@ -31,7 +31,7 @@ const EmployWorkSheet = () => {
         queryKey: ['work-sheet'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/work-sheet/${user?.email}`);
-            const sortedTasks = res?.data.sort((a, b) => b.taskId - a.taskId);
+            const sortedTasks = res?.data.sort((a, b) => new Date(b.date) - new Date(a.date));
             return sortedTasks;
         }
     })
@@ -66,7 +66,6 @@ const EmployWorkSheet = () => {
             hours: formData.get("hours"),
             date: formData.get("date")
         };
-
         axiosPublic.patch(`/work-sheet/${modalData._id}`, updatedTask)
             .then((res) => {
                 if (res.data.modifiedCount > 0) {
@@ -107,7 +106,6 @@ const EmployWorkSheet = () => {
             }
         });
     };
-    console.log(modalData?.date)
     return (
         <div className="p-4">
             <div className="text-center mb-10">
@@ -217,6 +215,7 @@ const EmployWorkSheet = () => {
                                 className="input input-bordered w-full"
                                 defaultValue={modalData?.date}
                                 name="date"
+                                required
                             />
                             <input type="submit" className="btn mt-2" />
                         </form>
