@@ -2,6 +2,7 @@ import useWorkSheet from "../../../hooks/useWorkSheet";
 import { useReactTable, flexRender, getCoreRowModel, getPaginationRowModel } from '@tanstack/react-table';
 import Spinner from "../../Shared/Spinner/Spinner";
 import { useMemo, useState } from "react";
+import Heading from "../../Shared/Heading/Heading";
 
 const ProgressEmploy = () => {
     const [workSheet, loading, refetch] = useWorkSheet()
@@ -32,25 +33,29 @@ const ProgressEmploy = () => {
 
     const columns = [
         {
-            headers: "Id",
-            accessorKey: "id",
+            headers: " ",
+            accessorKey: " ",
             cell: (info) => info.row.index + 1,
         },
         {
             headers: "Name",
-            accessorKey: "employName",
+            accessorKey: "Name",
+            cell: ({row})=> <p>{row.original.employName}</p>
         },
         {
             headers: "Email",
-            accessorKey: "employEmail"
+            accessorKey: "Email",
+            cell: ({row})=> <p>{row.original.employEmail}</p>
         },
         {
             Headers: "Task",
-            accessorKey: "task"
+            accessorKey: "Task",
+            cell: ({row})=> <p>{row.original.task}</p>
         },
         {
             Headers: "Hours",
-            accessorKey: "hours"
+            accessorKey: "Hours",
+            cell: ({row})=><p>{row.original.bankAccountNo}</p>
         },
         {
             Headers: "Date",
@@ -81,8 +86,13 @@ const ProgressEmploy = () => {
     }
 
     return (
-        <div>
-            progress list {workSheet.length}
+        <div className="my-10">
+            <div className="text-center my-10">
+                <Heading
+                title={"Employee Progress Tracker"}
+                subtile={"Monitor and Filter Employee Work Records by Name and Month"}
+                ></Heading>
+            </div>
             <div className="flex flex-wrap justify-center items-center gap-6">
                 <select 
                 className="select select-primary w-full max-w-xs"

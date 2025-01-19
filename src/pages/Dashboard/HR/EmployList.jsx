@@ -7,6 +7,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../Shared/Spinner/Spinner';
+import Heading from '../../Shared/Heading/Heading';
 
 const EmployList = () => {
     const axiosSecure = useAxiosSecure()
@@ -23,11 +24,12 @@ const EmployList = () => {
 
 
     const handleVerified = (verifiedData) => {
-        console.log(verifiedData)
         axiosSecure.patch(`/users/${verifiedData._id}`)
             .then(res => {
-                console.log(res)
-                refetch()
+                if(res.data.modifiedCount >0){
+                    toast.success("Employee Verified")
+                    refetch()
+                }
             })
     }
 
@@ -62,21 +64,23 @@ const EmployList = () => {
 
     const columns = [
         {
-            headers: "Id",
-            accessorKey: "id",
+            headers: " ",
+            accessorKey: " ",
             cell: (info) => info.row.index + 1,
         },
         {
             headers: "Name",
-            accessorKey: "name"
+            accessorKey: "Name",
+            cell: ({row})=> <p>{row.original.name}</p>
         },
         {
             headers: "Email",
-            accessorKey: "email"
+            accessorKey: "Email",
+            cell: ({row})=> <p>{row.original.email}</p>
         },
         {
             headers: "Verified",
-            accessorKey: "isVerified",
+            accessorKey: "Verified",
             cell: ({ row }) => (row.original.isVerified ? <><button onClick={() => handleVerified(row.original)}><TiTick className="text-green-600 text-2xl" /></button>
             </> : <>
                 <button onClick={() => handleVerified(row.original)}><MdOutlineCancel className="text-red-600 text-2xl" /></button>
@@ -84,7 +88,8 @@ const EmployList = () => {
         },
         {
             headers: "Bank Account",
-            accessorKey: "bankAccountNo"
+            accessorKey: "Bank Account",
+            cell: ({row})=> <p>{row.original.bankAccountNo}</p>
         },
         {
             Headers: "Salary",
@@ -92,7 +97,7 @@ const EmployList = () => {
         },
         {
             headers: "Pay",
-            accessorKey: "pay",
+            accessorKey: "Pay",
             cell: ({ row }) => (
                 <button disabled={!row.original.isVerified}
                     className="btn btn-primary"
@@ -133,8 +138,13 @@ const EmployList = () => {
     }
 
     return (
-        <div>
-            Employ list {allUser.length}
+        <div className='my-14'>
+           <div className='text-center mx-auto mb-10'>
+            <Heading
+            title={"Employee Management Dashboard"}
+            subtile={"Comprehensive Overview of Employee Information and Actions"}
+            ></Heading>
+           </div>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -158,9 +168,7 @@ const EmployList = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
-                {/* disabled={!table.getCanPreviousPage()} */}
-                {/* disabled={!table.getCanNextPage()} */}
+            <div className='flex gap-4 my-5'>
                 <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
                 <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
                 <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>

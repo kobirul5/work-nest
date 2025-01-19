@@ -62,22 +62,22 @@ const EmployWorkSheet = () => {
 
         const formData = new FormData(e.target);
         const updatedTask = {
-            task: formData.get("task"), 
+            task: formData.get("task"),
             hours: formData.get("hours"),
             date: formData.get("date")
-          };
+        };
 
-          
+
         axiosPublic.patch(`/work-sheet/${modalData._id}`, updatedTask)
             .then((res) => {
-                if (res.data.modifiedCount> 0) {
+                if (res.data.modifiedCount > 0) {
                     setModalData(null);
                     refetch()
                     Swal.fire({
                         title: "Update successfully",
                         icon: "success",
                         draggable: true
-                      });
+                    });
                 }
             })
     };
@@ -108,13 +108,13 @@ const EmployWorkSheet = () => {
             }
         });
     };
-
+    console.log(modalData?.date)
     return (
         <div className="p-4">
             <div className="text-center mb-10">
                 <Heading
-                title={"Track Your Daily Tasks"}
-                subtile={"Log your work hours, manage tasks, and review your activity history efficiently"}
+                    title={"Track Your Daily Tasks"}
+                    subtile={"Log your work hours, manage tasks, and review your activity history efficiently"}
                 ></Heading>
             </div>
             {/* Form */}
@@ -142,11 +142,10 @@ const EmployWorkSheet = () => {
                     selected={selectedDate}
                     onChange={(date) => setValue("date", date)}
                 />
-                <button className="btn btn-primary" type="submit">
+                <button className="btn " type="submit">
                     Add
                 </button>
             </form>
-
             {/* Table */}
             <table className="table w-full">
                 <thead>
@@ -190,11 +189,16 @@ const EmployWorkSheet = () => {
             {modalData && (
                 <div className="modal modal-open">
                     <div className="modal-box">
-                        <h3 className="font-bold text-lg">Edit Task</h3>
-                        <form onSubmit={handleUpdateTask} className="mt-4">
+                        <h3 className="font-bold text-lg">Update Your Work</h3>
+                        <form onSubmit={handleUpdateTask} className="mt-4 ">
                             <select
                                 className="select select-bordered w-full mb-2"
-                                defaultValue={modalData.task}
+                                
+                                defaultValue={new Date(modalData?.date).toLocaleString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
                                 name="task"
                             >
                                 <option defaultValue="Sales">Sales</option>
@@ -205,16 +209,17 @@ const EmployWorkSheet = () => {
                             <input
                                 type="number"
                                 className="input input-bordered w-full mb-2"
-                                defaultValue={modalData.hours}
+                                defaultValue={modalData?.hours}
                                 name="hours"
                             />
-                            <input 
-                            type="date" 
-                            className="input input-bordered"
-                            defaultValue={modalData.date}
-                            name="date" 
+
+                            <input
+                                type="date"
+                                className="input input-bordered w-full"
+                                defaultValue={modalData?.date}
+                                name="date"
                             />
-                            <input type="submit" className="btn" />
+                            <input type="submit" className="btn mt-2" />
                         </form>
                         <div className="modal-action">
 
