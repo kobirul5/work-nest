@@ -6,9 +6,9 @@ const useVerifiedUser = () => {
     const { data: verifiedUser = [], refetch } = useQuery({
         queryKey: ['verifiedUser'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
-            const filterData = res.data.filter((i)=>i.isVerified === true)
-            return filterData;
+            const res = await axiosSecure.get('/users/verifyUser');
+            // const filterData = res.data.filter((i)=>i.isVerified === true)
+            return res.data;
         }
     })
     return [verifiedUser, refetch]
