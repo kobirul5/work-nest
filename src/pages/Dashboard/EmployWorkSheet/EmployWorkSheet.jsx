@@ -103,6 +103,13 @@ const EmployWorkSheet = () => {
                             refetch();
                         }
                     })
+                    .catch((err)=>{
+                        Swal.fire({
+                            title: "Failed",
+                            text: err.message,
+                            icon: "error"
+                        });
+                    })
             }
         });
     };
