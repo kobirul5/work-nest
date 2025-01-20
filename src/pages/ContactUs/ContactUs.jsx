@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 const ContactUs = () => {
     const  axiosPublic = useAxiosPublic()
@@ -16,6 +16,7 @@ const ContactUs = () => {
         .then((res)=>{
             if(res.data.insertedId){
                 toast.success('Message sent successfully!');
+                form.reset()
             }
         })
         .catch((error)=>{
@@ -47,7 +48,7 @@ const ContactUs = () => {
                         </div>
                     </div>
                 </div>
-
+                    <Toaster></Toaster>
                 {/* Contact Form */}
                 <div className="bg-white shadow-lg rounded-lg p-6">
                     <h2 className="text-2xl font-bold mb-4">Send Us a Message</h2>

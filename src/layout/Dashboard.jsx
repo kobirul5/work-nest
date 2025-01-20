@@ -35,6 +35,7 @@ const Dashboard = () => {
                     filterData?.role === "admin" && <>
                         <Link to="/dashboard/all-employee-list" className="btn">All employee</Link>
                         <Link to="/dashboard/payroll" className="btn">Payment </Link>
+                        <Link to="/dashboard/massage" className="btn">Massage</Link>
                     </>
                 }
                 <div className="border border-t"></div>

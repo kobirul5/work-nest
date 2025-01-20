@@ -15,6 +15,7 @@ import PaymentEmployee from "../pages/Dashboard/Admin/PaymentEmployee";
 import PaymentHistory from "../pages/Dashboard/EmployWorkSheet/PaymentHistory";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import Message from "../pages/Dashboard/Admin/Message/Message";
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path: 'payroll',
                 element:<PaymentEmployee></PaymentEmployee>
+            },
+            {
+                path: 'massage',
+                element:<Message></Message>
             }
         ]
     }
