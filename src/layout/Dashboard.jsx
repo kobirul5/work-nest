@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row">
             <div className="min-w-[250px] min-h-screen flex flex-col text-white bg-[#014E4E] p-5 gap-4" >
                 <UserProfile></UserProfile>
-                <Link className="btn" to="/">Home</Link>
+                <Link className="btn" to="/dashboard">Dashboard Home</Link>
                 {/* employ: TODO: fixed it  */}
                 {
                     filterData?.role == "employee" && <>
@@ -37,7 +37,9 @@ const Dashboard = () => {
                         <Link to="/dashboard/payroll" className="btn">Payment </Link>
                     </>
                 }
-
+                <div className="border border-t"></div>
+                <Link to="/" className="btn">Home</Link>
+                <Link to="/contact-us" className="btn">Contact Us</Link>
             </div>
             <Toaster></Toaster>
             <section className="flex-grow px-5 w-full ">
