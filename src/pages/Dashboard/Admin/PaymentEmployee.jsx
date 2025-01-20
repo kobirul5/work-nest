@@ -19,7 +19,7 @@ const PaymentEmployee = () => {
         const payModal = document.getElementById("my_modal_2");
         payModal.close(); 
     }
-console.log(newSalary)
+
     const handlePay = (data) => {
         const paymentEmploy = data;
         const date = new Date()
@@ -48,20 +48,11 @@ console.log(newSalary)
     }
 
     const columns = [
-        {
-            headers: "Id",
-            accessorKey: "id",
-            cell: (info) => info.row.index + 1,
-        },
+        
         {
             headers: "Name",
             accessorKey: "Name",
             cell: ({ row }) => <p>{row.original.name}</p>
-        },
-        {
-            headers: "Email",
-            accessorKey: "Email",
-            cell: ({ row }) => <p>{row.original.email}</p>
         },
         {
             headers: "Designation",
@@ -89,12 +80,6 @@ console.log(newSalary)
             headers: "Salary",
             accessorKey: "Adjust Salary",
             cell: ({ row }) => <button  onClick={() => document.getElementById('my_modal_2').showModal()} ><FaEdit></FaEdit> </button>
-
-        },
-        {
-            headers: "Transaction",
-            accessorKey: "transaction",
-            cell: ({ row }) => <p>{row.original._id}</p>
 
         },
         {
