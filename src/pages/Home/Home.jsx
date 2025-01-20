@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <section className="my-14 space-y-14 px-4">
+            <section className="my-14 space-y-14 px-4 container mx-auto">
                 <Service></Service>
                 <Testimonial></Testimonial>
                 <Blog></Blog>

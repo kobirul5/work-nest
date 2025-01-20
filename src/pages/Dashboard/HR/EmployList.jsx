@@ -97,14 +97,15 @@ const EmployList = () => {
         },
         {
             Headers: "Salary",
-            accessorKey: "Salary"
+            accessorKey: "Salary",
+            cell: ({row})=> row.original.salary
         },
         {
             headers: "Pay",
             accessorKey: "Pay",
             cell: ({ row }) => (
                 <button disabled={!row.original.isVerified}
-                    className="btn btn-primary"
+                    className="btn hover:bg-primary-color hover:text-white text-black   border-primary-color"
                     onClick={() => {
                         setPaymentEmploy(row.original)
                         document.getElementById('pay_modal').showModal()
@@ -120,7 +121,7 @@ const EmployList = () => {
             accessorKey: "Details",
             cell: ({ row }) => (
                 <button
-                    className="btn btn-primary"
+                    className="btn bg-primary-color text-white hover:text-black hover:border-primary-color"
                     onClick={() => handleDetails(row.original._id)} // Custom function for the Pay button
                 >
                     Details
@@ -137,9 +138,9 @@ const EmployList = () => {
         getPaginationRowModel: getPaginationRowModel()
     })
 
-    if(isLoading){
-        return <Spinner></Spinner>
-    }
+    // if(isLoading){
+    //     return <Spinner></Spinner>
+    // }
 
     return (
         <div className='my-14'>
@@ -151,9 +152,9 @@ const EmployList = () => {
            </div>
 
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table border">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-primary-color text-white border'>
                         {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
                             {headerGroup.headers.map((header, idx) => <th key={idx}>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
@@ -173,10 +174,10 @@ const EmployList = () => {
                 </table>
             </div>
             <div className='flex gap-4 my-5'>
-                <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
-                <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
-                <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
-                <button className='btn' onClick={() => table.lastPage()}>Last Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.setPageIndex(0)}>First Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.lastPage()}>Last Page</button>
             </div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="pay_modal" className="modal modal-bottom sm:modal-middle">

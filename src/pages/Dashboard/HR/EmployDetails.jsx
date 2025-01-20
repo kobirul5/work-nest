@@ -22,9 +22,9 @@ const EmployDetails = () => {
             return res.data;
         }
     })
-    if(loading){
-        return <Spinner></Spinner>
-    }
+    // if(loading){
+    //     return <Spinner></Spinner>
+    // }
     return (
         <div>
             {

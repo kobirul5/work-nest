@@ -26,7 +26,6 @@ const PaymentHistory = () => {
                 const formattedDate = new Date(row.original.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
-                    day: "numeric"
                 });
                 return <p>{formattedDate}</p>;
             }
@@ -75,7 +74,7 @@ const PaymentHistory = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-primary-color text-white'>
                         {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
                             {headerGroup.headers.map((header, idx) => <th key={idx}>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
@@ -95,10 +94,10 @@ const PaymentHistory = () => {
                 </table>
             </div>
             <div className='flex gap-4 my-5'>
-                <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
-                <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
-                <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
-                <button className='btn' onClick={() => table.lastPage()}>Last Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.setPageIndex(0)}>First Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.lastPage()}>Last Page</button>
             </div>
         </div>
     );

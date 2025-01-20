@@ -2,7 +2,6 @@ import { Toaster } from "react-hot-toast";
 import { Link, Outlet } from "react-router-dom";
 import UserProfile from "../pages/Shared/UserProfile/UserProfile";
 import useAllUsers from "../hooks/useAllUsers";
-import Spinner from "../pages/Shared/Spinner/Spinner";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { FaDollarSign, FaHistory, FaHome, FaList, FaTasks, FaUpload } from "react-icons/fa";
@@ -16,7 +15,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col md:flex-row container mx-auto">
-            <div className="min-w-[250px] min-h-screen flex flex-col text-white bg-[#014E4E] p-5 gap-4" >
+            <div className="min-w-[250px] min-h-screen flex flex-col  text-white bg-[#014E4E] p-5 gap-4" >
                 <UserProfile></UserProfile>
                 <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
                 {/* employ: TODO: fixed it  */}

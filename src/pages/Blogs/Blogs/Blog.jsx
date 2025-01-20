@@ -36,7 +36,7 @@ const Blog = () => {
 
 
     return (
-        <div className="bg-gray-50 py-10 px-4 md:px-20">
+        <div className=" py-10 px-4 md:px-20">
             {/* Header Section */}
             <div className="text-center mb-10">
                 <Heading

@@ -48,7 +48,7 @@ const Login = () => {
                     <h1 className="text-5xl font-bold">Login now!</h1>
                 </div>
                 <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0 shadow-2xl">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2">
                         {/* email */}
                         <div className="form-control">
                             <label className="label">
@@ -70,10 +70,10 @@ const Login = () => {
                             {errors.password?.type === "required" && <span className='text-red-600'>Password is Required</span>}
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn bg-primary-color text-white hover:text-black hover:border-primary-color">Login</button>
                         </div>
                     </form>
-                    <div className="px-8 pb-8">
+                    <div className="px-8 pb-8 space-y-2">
                         <Link to="/auth/signUp">Don't Have a account? Sign Up</Link>
                         <GoogleLogin></GoogleLogin>
                     </div>

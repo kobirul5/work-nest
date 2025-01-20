@@ -54,7 +54,7 @@ const ProgressEmploy = () => {
         {
             Headers: "Hours",
             accessorKey: "Hours",
-            cell: ({row})=><p>{row.original.bankAccountNo}</p>
+            cell: ({row})=><p>{row.original.hours}</p>
         },
         {
             Headers: "Date",
@@ -80,9 +80,9 @@ const ProgressEmploy = () => {
         getPaginationRowModel: getPaginationRowModel()
     })
 
-    if (loading) {
-        return <Spinner></Spinner>
-    }
+    // if (loading) {
+    //     return <Spinner></Spinner>
+    // }
 
     return (
         <div className="my-10">
@@ -94,7 +94,7 @@ const ProgressEmploy = () => {
             </div>
             <div className="flex flex-wrap justify-center items-center gap-6">
                 <select 
-                className="select select-primary w-full max-w-xs"
+                className="select border-primary-color w-full max-w-xs"
                 value={selectedEmployee}
                 onChange={(e)=> setSelectedEmployee(e.target.value)}
                 >
@@ -107,7 +107,7 @@ const ProgressEmploy = () => {
                     }
                 </select>
                 <select
-                    className="select select-primary w-full max-w-xs"
+                    className="select border-primary-color w-full max-w-xs"
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                 >
@@ -119,17 +119,17 @@ const ProgressEmploy = () => {
                     ))}
                 </select>
                 <select
-                    className="select select-primary w-full max-w-xs"
+                    className="select border-primary-color w-full max-w-xs"
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                 >
-                    <option value="year">Years</option>
+                    <option value="year">All Years</option>
                 </select>
             </div>
-            <div className="overflow-x-auto">
-                <table className="table">
+            <div className="overflow-x-auto mt-5">
+                <table className="table border">
                     {/* head */}
-                    <thead>
+                    <thead className="bg-primary-color text-white ">
                         {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
                             {headerGroup.headers.map((header, idx) => <th key={idx}>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
@@ -149,10 +149,10 @@ const ProgressEmploy = () => {
                 </table>
             </div>
             <div className="flex gap-5 my-5">
-                <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
-                <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
-                <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
-                <button className='btn' onClick={() => table.lastPage()}>Last Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.setPageIndex(0)}>First Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
+                <button className='btn bg-primary-color text-white hover:text-black hover:border-primary-color' onClick={() => table.lastPage()}>Last Page</button>
             </div>
         </div>
     );

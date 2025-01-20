@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import Spinner from "../Spinner/Spinner";
 import useAllUsers from "../../../hooks/useAllUsers";
 
 const UserProfile = () => {

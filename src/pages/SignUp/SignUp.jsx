@@ -160,11 +160,11 @@ const SignUp = () => {
                             {errors.password?.type === "minLength" && <span className='text-red-600'>Password must be minimum 6 character</span>}
                             {errors.password?.type === "pattern" && <span className='text-red-600'>Password must be include one capital letter, and one special character</span>}
                         </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Sign Up</button>
+                        <div className="form-control mt-6 lg:col-span-2">
+                            <button className="btn bg-primary-color text-white hover:text-black hover:border-primary-color">Sign Up</button>
                         </div>
                     </form>
-                    <div className='px-8 pb-8 text-primary-color'>
+                    <div className='px-8 pb-8 text-blue-500'>
                         <Link to="/auth/login">Have a account? Login</Link>
                     </div>
                 </div>

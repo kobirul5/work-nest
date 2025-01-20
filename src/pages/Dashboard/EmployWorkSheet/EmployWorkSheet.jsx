@@ -152,25 +152,25 @@ const EmployWorkSheet = () => {
             </form>
             {/* Table */}
             <table className="table w-full">
-                <thead>
-                    <tr>
+                <thead className="bg-primary-color text-white  ">
+                    <tr className="border">
                         <th>Task</th>
                         <th>Hours Worked</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="border">
                     {tasks.map((t) => (
-                        <tr key={t._id}>
-                            <td>{t.task}</td>
-                            <td>{t.hours}</td>
-                            <td>{new Date(t.date).toLocaleDateString("en-US", {
+                        <tr key={t._id} className="">
+                            <td className="border">{t.task}</td>
+                            <td className="border">{t.hours}</td>
+                            <td className="border">{new Date(t.date).toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "2-digit",
                                 year: "numeric",
                             })}</td>
-                            <td>
+                            <td className=" flex justify-center gap-5">
                                 <button
                                     className="btn btn-sm btn-info mr-2"
                                     onClick={() => setModalData(t)}

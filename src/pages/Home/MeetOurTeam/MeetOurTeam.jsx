@@ -1,12 +1,15 @@
+import Heading from "../../Shared/Heading/Heading";
 
 const MeetOurTeam = () => {
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-4 text-center">
-                <h2 className="text-4xl font-bold mb-6">Meet Our Team</h2>
-                <p className="text-gray-600 mb-10">
-                    Get to know the dedicated team working behind the scenes to bring you the best experience.
-                </p>
+                <div className="text-center">
+                    <Heading
+                    title={"Meet Our Team"}
+                    subtile={"Get to know the dedicated team working behind the scenes to bring you the best experience."}
+                    ></Heading>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-gray-100 shadow-lg rounded-lg p-6">
                         <img
