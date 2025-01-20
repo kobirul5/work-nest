@@ -10,6 +10,7 @@ const PaymentEmployee = () => {
     const axiosSecure = useAxiosSecure()
     const [paymentData, refetch] = usePayroll()
     const [newSalary, setNewSalary] = useState(null)
+    const [isTable, setIsTable] = useState(false)
 
 
     const handleNewSalary = (e) => {
@@ -17,7 +18,7 @@ const PaymentEmployee = () => {
         const newSalary = e.target.newSalary.value;
         setNewSalary(newSalary)
         const payModal = document.getElementById("my_modal_2");
-        payModal.close(); 
+        payModal.close();
     }
 
     const handlePay = (data) => {
@@ -48,7 +49,7 @@ const PaymentEmployee = () => {
     }
 
     const columns = [
-        
+
         {
             headers: "Name",
             accessorKey: "Name",
@@ -61,7 +62,7 @@ const PaymentEmployee = () => {
         },
         {
             headers: "Date",
-            accessorKey: "Date",
+            accessorKey: "Salary Date",
             cell: ({ row }) => {
                 const dateValue = row.original.date; // Get the raw date value
                 const formattedDate = new Date(dateValue).toLocaleDateString("en-US", {
@@ -79,7 +80,7 @@ const PaymentEmployee = () => {
         {
             headers: "Salary",
             accessorKey: "Adjust Salary",
-            cell: ({ row }) => <button  onClick={() => document.getElementById('my_modal_2').showModal()} ><FaEdit></FaEdit> </button>
+            cell: ({ row }) => <button onClick={() => document.getElementById('my_modal_2').showModal()} ><FaEdit></FaEdit> </button>
 
         },
         {
@@ -128,42 +129,104 @@ const PaymentEmployee = () => {
                 ></Heading>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="table table-auto w-full">
-                    {/* head */}
-                    <thead>
-                        {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
-                            {headerGroup.headers.map((header, idx) => <th key={idx}>
-                                {flexRender(header.column.columnDef.header, header.getContext())}
-                            </th>)}
-                        </tr>)}
-                    </thead>
-                    <tbody>
-                        {/* row 1 */}
-                        {table.getRowModel().rows.map((row, idx) => <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </td>
-                            ))}
-                        </tr>)}
-                    </tbody>
-                </table>
+            <div className="text-right mb-6">
+                <button
+                    className="btn btn-outline border-primary-color hover:bg-primary-color"
+                    onClick={() => setIsTable(!isTable)}
+                >
+                    Switch to {isTable ? "Card View" : "Table View"}
+                </button>
             </div>
-            <div className='flex flex-wrap gap-5  my-5'>
-                <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
-                <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
-                <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
-                <button className='btn' onClick={() => table.lastPage()}>Last Page</button>
+            <div className={`${!isTable && "hidden"} overflow-x-auto`}>
+                <div className={`overflow-x-auto`}>
+                    <table className="table table-auto w-full">
+                        {/* head */}
+                        <thead>
+                            {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
+                                {headerGroup.headers.map((header, idx) => <th key={idx}>
+                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                </th>)}
+                            </tr>)}
+                        </thead>
+                        <tbody>
+                            {/* row 1 */}
+                            {table.getRowModel().rows.map((row, idx) => <tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <td key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>)}
+                        </tbody>
+                    </table>
+                </div>
+                <div className='flex flex-wrap gap-5  my-5'>
+                    <button className='btn' onClick={() => table.setPageIndex(0)}>First Page</button>
+                    <button className='btn' disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>Previous Page</button>
+                    <button className='btn' disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>Next Page</button>
+                    <button className='btn' onClick={() => table.lastPage()}>Last Page</button>
+                </div>
+
             </div>
+
+            {/* table layout */}
+
+            <div className={`${isTable && 'hidden'} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`}>
+                {paymentData?.map((employee) => (
+                    <div
+                        key={employee._id}
+                        className="border border-[#096e6e] bg-opacity-90 shadow-md rounded-md p-4 hover:shadow-lg transition "
+                    >
+                        <h3 className="text-lg font-semibold">{employee.name}</h3>
+                        <p className="">{employee.designation}</p>
+                        <p>Salary: ${employee.salary}</p>
+                        <p>
+                            Salary Month:{" "}
+                            {employee.paymentDate
+                                ? new Date(employee.paymentDate).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                })
+                                : "Not Paid"}
+                        </p>
+                        <p className="">
+                            Pay Date:{" "}
+                            {employee.paymentDate
+                                ? new Date(employee.paymentDate).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })
+                                : "Not Paid"}
+                        </p>
+
+                        <div className="mt-4 flex justify-between">
+                            <button
+                                className="btn btn-outline hover:bg-primary-color border-primary-color "
+                                onClick={() => handlePay(employee)}
+                                disabled={employee.paymentStatus === "success"}
+                            >
+                                {employee.paymentStatus === "success" ? "Paid" : "Pay"}
+                            </button>
+                            <button
+                                className="btn text-white  bg-primary-color border-primary-color hover:bg-transparent hover:text-black hover:border-primary-color"
+                                onClick={() => document.getElementById("my_modal_2").showModal()}
+                            >
+                                Adjust Salary
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="my_modal_2" className="modal">
                 <div className="modal-box">
                     <h1 className='text-center text-2xl mb-5'>Add New Money</h1>
-                   <form onSubmit={handleNewSalary} className='flex gap-5 justify-center'>
-                    <input type="number" className='input input-bordered' name='newSalary' />
-                    <input type="submit" className='btn' />
-                   </form>
+                    <form onSubmit={handleNewSalary} className='flex gap-5 justify-center'>
+                        <input type="number" className='input input-bordered' name='newSalary' />
+                        <input type="submit" className='btn' />
+                    </form>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
