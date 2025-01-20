@@ -10,19 +10,31 @@ const PaymentEmployee = () => {
     const axiosSecure = useAxiosSecure()
     const [paymentData, refetch] = usePayroll()
     const [newSalary, setNewSalary] = useState(null)
-    const [isTable, setIsTable] = useState(false)
+    const [salaryCheck, setSalaryCheck] = useState(null)
+    const [isTable, setIsTable] = useState(true)
 
 
     const handleNewSalary = (e) => {
         e.preventDefault();
-        const newSalary = e.target.newSalary.value;
-        setNewSalary(newSalary)
         const payModal = document.getElementById("my_modal_2");
+        const updateSalary = parseFloat(e.target.newSalary.value); 
+        const currentSalary = parseFloat(newSalary || salaryCheck);
+        if (updateSalary < currentSalary) {
+            toast.error("Salary adjustment failed! You can only increase the salary, not decrease it.");
+            return payModal.close();
+        }
+        setNewSalary(updateSalary)
         payModal.close();
+    }
+
+    const handleModalAndCheck= (data)=>{
+        setSalaryCheck(data.salary)
+        document.getElementById('my_modal_2').showModal()
     }
 
     const handlePay = (data) => {
         const paymentEmploy = data;
+
         const date = new Date()
         const payrollEmploy = {
             EmployId: paymentEmploy._id,
@@ -31,7 +43,7 @@ const PaymentEmployee = () => {
             image: paymentEmploy.image,
             role: paymentEmploy.role,
             bankAccountNo: paymentEmploy.bankAccountNo,
-            salary: newSalary || paymentEmploy.salary,
+            salary: newSalary ? newSalary : paymentEmploy.salary,
             designation: paymentEmploy.designation,
             transactionID: `tran${paymentEmploy._id.slice(0, 6)}${paymentEmploy.name.slice(0, 2)}`,
             paymentStatus: "success",
@@ -74,13 +86,14 @@ const PaymentEmployee = () => {
         },
         {
             headers: "Salary",
-            accessorKey: "salary",
+            accessorKey: "Salary",
+            cell: ({ row }) => row.original.salary
 
         },
         {
             headers: "Salary",
             accessorKey: "Adjust Salary",
-            cell: ({ row }) => <button onClick={() => document.getElementById('my_modal_2').showModal()} ><FaEdit></FaEdit> </button>
+            cell: ({ row }) => <button onClick={() => handleModalAndCheck(row.original)}><FaEdit></FaEdit> </button>
 
         },
         {
