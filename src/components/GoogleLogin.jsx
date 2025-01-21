@@ -24,6 +24,10 @@ const GoogleLogin = () => {
         if(filterData?.isFired) {
             return toast.error("Your are Fired by Admin")
         }
+        
+        if(data.email === filterData.email){
+            console.log("same")
+        }
 
         const imageFile = { image: data.photo[0] }
         axiosPublic.post(imageHostingApi, imageFile, {
@@ -152,7 +156,7 @@ const GoogleLogin = () => {
                                     <select className="select select-bordered"
                                         {...register("role", { required: true })}
                                     >
-                                        <option value="employ">Employ</option>
+                                        <option value="employee">Employee</option>
                                         <option value="hr">HR</option>
                                     </select>
                                     {errors.role && <span className='text-red-600'>Role is required</span>}
@@ -166,9 +170,9 @@ const GoogleLogin = () => {
                                     <select className="select select-bordered"
                                         {...register("designation", { required: true })}
                                     >
-                                        <option value="employ">Web developer</option>
-                                        <option value="employ">Digital Marketer</option>
-                                        <option value="hr">Graphics Designer</option>
+                                        <option value="web developer">Web developer</option>
+                                        <option value="digital marketer">Digital Marketer</option>
+                                        <option value="graphics">Graphics Designer</option>
                                     </select>
                                     {errors.designation && <span className='text-red-600'>designation is required</span>}
                                 </label>

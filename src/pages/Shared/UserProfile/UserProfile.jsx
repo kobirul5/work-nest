@@ -5,7 +5,6 @@ import useAllUsers from "../../../hooks/useAllUsers";
 const UserProfile = () => {
     const {user} = useContext(AuthContext)
     const [allUser ] = useAllUsers()
-    
     const filterData = allUser.find((item)=> item?.email === user?.email) 
 
     return (

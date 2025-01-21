@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Heading from "../../../Shared/Heading/Heading";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const Message = () => {
-    const axiosSecure = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { data: allMessage = [] } = useQuery({
         queryKey: ['allMessage'],
         queryFn: async () => {

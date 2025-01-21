@@ -26,7 +26,6 @@ const AuthProvider = ({children}) => {
     
     // update
     const updateUserProfile= (name, photo)=>{
-        setLoading(true);
         return updateProfile(auth.currentUser, {displayName: name, photoURL: photo})
     }
     // logout
@@ -69,10 +68,11 @@ const AuthProvider = ({children}) => {
         }
         
     },[])
-
+console.log(loading)
     const authInfo = {
        user,
        loading,
+       setLoading,
        userCreate,
        userLogin,
        updateUserProfile,

@@ -10,7 +10,7 @@ const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { userCreate, updateUserProfile } = useContext(AuthContext);
+    const { userCreate, updateUserProfile, loading, setLoading } = useContext(AuthContext);
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
 
@@ -39,6 +39,7 @@ const SignUp = () => {
                                 axiosPublic.post("/users", userData)
                                     .then(res => {
                                         if (res.data.insertedId) {
+                                            // setLoading(false)
                                             navigate("/")
                                             reset()
                                             toast.success('Sign up Successful', {
