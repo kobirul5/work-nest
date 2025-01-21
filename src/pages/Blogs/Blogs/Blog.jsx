@@ -13,7 +13,7 @@ const Blog = () => {
             category: "HR Trends",
             description:
                 "Discover the latest trends shaping the HR industry and how to stay ahead.",
-            image: "https://i.ibb.co.com/HdGm8md/hr.jpg ",
+            image: "https://i.ibb.co.com/VxgydXX/hr.jpg",
         },
         {
             id: 2,
@@ -21,7 +21,7 @@ const Blog = () => {
             category: "Employee Management",
             description:
                 "Learn actionable strategies to boost employee productivity and satisfaction.",
-            image: "https://i.ibb.co.com/Xsf4NTh/employ.jpg",
+            image: "https://i.ibb.co.com/k3FrqY2/employ.jpg",
         },
         {
             id: 3,
@@ -29,7 +29,7 @@ const Blog = () => {
             category: "Salary Management",
             description:
                 "Streamline your salary processes with these expert tips.",
-            image: "https://i.ibb.co.com/XWSMzNc/slary.jpg",
+            image: "https://i.ibb.co.com/FgsbgtZ/slary.jpg",
         },
     ];
 
