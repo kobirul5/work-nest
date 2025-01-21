@@ -23,14 +23,14 @@ const Dashboard = () => {
                 {/* employ: TODO: fixed it  */}
                 {
                     filterData?.role == "employee" && <>
-                        <Link to="/dashboard/work-sheet" className="flex items-center gap-3 text-lg font-bold" ><FaTasks></FaTasks> Employ Task</Link>
+                        <Link to="/dashboard/work-sheet" className="flex items-center gap-3 text-lg font-bold" ><FaTasks></FaTasks> Employee Task</Link>
                         <Link to="/dashboard/payment-history" className="flex items-center gap-3 text-lg font-bold" ><FaHistory></FaHistory> History</Link>
                     </>
                 }
                 {/* HR */}
                 {
                     filterData?.role === "hr" && <>
-                        <Link to="/dashboard/employee-list"  className="flex items-center gap-3 text-lg font-bold" ><FaList></FaList> Employ List</Link>
+                        <Link to="/dashboard/employee-list"  className="flex items-center gap-3 text-lg font-bold" ><FaList></FaList> Employee List</Link>
                         <Link to="/dashboard/progress"  className="flex items-center gap-3 text-lg font-bold" ><FaUpload></FaUpload> Progress</Link>
                     </>
                 }
