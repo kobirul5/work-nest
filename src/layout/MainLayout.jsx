@@ -4,7 +4,7 @@ import Footer from "../pages/Shared/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
 const MainLayout = () => {
     return (
-        <div className="">
+        <div className="roboto">
             <section className="">
                 <Navbar></Navbar>
 

@@ -37,7 +37,6 @@ const Blog = () => {
 
     return (
         <div className=" py-10 px-4 md:px-20">
-            {/* Header Section */}
             <div className="text-center mb-10">
                 <Heading
                     title={"Blog & Resource Center"}
@@ -74,9 +73,9 @@ const Blog = () => {
                         <img src={blog.image} alt={blog.title} className="w-full h-40 object-cover" />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800">{blog.title}</h3>
-                            <p className="text-sm text-primary mt-1">{blog.category}</p>
+                            <p className="text-sm  text-primary-color mt-1">{blog.category}</p>
                             <p className="text-gray-600 mt-3">{blog.description}</p>
-                            <button className="btn btn-link text-primary mt-4">
+                            <button className="btn btn-link text-primary-color mt-4">
                                 Read More →
                             </button>
                         </div>

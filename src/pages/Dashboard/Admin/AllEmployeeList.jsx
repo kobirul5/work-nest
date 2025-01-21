@@ -111,7 +111,7 @@ const AllEmployeeList = () => {
                 ></Heading>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto ">
                 <table className="table table-xs border">
                     {/* head */}
                     <thead className="bg-primary-color text-white">

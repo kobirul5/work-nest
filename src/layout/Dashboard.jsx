@@ -14,7 +14,7 @@ const Dashboard = () => {
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
-        <div className="flex flex-col md:flex-row container mx-auto">
+        <div className="flex roboto flex-col md:flex-row container mx-auto">
             <div className="min-w-[250px] min-h-screen flex flex-col  text-white bg-[#014E4E] p-5 gap-4" >
                 <UserProfile></UserProfile>
                 <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
@@ -45,7 +45,7 @@ const Dashboard = () => {
                 <Link to="/contact-us"  className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
             </div>
             <Toaster></Toaster>
-            <section className="flex-grow px-5 w-full ">
+            <section className="flex-grow px-5 w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-scroll">
                 <Outlet></Outlet>
             </section>
         </div>

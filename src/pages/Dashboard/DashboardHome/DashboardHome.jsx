@@ -1,6 +1,10 @@
 import React from 'react';
-
+import { BarChart } from '@mui/x-charts/BarChart';
 const DashboardHome = () => {
+
+    const uData = [400000, 300000, 200000, 278000, 189000, 239000, 349000, 300000, 200000, 278000, 189000, 239000,];
+    const pData = [240000, 139008, 980000, 390008, 480000, 380000, 430000, 300000, 200000, 278000, 189000, 239000,];
+    const xLabels = [ 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return (
         <div>
             <main className="flex-1 p-8 overflow-y-scroll">
@@ -57,14 +61,27 @@ const DashboardHome = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="bg-white shadow-md rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-gray-700 mb-4">Employee Distribution</h3>
-                            <div className="h-40 bg-gray-200 rounded flex items-center justify-center">
-                                <p className="text-gray-500">[Chart Placeholder]</p>
+                            <div className="h-40   rounded flex items-center justify-center">
+                                <BarChart
+                                    xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+                                    series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+                                    width={500}
+                                    height={300}
+                                />
                             </div>
                         </div>
                         <div className="bg-white shadow-md rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-gray-700 mb-4">Monthly Salary Trends</h3>
-                            <div className="h-40 bg-gray-200 rounded flex items-center justify-center">
-                                <p className="text-gray-500">[Chart Placeholder]</p>
+                            <div className="h-40 rounded flex items-center justify-center">
+                                <BarChart
+                                    width={500}
+                                    height={300}
+                                    series={[
+                                        { data: pData, label: 'pv', id: 'pvId' },
+                                        { data: uData, label: 'uv', id: 'uvId' },
+                                    ]}
+                                    xAxis={[{ data: xLabels, scaleType: 'band' }]}
+                                />
                             </div>
                         </div>
                     </div>
@@ -77,15 +94,15 @@ const DashboardHome = () => {
                         <ul className="space-y-3">
                             <li className="flex justify-between items-center">
                                 <p>Approve leave requests</p>
-                                <button className="btn btn-sm btn-primary">Mark Complete</button>
+                                <button className="btn  bg-primary-color text-white hover:text-black hover:border-primary-color">Mark Complete</button>
                             </li>
                             <li className="flex justify-between items-center">
                                 <p>Review new employee profiles</p>
-                                <button className="btn btn-sm btn-primary">Mark Complete</button>
+                                <button className="btn  bg-primary-color text-white hover:text-black hover:border-primary-color">Mark Complete</button>
                             </li>
                             <li className="flex justify-between items-center">
                                 <p>Finalize payroll for January</p>
-                                <button className="btn btn-sm btn-primary">Mark Complete</button>
+                                <button className="btn  bg-primary-color text-white hover:text-black hover:border-primary-color">Mark Complete</button>
                             </li>
                         </ul>
                     </div>
