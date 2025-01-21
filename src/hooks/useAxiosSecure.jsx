@@ -4,7 +4,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 const axiosSecure = axios.create({
-   baseURL: 'http://localhost:4000'
+   baseURL: 'https://work-nest-server-iota.vercel.app'
 })
 const useAxiosSecure = () => {
   const {logOut} =useContext(AuthContext)
