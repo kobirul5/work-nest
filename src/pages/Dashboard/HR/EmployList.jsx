@@ -37,7 +37,7 @@ const EmployList = () => {
         e.preventDefault()
         const date = e.target.month.value;
         const payModal = document.getElementById("pay_modal");
-        
+         
         const filterData = allUser.find((item) => item?.date === paymentEmploy?.date)
 
         const payrollEmploy = {

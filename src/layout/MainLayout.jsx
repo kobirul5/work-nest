@@ -7,7 +7,6 @@ const MainLayout = () => {
         <div className="roboto">
             <section className="">
                 <Navbar></Navbar>
-
             </section>
             <section  className="min-h-[calc(100vh-220px)]">
                 <Outlet></Outlet>

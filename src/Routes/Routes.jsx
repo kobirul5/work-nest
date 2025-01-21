@@ -16,6 +16,7 @@ import PaymentHistory from "../pages/Dashboard/EmployWorkSheet/PaymentHistory";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Message from "../pages/Dashboard/Admin/Message/Message";
+import AdminPrivate from "./AdminPrivate";
 
 export const router = createBrowserRouter([
     {
@@ -77,15 +78,15 @@ export const router = createBrowserRouter([
             // admin route
             {
                 path: 'all-employee-list',
-                element:<AllEmployeeList></AllEmployeeList>
+                element:<AdminPrivate><AllEmployeeList></AllEmployeeList></AdminPrivate>
             },
             {
                 path: 'payroll',
-                element:<PaymentEmployee></PaymentEmployee>
+                element:<AdminPrivate><PaymentEmployee></PaymentEmployee></AdminPrivate>
             },
             {
                 path: 'massage',
-                element:<Message></Message>
+                element:<AdminPrivate><Message></Message></AdminPrivate>
             }
         ]
     }

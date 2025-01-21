@@ -13,15 +13,6 @@ const PrivateRoute = ({children}) => {
     if(loading ){
         return <Spinner></Spinner>;
     }
-
-    // if(userV?.role === "admin"){
-    //     return children;
-    // }
-    
-    // if(userV?.role === "hr"){
-    //     return children;
-    // }
-
     if(user){
         return children;
     }

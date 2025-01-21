@@ -7,10 +7,12 @@ import { AuthContext } from "../providers/AuthProvider";
 import { FaDollarSign, FaHistory, FaHome, FaList, FaTasks, FaUpload } from "react-icons/fa";
 import { MdContactPhone, MdPeople } from "react-icons/md";
 import { BiHomeAlt, BiMessage } from "react-icons/bi";
+import useVerifyAdmin from "../hooks/useVerifyAdmin";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
-    const [allUser, isLoading] = useAllUsers()
+    const [allUser] = useAllUsers()
+    const [verifyAdmin] = useVerifyAdmin()
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
@@ -34,7 +36,7 @@ const Dashboard = () => {
                 }
                 {/* admin */}
                 {
-                    filterData?.role === "admin" && <>
+                    verifyAdmin && <>
                         <Link to="/dashboard/all-employee-list"  className="flex items-center gap-3 text-lg font-bold" ><MdPeople></MdPeople> All employee</Link>
                         <Link to="/dashboard/payroll"  className="flex items-center gap-3 text-lg font-bold" ><FaDollarSign></FaDollarSign> Payment </Link>
                         <Link to="/dashboard/massage" className="flex items-center gap-3 text-lg font-bold"  ><BiMessage></BiMessage> Massage</Link>

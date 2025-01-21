@@ -4,14 +4,14 @@ import Heading from "../../../Shared/Heading/Heading";
 
 const Message = () => {
     const axiosSecure = useAxiosPublic();
-    const { data: allMessage = [], isLoading, refetch } = useQuery({
+    const { data: allMessage = [] } = useQuery({
         queryKey: ['allMessage'],
         queryFn: async () => {
             const res = await axiosSecure.get('/massage');
             return res.data;
         }
     })
-    console.log(allMessage)
+
     return (
         <div className="py-10">
             <div className="text-center">
