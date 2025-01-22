@@ -174,7 +174,7 @@ const GoogleLogin = () => {
 
                                 </label>
                                 {/* options 2 */}
-                                <label className="form-control w-full ">
+                                <label className="form-control w-full lg:col-span-2">
                                     <div className="label">
                                         <span className="label-text">Select Your Designation</span>
                                     </div>
@@ -188,14 +188,14 @@ const GoogleLogin = () => {
                                     {errors.designation && <span className='text-red-600'>designation is required</span>}
                                 </label>
 
-                                <div className="form-control mt-6 col-span-2 w-full">
+                                <div className="form-control mt-6 lg:col-span-2 w-full">
                                     <button className="btn btn-outline border-primary-color  hover:bg-primary-color hover:text-white ">Sign Up</button>
                                 </div>
                             </form>
                         </div>
-                        <form method="dialog">
+                        <form method="dialog" className="px-6 mx-auto">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Close</button>
+                            <button className="btn w-full bg-primary-color text-white hover:text-black hover:border-primary-color">Close</button>
                         </form>
                     </div>
                 </div>

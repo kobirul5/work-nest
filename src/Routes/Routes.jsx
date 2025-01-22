@@ -17,11 +17,13 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Message from "../pages/Dashboard/Admin/Message/Message";
 import AdminPrivate from "./AdminPrivate";
+import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path: '/',

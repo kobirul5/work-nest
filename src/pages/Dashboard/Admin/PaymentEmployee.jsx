@@ -12,7 +12,8 @@ const PaymentEmployee = () => {
     const [newSalary, setNewSalary] = useState(null)
     const [salaryCheck, setSalaryCheck] = useState(null)
     const [isTable, setIsTable] = useState(true)
-
+    const filterData = paymentData?.filter((i) => i.paymentStatus === "success")
+    
 
     const handleNewSalary = (e) => {
         e.preventDefault();
@@ -34,6 +35,15 @@ const PaymentEmployee = () => {
 
     const handlePay = (data) => {
         const paymentEmploy = data;
+        
+        // const filterData = paymentData?.filter((i) => i.paymentStatus === "success")
+        // const succussPaymentData = filterData?.filter((i) => i?.email ===paymentEmploy?.email);
+        // const verifyMonth = succussPaymentData?.find((i)=>i.date === paymentEmploy.date);
+
+        // if(verifyMonth?.date === paymentData?.date){
+        //     console.log("same")
+        // }
+
 
         const date = new Date()
         const payrollEmploy = {
