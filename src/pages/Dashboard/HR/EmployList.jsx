@@ -131,11 +131,20 @@ const EmployList = () => {
         },
     ]
 
+    const [pagination, setPagination] = useState({
+        pageIndex: 0, 
+        pageSize: 5, 
+      });
+      
     const table = useReactTable({
         data: allUser,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel()
+        getPaginationRowModel: getPaginationRowModel(),
+        onPaginationChange: setPagination, 
+        state: {
+          pagination,
+        },
     })
 
     // if(isLoading){
@@ -190,15 +199,15 @@ const EmployList = () => {
                                 <div className="label">
                                     <span className="label-text">Select month and year</span>
                                 </div>
-                                <input type="month" defaultValue={new Date().toISOString().slice(0, 7)} name='month' placeholder="Type month" className="input input-bordered w-full " />
+                                <input type="month" defaultValue={new Date().toISOString().slice(0, 7)} name='month' placeholder="Type month" className="input input-bordered border-primary-color input-primary-color w-full " />
                             </label>
-                            <input type="submit" className='btn w-full my-2' />
+                            <input type="submit" className='btn bg-primary-color text-white hover:text-black hover:border-primary-color w-full my-2' />
                         </form>
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Close</button>
+                            <button className="btn hover:bg-primary-color hover:text-white  border-primary-color">Close</button>
                         </form>
                     </div>
                 </div>

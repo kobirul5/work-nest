@@ -101,7 +101,7 @@ const PaymentEmployee = () => {
             accessorKey: "Pay",
             cell: ({ row }) => (
                 row.original.paymentStatus === "success" ? <p>Paid</p> : <button
-                    className="btn btn-primary"
+                    className="btn hover:bg-primary-color hover:text-white text-black border-primary-color"
                     onClick={() => handlePay(row.original)}
                 >
                     Pay

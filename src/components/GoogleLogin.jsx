@@ -188,8 +188,8 @@ const GoogleLogin = () => {
                                     {errors.designation && <span className='text-red-600'>designation is required</span>}
                                 </label>
 
-                                <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Sign Up</button>
+                                <div className="form-control mt-6 col-span-2 w-full">
+                                    <button className="btn btn-outline border-primary-color  hover:bg-primary-color hover:text-white ">Sign Up</button>
                                 </div>
                             </form>
                         </div>
