@@ -5,7 +5,6 @@ import Heading from '../../Shared/Heading/Heading';
 
 const Blog = () => {
     const location = useLocation() 
-    console.log(location)
     const blogs = [
         {
             id: 1,

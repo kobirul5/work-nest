@@ -10,7 +10,6 @@ const useVerifyAdmin = () => {
         queryKey: ['verifiedUser'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/admin/${user.email}`);
-            console.log(res.data)
             return res.data;
         }
     })

@@ -9,7 +9,8 @@ const PrivateRoute = ({children}) => {
     const [allUser, isLoading] = useAllUsers()
     const location = useLocation()
     const userV = allUser.filter((i)=>i?.email === user?.email)
-    console.log(loading)
+
+    
     if(loading ){
         return <Spinner></Spinner>;
     }

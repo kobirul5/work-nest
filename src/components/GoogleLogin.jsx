@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -12,22 +12,20 @@ const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
 
 const GoogleLogin = () => {
-    const { googleLoginUser, updateUserProfile } = useContext(AuthContext)
+    const { googleLoginUser, updateUserProfile, logOut } = useContext(AuthContext)
     const [allUser] = useAllUsers()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
+    const location = useLocation()
+    const [loginEmail, setLoginEmail]  = useState()
 
     const onSubmit = data => {
-
-        const filterData = allUser.find((item)=> item?.email === data?.email)
-        if(filterData?.isFired) {
+        const filterData = allUser.find((item) => item?.email === data?.email)
+        if (filterData?.isFired) {
             return toast.error("Your are Fired by Admin")
         }
-        
-        if(data.email === filterData.email){
-            console.log("same")
-        }
+
 
         const imageFile = { image: data.photo[0] }
         axiosPublic.post(imageHostingApi, imageFile, {
@@ -36,7 +34,7 @@ const GoogleLogin = () => {
             const photoUrl = res.data.data.display_url
             const userData = {
                 name: data.name,
-                email: data.email,
+                email: loginEmail,
                 image: photoUrl,
                 role: data.role,
                 bankAccountNo: data.bankAccount,
@@ -49,7 +47,7 @@ const GoogleLogin = () => {
                     axiosPublic.post("/users", userData)
                         .then(res => {
                             if (res.data.insertedId) {
-                                navigate("/")
+                                navigate(location.state ? location.state : "/")
                                 reset()
                                 toast.success('Sign up Successful', {
                                     duration: 4000,
@@ -72,29 +70,38 @@ const GoogleLogin = () => {
     };
 
 
-    // const handleGoogleLogin = () => {
-    // googleLoginUser()
-    //     .then((result) => {
-    //         const user = result.user;
-    //         navigate('/')
-    //         toast.success('Login with Google Successfully', {
-    //             duration: 4000,
-    //             position: 'top-center',
-    //         })
+    const handleGoogleLogin = () => {
 
-    //     }).catch((error) => {
-    //         const errorMessage = error.message;
-    //         toast.error('Login Failed', {
-    //             duration: 4000,
-    //             position: 'top-center',
-    //         })
-    //     });
-    // }
+        googleLoginUser()
+            .then(async (result) => {
+                const user = result.user;
+                const filterData = allUser.find((item) => item?.email === user?.email)
+                if (!filterData) {
+                    setLoginEmail(user?.email)
+                    await logOut()
+                    document.getElementById('my_modal_5').showModal()
+                    return
+                }
+                navigate(location.state ? location.state : "/")
+                reset()
+                toast.success('Login with Google Successfully', {
+                    duration: 4000,
+                    position: 'top-center',
+                })
+
+            }).catch((error) => {
+                const errorMessage = error.message;
+                toast.error('Login Failed', {
+                    duration: 4000,
+                    position: 'top-center',
+                })
+            });
+    }
     return (
         <div>
             <button onClick={() => {
-                // handleGoogleLogin()
-                document.getElementById('my_modal_5').showModal()
+                handleGoogleLogin()
+                // document.getElementById('my_modal_5').showModal()
             }} className="btn btn-outline"><FaGoogle></FaGoogle></button>
             {/* modal */}
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
@@ -116,8 +123,12 @@ const GoogleLogin = () => {
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" {...register("email", { required: true })} placeholder="email" className="input input-bordered" />
-                                    {errors.email && <span className='text-red-600'>Email is required</span>}
+                                    <input 
+                                    type="email" 
+                                    defaultValue={loginEmail}
+                                    readOnly
+                                    {...register("email", )} placeholder="email" className="input input-bordered" />
+                                    {/* {errors.email && <span className='text-red-600'>Email is required</span>} */}
                                 </div>
                                 {/* salary */}
                                 <div className="form-control">
@@ -143,10 +154,10 @@ const GoogleLogin = () => {
                                     <input
                                         type="file"
                                         {...register("photo", { required: true })}
-                                        placeholder="email"
+                                        placeholder="photo"
                                         className="file-input file-input-bordered w-full "
                                     />
-                                    {errors.email && <span className='text-red-600'>Email is required</span>}
+                                    {errors.photo && <span className='text-red-600'>Photo is required</span>}
                                 </div>
                                 {/* options */}
                                 <label className="form-control w-full ">

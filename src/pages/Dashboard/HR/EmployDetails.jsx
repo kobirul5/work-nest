@@ -12,19 +12,19 @@ const EmployDetails = () => {
     const { slug } = useParams()
     const [allUser] = useAllUsers()
     const findDetails = allUser?.find((i) => i._id === slug);
-    console.log(findDetails, slug, allUser)
-    const {user} = useContext(AuthContext)
+    
     const axiosSecure = useAxiosSecure()
-    const { data: payData = [], isPending: loading, refetch } = useQuery({
+    const { data: payData = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['payData'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payroll/${findDetails?.email}`);
             return res.data;
         }
     })
-    // if(loading){
-    //     return <Spinner></Spinner>
-    // }
+    if(loading){
+        return <Spinner></Spinner>
+    }
+    
     return (
         <div>
             {

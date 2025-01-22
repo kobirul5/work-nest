@@ -39,7 +39,6 @@ const SignUp = () => {
                                 axiosPublic.post("/users", userData)
                                     .then(res => {
                                         if (res.data.insertedId) {
-                                            // setLoading(false)
                                             navigate("/")
                                             reset()
                                             toast.success('Sign up Successful', {

@@ -8,7 +8,6 @@ import useVerifyAdmin from '../hooks/useVerifyAdmin';
 const AdminPrivate = ({children}) => {
     const {loading} = useContext(AuthContext)
     const [verifyAdmin, isLoading] = useVerifyAdmin()
-    console.log(verifyAdmin)
     if( isLoading){
         return <Spinner></Spinner>;
     }
