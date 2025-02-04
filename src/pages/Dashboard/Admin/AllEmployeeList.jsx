@@ -20,14 +20,14 @@ const AllEmployeeList = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Fired!"
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/users/fired/${fireData._id}`)
                     .then(res => {
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            title: "Fired!",
+                            text: "Employee has been Fired.",
                             icon: "success"
                           });
                         refetch()
