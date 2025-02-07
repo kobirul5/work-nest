@@ -1,5 +1,5 @@
+<img src="./src/assets/web_image/Work.jpg"/>
 <h1>Work Nest</h1>
-
 <p>Welcome to <strong>Work Nest</strong>! This README provides key details about the website, including login credentials, features, and the live site URL.</p>
 
 <h2>Admin Credentials</h2>
