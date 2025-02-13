@@ -51,20 +51,20 @@ const AllEmployeeList = () => {
 
     const columns = [
         {
-            headers: "Id",
+            header: "Id",
             accessorKey: "id",
             cell: (info) => info.row.index + 1,
         },
         {
-            headers: "Name",
+            header: "Name",
             accessorKey: "name"
         },
         {
-            headers: "Designation",
+            header: "Designation",
             accessorKey: "designation"
         },
         {
-            headers: "HR",
+            header: "HR",
             accessorKey: "HR",
             cell: ({ row }) => (row.original.role === "hr" ? <>
                 <p className="text-green-600 text-2xl"><TiTick></TiTick></p>
@@ -78,7 +78,7 @@ const AllEmployeeList = () => {
             </>)
         },
         {
-            headers: "Fire",
+            header: "Fire",
             accessorKey: "Fired",
             cell: ({ row }) => (!row.original.isFired ? <>
                 <button
