@@ -7,7 +7,7 @@ const useVerifyAdmin = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useContext(AuthContext)
     const { data: verifyAdmin = [],isLoading, refetch } = useQuery({
-        queryKey: ['verifiedUser'],
+        queryKey: ['verifiedAdmin'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/admin/${user.email}`);
             return res.data;

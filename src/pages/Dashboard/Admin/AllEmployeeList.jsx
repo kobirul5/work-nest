@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const AllEmployeeList = () => {
     const [verifiedUser, refetch] = useVerifiedUser()
     const axiosSecure = useAxiosSecure()
-
+    console.log(verifiedUser)
     const handleFired = (fireData) => {
 
         Swal.fire({
