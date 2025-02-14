@@ -67,7 +67,7 @@ const SignUp = () => {
                     <h1 className="text-5xl font-bold">Sign Up now!</h1>
                 </div>
                 <div
-                    className="card bg-base-100 w-full  lg:w-[800px] shrink-0 shadow-2xl"
+                    className="card bg-base-100 w-full  lg:w-[800px] shrink-0"
                 >
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-4 md:grid md:grid-cols-2">
                         {/* name */}

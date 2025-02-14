@@ -31,8 +31,6 @@ const Login = () => {
                 })
             })
             .catch((error) => {
-                // const errorCode = error.code;
-                // const errorMessage = error.message;
                 toast.error("Enter valid Email and Password", {
                     duration: 4000,
                     position: 'top-center',
@@ -47,7 +45,7 @@ const Login = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                 </div>
-                <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0 shadow-2xl">
+                <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2">
                         {/* email */}
                         <div className="form-control">

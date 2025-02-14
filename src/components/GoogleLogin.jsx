@@ -102,7 +102,7 @@ const GoogleLogin = () => {
             <button onClick={() => {
                 handleGoogleLogin()
                 // document.getElementById('my_modal_5').showModal()
-            }} className="btn btn-outline"><FaGoogle></FaGoogle></button>
+            }} className="btn btn-outline w-full hover:bg-primary-color"><FaGoogle></FaGoogle></button>
             {/* modal */}
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
