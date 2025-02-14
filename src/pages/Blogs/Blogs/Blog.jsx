@@ -2,6 +2,7 @@ import {useLocation} from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
 import Heading from '../../Shared/Heading/Heading';
+import { motion } from "motion/react"
 
 const Blog = () => {
     const location = useLocation() 
@@ -12,7 +13,7 @@ const Blog = () => {
             category: "HR Trends",
             description:
                 "Discover the latest trends shaping the HR industry and how to stay ahead.",
-            image: "https://i.ibb.co.com/VxgydXX/hr.jpg",
+            image: "https://i.ibb.co.com/jvgcK75n/hr.jpg",
         },
         {
             id: 2,
@@ -20,7 +21,7 @@ const Blog = () => {
             category: "Employee Management",
             description:
                 "Learn actionable strategies to boost employee productivity and satisfaction.",
-            image: "https://i.ibb.co.com/k3FrqY2/employ.jpg",
+            image: "https://i.ibb.co.com/vCRLxXqZ/employ.jpg",
         },
         {
             id: 3,
@@ -28,7 +29,7 @@ const Blog = () => {
             category: "Salary Management",
             description:
                 "Streamline your salary processes with these expert tips.",
-            image: "https://i.ibb.co.com/FgsbgtZ/slary.jpg",
+            image: "https://i.ibb.co.com/4n7T31cN/slary.jpg",
         },
     ];
 
@@ -36,12 +37,17 @@ const Blog = () => {
 
     return (
         <div className=" py-10 px-4 md:px-20">
-            <div className="text-center mb-10">
+            <motion.div
+            initial={{opacity:0 , y:50}}
+            whileInView={{opacity:1, y:0}}
+            transition={{duration:1, delay:0.2, ease:"easeInOut"}}
+
+            className="text-center mb-10">
                 <Heading
                     title={"Blog & Resource Center"}
                     subtile={"Explore valuable content about HR trends, employee management tips, and more."}
                 ></Heading>
-            </div>
+            </motion.div>
 
             {/* Search and Filter */}
             { location.pathname == "/blog" &&

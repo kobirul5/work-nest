@@ -13,6 +13,7 @@ const useVerifyAdmin = () => {
             return res.data;
         }
     })
+    
     return [verifyAdmin,isLoading, refetch]
 }
 export default useVerifyAdmin;
