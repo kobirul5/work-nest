@@ -52,7 +52,7 @@ const FAQSection = () => {
             <h2 className="mb-8  text-3xl md:text-5xl font-bold text-center">
                 Frequently Asked Questions
             </h2>
-            <div className="flex gap-10">
+            <div className="flex flex-col lg:flex-row gap-10">
                 <div className="flex-1">
                     <Lottie animationData={faq}></Lottie>
                 </div>

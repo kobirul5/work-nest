@@ -1,5 +1,6 @@
 import Blog from "../Blogs/Blogs/Blog";
 import Banner from "./Banner";
+import BenefitsSection from "./Benefits/BenefitsSection";
 import FAQSection from "./FAQ/FAQSection";
 import MeetOurTeam from "./MeetOurTeam/MeetOurTeam";
 import Service from "./Service/Service";
@@ -15,7 +16,9 @@ const Home = () => {
                 <Blog></Blog>
                 <MeetOurTeam></MeetOurTeam>
                 <FAQSection></FAQSection>
+                <BenefitsSection/>
             </section>
+
         </div>
     );
 };
