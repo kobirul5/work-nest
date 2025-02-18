@@ -12,10 +12,11 @@ const Navbar = () => {
         { name: "Home", pathName: "/" },
         { name: "Dashboard", pathName: "/dashboard" },
         { name: "Contact Us", pathName: "/contact-us" },
+        { name: "Blogs", pathName: "/blog" },
     ]
 
     return (
-        <div className='bg-gray-950 text-white backdrop-blur-lg fixed z-10 bg-opacity-30 w-full'>
+        <div className='bg-gray-950 text-white backdrop-blur-lg fixed z-10 bg-opacity-50 w-full'>
             <div className="navbar mx-auto  f px-4 container">
                 <div className="navbar-start">
                     <div className="dropdown">
