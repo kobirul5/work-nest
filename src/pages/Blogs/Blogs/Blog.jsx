@@ -36,7 +36,7 @@ const Blog = () => {
 
 
     return (
-        <div className=" py-10 px-4 md:px-20">
+        <div className=" px-4 md:px-20">
             <motion.div
             initial={{opacity:0 , y:50}}
             whileInView={{opacity:1, y:0}}
