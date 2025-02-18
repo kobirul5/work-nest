@@ -35,15 +35,15 @@ const ContactUs = () => {
                     <p className="text-gray-600 mb-4">Feel free to reach out to us via any of the methods below:</p>
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <FaPhoneAlt className="text-blue-600" />
+                            <FaPhoneAlt className="text-primary-color" />
                             <span>+123 456 789</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                            <FaEnvelope className="text-blue-600" />
+                            <FaEnvelope className="text-primary-color" />
                             <span>kobirul@gmail.com</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                            <FaMapMarkerAlt className="text-blue-600" />
+                            <FaMapMarkerAlt className="text-primary-color" />
                             <span>Sriajganj, Bangladesh</span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ const ContactUs = () => {
                                 required
                             ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary w-full">Send Message</button>
+                        <button type="submit" className="btn bg-primary-color text-white w-full">Send Message</button>
                     </form>
                 </div>
             </div>

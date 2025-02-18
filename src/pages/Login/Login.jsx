@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
 import useAllUsers from "../../hooks/useAllUsers";
+import loginImage from "../../assets/images/login.jpg"
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -40,10 +41,15 @@ const Login = () => {
     };
 
     return (
-        <div className="hero ">
+        <div 
+        style={{
+            backgroundImage: `url(${loginImage})`,
+          }}
+        className="hero min-h-screen">
+             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <h1 className="text-5xl font-bold text-white">Login now!</h1>
                 </div>
                 <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-2">

@@ -7,7 +7,7 @@ const AuthLayout = () => {
         <div className="">
             <Toaster></Toaster>
             <Navbar></Navbar>
-            <section className="py-20">
+            <section className="">
                 <Outlet></Outlet>
             </section>
         </div>

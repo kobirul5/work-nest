@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import loginImage from "../../assets/images/login.jpg"
 
 const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
@@ -61,10 +62,15 @@ const SignUp = () => {
 
 
     return (
-        <div className="hero min-h-screen">
+        <div 
+        style={{
+                    backgroundImage: `url(${loginImage})`,
+                  }}
+        className="hero min-h-screen ">
+            <div className="hero-overlay bg-opacity-60 "></div>
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Sign Up now!</h1>
+                    <h1 className="text-5xl font-bold pt-20 text-white">Sign Up now!</h1>
                 </div>
                 <div
                     className="card bg-base-100 w-full  lg:w-[800px] shrink-0"
@@ -164,7 +170,7 @@ const SignUp = () => {
                             <button className="btn bg-primary-color text-white hover:text-black hover:border-primary-color">Sign Up</button>
                         </div>
                     </form>
-                    <div className='px-8 pb-8 text-blue-500'>
+                    <div className='px-8 pb-8 text-primary-color'>
                         <Link to="/auth/login">Have a account? Login</Link>
                     </div>
                 </div>

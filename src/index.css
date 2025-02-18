@@ -12,3 +12,9 @@
   font-variation-settings:
     "wdth" 100;
 }
+
+.btn:hover{
+  border: 1px solid #014E4E;
+  color: black;
+  background-color: white;
+}
