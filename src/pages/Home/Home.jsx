@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import BenefitsSection from "./Benefits/BenefitsSection";
 import FAQSection from "./FAQ/FAQSection";
 import MeetOurTeam from "./MeetOurTeam/MeetOurTeam";
+import SecuritySection from "./SecurityMeasures/SecurityMeasures";
 import Service from "./Service/Service";
 import Testimonial from "./Testimonial/Testimonial";
 
@@ -16,8 +17,9 @@ const Home = () => {
                 <Blog></Blog>
                 <MeetOurTeam></MeetOurTeam>
                 <FAQSection></FAQSection>
-                <BenefitsSection/>
             </section>
+                <SecuritySection/>
+                <BenefitsSection/>
 
         </div>
     );

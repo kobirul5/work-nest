@@ -36,7 +36,7 @@ const benefits = [
 
 const BenefitsSection = () => {
   return (
-    <div className="container mx-auto px-6">
+    <div className="container mx-auto px-6 mb-20">
       <h2 className="mb-8  text-3xl md:text-5xl font-bold text-center">
         Why Choose Our Employee Management System?
       </h2>
