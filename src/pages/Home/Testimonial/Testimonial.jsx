@@ -9,79 +9,78 @@ import 'swiper/css/pagination';
 const Testimonial = () => {
 
 
-
     const testimonial = [
         {
             id: 1,
             name: "John Doe",
             role: "HR Manager",
-            image: "https://i.ibb.co.com/5MxC1vH/pexels-emre-can-576914516-28943731.jpg",
+            image: "https://i.ibb.co.com/qYJfB1SC/man-1.jpg",
             feedback: "This platform has transformed the way I manage my team. It's so easy to use and efficient!",
         },
         {
             id: 2,
             name: "Sarah Lee",
             role: "Employee",
-            image: "https://i.ibb.co.com/TPZn3F8/pexels-danielpool-27913669.jpg",
+            image: "https://i.ibb.co.com/qYCwHB5s/man-2.jpg",
             feedback: "I can now track my workflow and salary details seamlessly. Highly recommended!",
         },
         {
             id: 3,
             name: "Michael Brown",
             role: "CEO",
-            image: "https://i.ibb.co.com/zn0zYWX/pexels-kelvin809-810775.jpg",
+            image: "https://i.ibb.co.com/p6C9dwPb/man-3.jpg",
             feedback: "An excellent tool for managing employee workload and improving HR operations.",
         },
         {
             id: 4,
             name: "Emily Davis",
             role: "Project Manager",
-            image: "https://i.ibb.co.com/4ft5s9d/pexels-mikhail-nilov-7989027.jpg",
+            image: "https://i.ibb.co.com/1GY99B8b/man-4.jpg",
             feedback: "The workflow tracking feature is a game-changer. It has improved our team productivity.",
         },
         {
             id: 5,
             name: "Robert Johnson",
             role: "Software Engineer",
-            image: "https://i.ibb.co.com/WvXcVhD/pexels-fotios-photos-16129700.jpg",
+            image: "https://i.ibb.co.com/1JdttK69/man-5.jpg",
             feedback: "This platform provides all the necessary tools for smooth employee management.",
         },
         {
             id: 6,
             name: "Anna Wilson",
             role: "HR Executive",
-            image: "https://i.ibb.co.com/qxsRSkh/pexels-andrewperformance1-697509.jpg",
+            image: "https://i.ibb.co.com/CKGcCQRb/man-6.jpg",
             feedback: "Managing employee contracts and payments has never been easier. Fantastic solution!",
         },
         {
             id: 7,
             name: "James Martinez",
             role: "Team Lead",
-            image: "https://i.ibb.co.com/41JSDg6/pexels-alphatradezone-7352523.jpg",
+            image: "https://i.ibb.co.com/G4yDhqLg/man-7.jpg",
             feedback: "This tool has streamlined our workflow process, and the support team is amazing!",
         },
         {
             id: 8,
             name: "Linda White",
             role: "Finance Manager",
-            image: "https://i.ibb.co.com/kqWD1YH/pexels-kelvinernandi-3751397.jpg",
+            image: "https://i.ibb.co.com/xKZwQ5J0/man-8.jpg",
             feedback: "Keeping track of salary and payments is super simple with this platform. Highly impressed!",
         },
         {
             id: 9,
             name: "David Clark",
             role: "Product Designer",
-            image: "https://i.ibb.co.com/qxsRSkh/pexels-andrewperformance1-697509.jpg",
+            image: "https://i.ibb.co.com/gbCZ3SFR/man-9.jpg",
             feedback: "The interface is intuitive, and the features are just what we needed for better collaboration.",
         },
         {
             id: 10,
             name: "Sophia Lopez",
             role: "Marketing Specialist",
-            image: "https://i.ibb.co.com/4ft5s9d/pexels-mikhail-nilov-7989027.jpg",
+            image: "https://i.ibb.co.com/Gv6Z1MLH/man-10.jpg",
             feedback: "I love how this tool integrates everything in one place. It saves so much time and effort!",
         },
-    ]
+    ];
 
     return (
         <div className="container mx-auto">
@@ -124,7 +123,7 @@ const Testimonial = () => {
                 {
                     testimonial.map((i, idx) => <SwiperSlide key={idx}><div className="bg-white shadow-xl rounded-lg p-6 md:p-8 border border-gray-300 flex flex-col items-center space-y-4 text-center">
                         <div className="relative">
-                            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-indigo-500 to-blue-400 flex items-center justify-center shadow-lg">
+                            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-primary-color to-primary-color flex items-center justify-center shadow-lg">
                                 <img
                                     src={i.image}
                                     alt={i.name}
@@ -136,9 +135,9 @@ const Testimonial = () => {
                         <p className="text-sm text-gray-500 italic">{i.role}</p>
                         <div className="relative mt-4">
                             <p className="text-gray-600 text-sm leading-relaxed px-4">
-                                <span className="text-3xl text-blue-500 font-serif">“</span>
+                                <span className="text-3xl text-primary-color font-serif">“</span>
                                 {i.feedback}
-                                <span className="text-3xl text-blue-500 font-serif">”</span>
+                                <span className="text-3xl text-primary-color font-serif">”</span>
                             </p>
                         </div>
                     </div></SwiperSlide>)
