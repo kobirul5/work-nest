@@ -35,16 +35,6 @@ const PaymentEmployee = () => {
 
     const handlePay = (data) => {
         const paymentEmploy = data;
-        
-        // const filterData = paymentData?.filter((i) => i.paymentStatus === "success")
-        // const succussPaymentData = filterData?.filter((i) => i?.email ===paymentEmploy?.email);
-        // const verifyMonth = succussPaymentData?.find((i)=>i.date === paymentEmploy.date);
-
-        // if(verifyMonth?.date === paymentData?.date){
-        //     console.log("same")
-        // }
-
-
         const date = new Date()
         const payrollEmploy = {
             EmployId: paymentEmploy._id,
@@ -144,10 +134,10 @@ const PaymentEmployee = () => {
         getPaginationRowModel: getPaginationRowModel()
     })
     return (
-        <div>
-            <div className='my-14 text-center'>
+        <div className='px-8'>
+            <div className='my-14 text-center '>
                 <Heading
-                    title={"Payroll Management System"}
+                    title={"Payroll Management"}
                     subtile={"Track, manage, and process employee salaries seamlessly and efficiently."}
                 ></Heading>
             </div>

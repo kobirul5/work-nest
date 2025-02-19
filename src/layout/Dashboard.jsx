@@ -4,11 +4,12 @@ import UserProfile from "../pages/Shared/UserProfile/UserProfile";
 import useAllUsers from "../hooks/useAllUsers";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { FaDollarSign, FaHistory, FaHome, FaList, FaTasks, FaUpload } from "react-icons/fa";
+import { FaBlog, FaDollarSign, FaHistory, FaHome, FaList, FaTasks, FaUpload } from "react-icons/fa";
 import { MdContactPhone, MdPeople } from "react-icons/md";
 import { BiHomeAlt, BiMessage } from "react-icons/bi";
 import useVerifyAdmin from "../hooks/useVerifyAdmin";
 import DropDown from "../components/DropDown";
+import DashboardNav from "../components/DashbordNav";
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     const [allUser] = useAllUsers()
@@ -17,8 +18,8 @@ const Dashboard = () => {
 
     return (
         <div className="flex roboto flex-col md:flex-row  mx-auto">
-            <DropDown></DropDown>
-            <div className="min-w-[250px] min-h-screen hidden md:flex flex-col  text-white bg-[#014E4E] p-5 gap-4" >
+            
+            <div className="min-w-[250px] min-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5 pb-0 gap-4" >
                 <UserProfile></UserProfile>
                 <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
                 {/* employ: TODO: fixed it  */}
@@ -46,9 +47,11 @@ const Dashboard = () => {
                 <div className="border border-t"></div>
                 <Link to="/" className="flex items-center gap-3 text-lg font-bold" ><BiHomeAlt></BiHomeAlt>Home</Link>
                 <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
+                <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
             </div>
             <Toaster></Toaster>
-            <section className="flex-grow px-5 w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-scroll">
+            <section className="flex-grow px-5 w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-auto custom-scrollbar ">
+                <DashboardNav/>
                 <Outlet></Outlet>
             </section>
         </div>

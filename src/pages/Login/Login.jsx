@@ -62,7 +62,7 @@ const Login = () => {
             }}
             className="hero min-h-screen">
             <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content flex-col ">
+            <div className="hero-content flex-col mt-20">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold text-white">Login now!</h1>
                 </div>

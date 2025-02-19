@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaBlog } from 'react-icons/fa';
 import { FaDollarSign, FaHistory, FaHome, FaList, FaTasks, FaUpload } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import UserProfile from '../pages/Shared/UserProfile/UserProfile';
@@ -16,12 +16,12 @@ const DropDown = () => {
     return (
         <div>
             <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                <div tabIndex={0} role="button" className="btn rounded-full border-none lg:hidden text-white bg-transparent ">
                     <FaBars />
                 </div>
                 <ul
                     tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    className="menu menu-sm dropdown-content z-30 bg-primary-color text-white rounded-box  mt-3 w-52 p-2 shadow px-3 py-3">
                     <UserProfile></UserProfile>
                     <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
                     {/* employ: TODO: fixed it  */}
@@ -46,9 +46,10 @@ const DropDown = () => {
                             <Link to="/dashboard/massage" className="flex items-center gap-3 text-lg font-bold"  ><BiMessage></BiMessage> Massage</Link>
                         </>
                     }
-                    <div className="border border-t"></div>
+                    <div className="border border-t my-3"></div>
                     <Link to="/" className="flex items-center gap-3 text-lg font-bold" ><BiHomeAlt></BiHomeAlt>Home</Link>
                     <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
+                    <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
                 </ul>
             </div>
         </div>

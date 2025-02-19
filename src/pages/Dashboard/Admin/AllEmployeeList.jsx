@@ -103,8 +103,8 @@ const AllEmployeeList = () => {
 
 
     return (
-        <div className="mb-10">
-            <div className="py-10 text-center">
+        <div className="mb-10 px-8">
+            <div className="pt-10 text-center">
                 <Heading
                     title={"Employee Management Dashboard"}
                     subtile={"View, manage, and update roles for all verified employees seamlessly"}
