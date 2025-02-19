@@ -116,7 +116,7 @@ const EmployWorkSheet = () => {
 
 
     return (
-        <div className="p-4">
+        <div className="text-center mx-auto pt-14 mb-10 px-8">
             <div className="text-center mb-10">
                 <Heading
                     title={"Track Your Daily Tasks"}
@@ -148,7 +148,7 @@ const EmployWorkSheet = () => {
                     selected={selectedDate}
                     onChange={(date) => setValue("date", date)}
                 />
-                <button className="btn " type="submit">
+                <button className="btn bg-primary-color text-white hover:text-primary-color" type="submit">
                     Add
                 </button>
             </form>

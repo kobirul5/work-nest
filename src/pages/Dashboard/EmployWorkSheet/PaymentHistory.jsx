@@ -64,7 +64,7 @@ const PaymentHistory = () => {
 
 
     return (
-        <div>
+        <div className='px-8'>
             <div className='text-center mx-auto pt-14 mb-10'>
                 <Heading
                     title={"Payment History"}
@@ -72,10 +72,10 @@ const PaymentHistory = () => {
                 ></Heading>
             </div>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table border">
                     {/* head */}
                     <thead className='bg-primary-color text-white'>
-                        {table.getHeaderGroups().map((headerGroup, idx) => <tr key={idx}>
+                        {table.getHeaderGroups().map((headerGroup, idx) => <tr  key={idx}>
                             {headerGroup.headers.map((header, idx) => <th key={idx}>
                                 {flexRender(header.column.columnDef.header, header.getContext())}
                             </th>)}

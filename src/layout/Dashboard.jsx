@@ -47,7 +47,7 @@ const Dashboard = () => {
                 <div className="border border-t"></div>
                 <Link to="/" className="flex items-center gap-3 text-lg font-bold" ><BiHomeAlt></BiHomeAlt>Home</Link>
                 <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
-                <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
+                <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
             </div>
             <Toaster></Toaster>
             <section className="flex-grow px-5 w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-auto custom-scrollbar ">

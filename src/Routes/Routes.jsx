@@ -19,6 +19,7 @@ import Message from "../pages/Dashboard/Admin/Message/Message";
 import AdminPrivate from "./AdminPrivate";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 import Blog from "../pages/Blogs/Blogs/Blog";
+import Profile from "../pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog/>
+            },
+            {
+                path: "/profile",
+                element: <Profile/>
             }
         ]
     },
