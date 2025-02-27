@@ -13,7 +13,7 @@ const MeetOurTeam = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-gray-100 shadow-lg rounded-lg p-6">
                         <img
-                            src="https://i.ibb.co.com/41JSDg6/pexels-alphatradezone-7352523.jpg"
+                            src="https://i.ibb.co.com/qYJfB1SC/man-1.jpg"
                             alt="Team Member"
                             className="w-24 object-cover h-24 mx-auto rounded-full mb-4"
                         />
@@ -22,7 +22,7 @@ const MeetOurTeam = () => {
                     </div>
                     <div className="bg-gray-100 shadow-lg rounded-lg p-6">
                         <img
-                            src="https://i.ibb.co.com/02VrxFN/pexels-olly-926390.jpg"
+                            src="https://i.ibb.co.com/gbCZ3SFR/man-9.jpg"
                             alt="Team Member"
                             className="w-24 object-cover h-24 mx-auto rounded-full mb-4"
                         />
@@ -31,7 +31,7 @@ const MeetOurTeam = () => {
                     </div>
                     <div className="bg-gray-100 shadow-lg rounded-lg p-6">
                         <img
-                            src="https://i.ibb.co.com/xfX4Zkp/Career-Counseling-Sessions.jpg"
+                            src="https://i.ibb.co.com/qYCwHB5s/man-2.jpg"
                             alt="Team Member"
                             className="w-24 object-cover h-24 mx-auto rounded-full mb-4"
                         />

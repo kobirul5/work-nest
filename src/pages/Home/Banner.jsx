@@ -1,5 +1,5 @@
 import bannerImage from "../../assets/images/B.jpg"
-
+import {Link} from "react-router-dom"
 const Banner = () => {
     return (
         <div 
@@ -12,7 +12,7 @@ const Banner = () => {
                     <div className="mt-32">
                         <h1 className="mb-5 text-3xl md:text-5xl lg:text-7xl font-bold lg:w-10/12">Join 500+ Satisfied Employees and HR Professionals</h1>
                         <p className="mb-5">A trusted platform for employee management and HR operations.</p>
-                        <button className="btn bg-transparent border-white hover:bg-#014E4E text-white">Learn More</button>
+                        <Link to="/blog" className="btn bg-transparent border-white hover:bg-#014E4E text-white hover:text-primary-color">Learn More</Link>
                     </div>
                 
             </div>

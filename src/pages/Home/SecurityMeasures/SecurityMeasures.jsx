@@ -7,37 +7,37 @@ const securityFeatures = [
     icon: <FaLock className="text-6xl text-[#014E4E]" />,
     title: "End-to-End Encryption",
     description: "All data is encrypted using AES-256 to prevent unauthorized access.",
-    image: "https://i.ibb.co/b55X0GG6/image6.jpg",
+    image: "https://i.ibb.co.com/W4n59Zg6/com.jpg",
   },
   {
     icon: <FaUserShield className="text-6xl text-[#014E4E]" />,
     title: "Role-Based Access Control",
     description: "Ensures only authorized personnel can access sensitive information.",
-    image: "https://i.ibb.co/LzMW06Qr/image.jpg",
+    image: "https://i.ibb.co.com/N6t0zp3d/image-1.jpg",
   },
   {
     icon: <FaKey className="text-6xl text-[#014E4E]" />,
     title: "JWT Authentication",
     description: "Secure authentication using JSON Web Tokens (JWT) to protect user sessions.",
-    image: "https://i.ibb.co/rGDRNwB7/image-5.jpg",
+    image: "https://i.ibb.co.com/wFmrwJ93/image-5.jpg",
   },
   {
     icon: <FaShieldAlt className="text-6xl text-[#014E4E]" />,
     title: "Multi-Factor Authentication",
     description: "Enhances security with an extra layer of authentication for users.",
-    image: "https://i.ibb.co/60rH0QcF/image-4.jpg",
+    image: "https://i.ibb.co.com/rR7jT9HD/image-4.jpg",
   },
   {
     icon: <FaDatabase className="text-6xl text-[#014E4E]" />,
     title: "Secure Data Storage",
     description: "All employee data is stored securely with automated backups.",
-    image: "https://i.ibb.co/ynydzTbt/image-3.jpg",
+    image: "https://i.ibb.co.com/Y4vLf81G/image6.jpg",
   },
   {
     icon: <FaUserCheck className="text-6xl text-[#014E4E]" />,
     title: "Regulatory Compliance",
     description: "Meets GDPR, HIPAA, and industry security standards to ensure compliance.",
-    image: "https://i.ibb.co/tp2QTRc7/image-2.jpg",
+    image: "https://i.ibb.co.com/4RDtVhRM/image.jpg",
   },
 ];
 
