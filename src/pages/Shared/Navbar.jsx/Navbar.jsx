@@ -2,11 +2,15 @@ import { useContext } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import LogoutBtn from '../../../components/LogoutBtn';
+import { ThemeContext } from '../../../providers/ThemeProvider';
 
 
 const Navbar = () => {
     const { user } = useContext(AuthContext)
     const location = useLocation()
+
+    const {theme, toggleTheme} = useContext(ThemeContext)
+    console.log(theme)
 
     const navbarLinks = [
         { name: "Home", pathName: "/" },
@@ -36,7 +40,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 gap-2 text-black rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content  gap-2 text-black rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {
                                 navbarLinks.map((i, idx) => <li key={idx}>
                                     <Link className={`${location.pathname === i.pathName && "text-[#2fecec]"} hover:text-[#00a3a3]`} to={i.pathName}>{i.name}</Link>
@@ -44,7 +48,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to={"/"} className="btn btn-ghost text-xl pl-0 uppercase">Work Nest</Link>
+                    <Link to={"/"} className=" text-white border-none text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="flex flex-row justify-center items-center gap-3 px-1 font-normal ">

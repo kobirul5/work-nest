@@ -117,7 +117,7 @@ const SignUp = () => {
                                 type="file"
                                 {...register("photo", { required: true })}
                                 placeholder="email"
-                                className="file-input file-input-bordered w-full "
+                                className="file-input  file-input-bordered w-full "
                             />
                             {errors.email && <span className='text-red-600'>Email is required</span>}
                         </div>
