@@ -50,7 +50,7 @@ const Dashboard = () => {
                 <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
             </div>
             <Toaster></Toaster>
-            <section className="flex-grow px-5 w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-auto custom-scrollbar ">
+            <section className="flex-grow px-5 bg-w w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-auto custom-scrollbar ">
                 <DashboardNav/>
                 <Outlet></Outlet>
             </section>

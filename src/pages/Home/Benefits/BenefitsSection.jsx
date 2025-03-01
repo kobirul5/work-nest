@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { FaClock, FaChartLine, FaShieldAlt, FaUserCheck, FaDatabase, FaTasks } from "react-icons/fa";
+import { ThemeContext } from "../../../providers/ThemeProvider";
 
 const benefits = [
   {
@@ -35,6 +37,7 @@ const benefits = [
 ];
 
 const BenefitsSection = () => {
+  const {theme} = useContext(ThemeContext)
   return (
     <div className="container mx-auto px-6 mb-20">
       <h2 className="mb-8  text-3xl md:text-5xl font-bold text-center">
@@ -52,11 +55,11 @@ const BenefitsSection = () => {
             initial={{ opacity: 0, scale: 0.9 }} 
             whileInView={{ opacity: 1, scale: 1 }} 
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="p-6 bg-white border border-[#014E4E] rounded-xl shadow-md flex flex-col items-center text-center"
+            className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f] border-primary-color"} p-6 border rounded-xl shadow-md flex flex-col items-center text-center`}
           >
             {benefit.icon}
-            <h3 className="text-xl font-semibold text-[#014E4E] mt-4">{benefit.title}</h3>
-            <p className="text-gray-700 mt-2">{benefit.description}</p>
+            <h3 className={`text-xl font-semibold ${theme == "light" ? "text-[#014E4E]":""}  mt-4`}>{benefit.title}</h3>
+            <p className="text-[#777777] mt-2">{benefit.description}</p>
           </motion.div>
         ))}
       </motion.div>

@@ -157,12 +157,12 @@ const Blog = () => {
             {/* Search and Filter */}
             {location.pathname == "/blog" &&
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <div className="w-full md:w-2/3 flex items-center bg-white shadow-md rounded-md p-3">
+                    <div className={`w-full md:w-2/3 flex items-center ${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} shadow-md rounded-md p-3`}>
                         <FaSearch className="text-gray-500 mr-2" />
                         <input
                             type="text"
                             placeholder="Search blogs..."
-                            className="outline-none w-full text-gray-600"
+                            className="outline-none w-full text-primary-color px-5 py-1 rounded-md"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
