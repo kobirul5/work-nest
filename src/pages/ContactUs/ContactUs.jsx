@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import toast, { Toaster } from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { ThemeContext } from '../../providers/ThemeProvider';
 const ContactUs = () => {
     const  axiosPublic = useAxiosPublic()
+    const {theme} = useContext(ThemeContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,13 +28,13 @@ const ContactUs = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8 pt-20">
+        <div className="container mx-auto px-4 py-16 pt-24">
             <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Contact Information */}
-                <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"}  shadow-lg rounded-lg p-6`}>
                     <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-                    <p className="text-gray-600 mb-4">Feel free to reach out to us via any of the methods below:</p>
+                    <p className="text-[#777777] mb-4">Feel free to reach out to us via any of the methods below:</p>
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
                             <FaPhoneAlt className="text-primary-color" />
@@ -50,34 +52,34 @@ const ContactUs = () => {
                 </div>
                     <Toaster></Toaster>
                 {/* Contact Form */}
-                <div className="bg-white shadow-lg rounded-lg p-6">
+                <div className={` ${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} shadow-lg rounded-lg p-6`}>
                     <h2 className="text-2xl font-bold mb-4">Send Us a Message</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
+                            <label htmlFor="name" className="block text-[#777777] font-medium mb-2">Name</label>
                             <input
                                 type="text"
                                 name="name"
-                                className="input input-bordered w-full"
+                                className={`input input-bordered ${theme == "dark" && "bg-[#292929]"}  w-full`}
                                 placeholder="Your Name"
                                 required
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
+                            <label htmlFor="email" className="block text-[#777777] font-medium mb-2">Email</label>
                             <input
                                 type="email"
                                 name="email"
-                                className="input input-bordered w-full"
+                                className={`input input-bordered w-full ${theme == "dark" && "bg-[#292929]"}`}
                                 placeholder="Your Email"
                                 required
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Message</label>
+                            <label htmlFor="message" className="block text-[#777777] font-medium mb-2">Message</label>
                             <textarea
                                 name="message"
-                                className="textarea textarea-bordered w-full"
+                                className={`textarea textarea-bordered w-full ${theme == "dark" && "bg-[#292929]"}`}
                                 placeholder="Your Message"
                                 rows="4"
                                 required

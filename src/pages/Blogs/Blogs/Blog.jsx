@@ -145,7 +145,7 @@ const Blog = () => {
     );
 
     return (
-        <div className={`px-4 md:px-20 ${location.pathname === "/blog" && "py-20"}`}>
+        <div className={`px-4 md:px-20 ${location.pathname === "/blog" && "py-24"}`}>
             <div
                 className="text-center mb-10">
                 <Heading
