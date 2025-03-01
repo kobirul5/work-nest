@@ -44,7 +44,7 @@ const securityFeatures = [
 const SecuritySection = () => {
   return (
     <section
-      className="hero bg-fixed mb-20"
+      className="hero bg-fixed mb-20 overflow-x-hidden"
       style={{ backgroundImage: "url(https://i.ibb.co/b55X0GG6/com.jpg)" }}
     >
       <div className="hero-overlay bg-opacity-80"></div>

@@ -50,7 +50,10 @@ const Navbar = () => {
                     </div>
                     <div className='flex justify-center items-center gap-2'>
                         <Link to={"/"} className=" text-white border-none text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
-                        <input type="checkbox" defaultChecked className="toggle border-primary-color bg-primary-color checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500 " />
+                        <input type="checkbox"
+                        onChange={toggleTheme}
+                        checked={theme === 'light'? true: false} 
+                        className="toggle border-primary-color bg-primary-color checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500 " />
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
