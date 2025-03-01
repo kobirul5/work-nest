@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Heading from "../../Shared/Heading/Heading";
+import { ThemeContext } from "../../../providers/ThemeProvider";
 
 const Service = () => {
+    const {theme} = useContext(ThemeContext)
     const services = [
         {
             title: "Employee Workflow Tracking",
@@ -39,13 +42,13 @@ const Service = () => {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className="card bg-white shadow-lg border border-gray-200 p-6 hover:shadow-xl transition"
+                            className={`${theme == "light" ? "bg-gray-100":"bg-[#1f1f1f]"} card  shadow-lg   p-6 hover:shadow-xl transition`}
                         >
                             <div className="text-4xl mb-4">{service.icon}</div>
                             <h3 className="text-xl font-semibold mb-2">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-600">{service.description}</p>
+                            <p className="text-[#777777]">{service.description}</p>
                         </div>
                     ))}
                 </div>

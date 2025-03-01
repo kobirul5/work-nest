@@ -7,7 +7,7 @@ import { ThemeContext } from "../providers/ThemeProvider";
 const MainLayout = () => {
     const {theme} = useContext(ThemeContext)
     return (
-        <div className="roboto ">
+        <div className={`roboto ${theme == "light" ? "":"bg-[#161616]"}`}>
             <section className="">
                 <Navbar></Navbar>
             </section>

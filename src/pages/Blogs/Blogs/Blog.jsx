@@ -189,7 +189,7 @@ const Blog = () => {
                         <div className="p-4">
                             <h3 className="text-xl font-semibold ">{blog.title}</h3>
                             <p className="text-sm  text-primary-color mt-1">{blog.category}</p>
-                            <p className={`${theme=== "light"? "text-gray-600":"text-white"}  mt-3`}>{blog.description}</p>
+                            <p className={`${theme=== "light"? "text-gray-600":"text-[#777777]"}  mt-3`}>{blog.description}</p>
                             <button className="btn btn-link text-primary-color mt-4">
                                 Read More →
                             </button>
