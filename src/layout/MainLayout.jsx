@@ -7,11 +7,11 @@ import { ThemeContext } from "../providers/ThemeProvider";
 const MainLayout = () => {
     const {theme} = useContext(ThemeContext)
     return (
-        <div className="roboto">
+        <div className="roboto ">
             <section className="">
                 <Navbar></Navbar>
             </section>
-            <section  className="min-h-[calc(100vh-220px)]">
+            <section  className={`min-h-[calc(100vh-220px)] ${theme === 'light'? "text-[#1d1d1d]":"text-[#01a1a1]"}`}>
                 <Outlet></Outlet>
             </section>
             <section className="bg-[#1f1e1e]">

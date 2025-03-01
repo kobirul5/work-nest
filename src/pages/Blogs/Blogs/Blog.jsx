@@ -3,9 +3,11 @@ import { FaSearch } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
 import Heading from '../../Shared/Heading/Heading';
 import {motion} from "motion/react"
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../../providers/ThemeProvider';
 const Blog = () => {
     const [searchQuery, setSearchQuery] = useState("");
+    const {theme} = useContext(ThemeContext)
     const location = useLocation()
     const blogs = [
         {
@@ -181,13 +183,13 @@ const Blog = () => {
                         initial={{ opacity: 0, scale: 0.9 }} 
                         whileInView={{ opacity: 1, scale: 1 }} 
                         transition={{ duration: 0.5, delay: 0.2, ease:"easeInOut"}}
-                        className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105"
+                        className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105`}
                     >
                         <img src={blog.image} alt={blog.title} className="w-full h-40 object-cover" />
                         <div className="p-4">
-                            <h3 className="text-xl font-semibold text-gray-800">{blog.title}</h3>
+                            <h3 className="text-xl font-semibold ">{blog.title}</h3>
                             <p className="text-sm  text-primary-color mt-1">{blog.category}</p>
-                            <p className="text-gray-600 mt-3">{blog.description}</p>
+                            <p className={`${theme=== "light"? "text-gray-600":"text-white"}  mt-3`}>{blog.description}</p>
                             <button className="btn btn-link text-primary-color mt-4">
                                 Read More →
                             </button>

@@ -31,7 +31,7 @@ const EmployDetails = () => {
                 payData < 1 ? <p className="text-5xl text-red-700 my-48 text-center">NO DATA AVILABLE</p> : 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mt-24">
                     <div>
-                        <div className="card bg-base-100  shadow-xl">
+                        <div className="card   shadow-xl">
                             <figure className="px-10 pt-10">
                                 <img
                                     src={payData[0]?.image}

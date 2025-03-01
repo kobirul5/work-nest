@@ -44,7 +44,7 @@ const DashboardNav = () => {
                     </div>
                     <div
                         tabIndex={0}
-                        className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
+                        className="card card-compact dropdown-content  z-[1] mt-3 w-52 shadow">
                         <div className="card-body bg-primary-color">
                             <ul className="max-h-64 overflow-auto">
                                 {messages.map((msg) => (
@@ -68,7 +68,7 @@ const DashboardNav = () => {
                     </div>
                     <div
                         tabIndex={0}
-                        className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
+                        className="card card-compact dropdown-content  z-[1] mt-3 w-52 shadow">
                         <div className="card-body bg-primary-color max-h-64 overflow-auto">
                             {notifications.map((notif) => (
                                 <div key={notif.id} className="p-3 border-b bg-primary-color text-sm">

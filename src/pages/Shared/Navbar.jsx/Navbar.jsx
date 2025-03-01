@@ -40,7 +40,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content  gap-2 text-black rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content  gap-2 rounded-box z-[1] mt-3 w-52 p-2 shadow bg-primary-color/70 ">
                             {
                                 navbarLinks.map((i, idx) => <li key={idx}>
                                     <Link className={`${location.pathname === i.pathName && "text-[#2fecec]"} hover:text-[#00a3a3]`} to={i.pathName}>{i.name}</Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className='flex justify-center items-center gap-2'>
-                        <Link to={"/"} className=" text-white border-none text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
+                        <Link to={"/"} className="text-white border-none md:text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
                         <input type="checkbox"
                         onChange={toggleTheme}
                         checked={theme === 'light'? true: false} 

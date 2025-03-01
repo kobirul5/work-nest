@@ -66,7 +66,7 @@ const Login = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold text-white">Login now!</h1>
                 </div>
-                <div className="card  bg-base-100 w-full max-w-sm lg:w-[800px] shrink-0">
+                <div className="card   w-full max-w-sm lg:w-[800px] shrink-0">
                     <div className="flex justify-between px-8 pt-8 text-2xl font-bold">
                         <button className={`btn ${roleInfo.email === "kobirul@gmail.com" && "bg-primary-color text-white"} `} onClick={()=>handleRoleSet("Admin")}>Admin</button>
                         <button className={`btn ${roleInfo.email === "hr@gmail.com" && "bg-primary-color text-white"} `} onClick={()=>handleRoleSet("HR")}>HR</button>

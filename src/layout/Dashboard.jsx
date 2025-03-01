@@ -17,7 +17,7 @@ const Dashboard = () => {
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
-        <div className="flex roboto flex-col md:flex-row  mx-auto">
+        <div className={`flex roboto flex-col md:flex-row  mx-auto`}>
             
             <div className="min-w-[250px] min-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5 pb-0 gap-4" >
                 <UserProfile></UserProfile>

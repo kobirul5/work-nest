@@ -2,7 +2,7 @@ import Heading from "../../Shared/Heading/Heading";
 
 const MeetOurTeam = () => {
     return (
-        <section className=" bg-white">
+        <section className=" ">
             <div className="container mx-auto px-4 text-center">
                 <div className="text-center">
                     <Heading
