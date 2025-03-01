@@ -4,10 +4,12 @@ import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
+import { useContext } from "react";
+import { ThemeContext } from "../../../providers/ThemeProvider";
 
 
 const Testimonial = () => {
-
+    const {theme} =useContext(ThemeContext)
 
     const testimonial = [
         {
@@ -121,7 +123,7 @@ const Testimonial = () => {
                   }}
             >
                 {
-                    testimonial.map((i, idx) => <SwiperSlide key={idx}><div className="bg-white shadow-xl rounded-lg p-6 md:p-8 border border-gray-300 flex flex-col items-center space-y-4 text-center">
+                    testimonial.map((i, idx) => <SwiperSlide key={idx}><div className={`${theme == "light" ? "bg-white border-gray-300":"bg-[#1f1f1f] border-primary-color"} shadow-xl rounded-lg p-6 md:p-8 border   flex flex-col items-center space-y-4 text-center`}>
                         <div className="relative">
                             <div className="w-20 h-20 rounded-full bg-gradient-to-r from-primary-color to-primary-color flex items-center justify-center shadow-lg">
                                 <img
@@ -131,10 +133,10 @@ const Testimonial = () => {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-800">{i.name}</h3>
-                        <p className="text-sm text-gray-500 italic">{i.role}</p>
+                        <h3 className="text-lg font-bold ">{i.name}</h3>
+                        <p className="text-sm  italic">{i.role}</p>
                         <div className="relative mt-4">
-                            <p className="text-gray-600 text-sm leading-relaxed px-4">
+                            <p className="text-[#777777] text-sm leading-relaxed px-4">
                                 <span className="text-3xl text-primary-color font-serif">“</span>
                                 {i.feedback}
                                 <span className="text-3xl text-primary-color font-serif">”</span>
