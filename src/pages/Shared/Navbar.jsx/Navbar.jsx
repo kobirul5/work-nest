@@ -9,7 +9,7 @@ const Navbar = () => {
     const { user } = useContext(AuthContext)
     const location = useLocation()
 
-    const {theme, toggleTheme} = useContext(ThemeContext)
+    const { theme, toggleTheme } = useContext(ThemeContext)
     console.log(theme)
 
     const navbarLinks = [
@@ -48,7 +48,10 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to={"/"} className=" text-white border-none text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
+                    <div className='flex justify-center items-center gap-2'>
+                        <Link to={"/"} className=" text-white border-none text-xl pl-0 uppercase hover:text-[#00a3a3]">Work Nest</Link>
+                        <input type="checkbox" defaultChecked className="toggle border-primary-color bg-primary-color checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500 " />
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="flex flex-row justify-center items-center gap-3 px-1 font-normal ">

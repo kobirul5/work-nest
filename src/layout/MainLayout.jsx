@@ -2,7 +2,10 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar.jsx/Navbar";
 import Footer from "../pages/Shared/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
+import { useContext } from "react";
+import { ThemeContext } from "../providers/ThemeProvider";
 const MainLayout = () => {
+    const {theme} = useContext(ThemeContext)
     return (
         <div className="roboto">
             <section className="">
