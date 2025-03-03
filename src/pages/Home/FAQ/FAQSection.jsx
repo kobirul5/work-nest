@@ -59,7 +59,7 @@ const FAQSection = () => {
                 <div className="join join-vertical w-full flex-1">
                     {
                         faqs?.map((i, idx) => <div key={idx}
-                            className="collapse collapse-arrow join-item border-base-300 border">
+                            className="collapse collapse-arrow join-item border-primary-color border">
                             <input type="radio" name="my-accordion-4" />
                             <div className="collapse-title text-xl font-medium text-primary-color">{i.question}</div>
                             <div className="collapse-content">

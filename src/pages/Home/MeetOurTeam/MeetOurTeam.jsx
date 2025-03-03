@@ -14,7 +14,7 @@ const MeetOurTeam = () => {
                     ></Heading>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} bg-gray-100 shadow-lg rounded-lg p-6`}>
+                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f] border border-primary-color"} shadow-lg rounded-lg p-6`}>
                         <img
                             src="https://i.ibb.co.com/qYJfB1SC/man-1.jpg"
                             alt="Team Member"
@@ -23,7 +23,7 @@ const MeetOurTeam = () => {
                         <h3 className="text-xl font-bold">John Doe</h3>
                         <p className="text-[#777777]">CEO & Founder</p>
                     </div>
-                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} bg-gray-100 shadow-lg rounded-lg p-6`}>
+                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f] border border-primary-color"} shadow-lg rounded-lg p-6`}>
                         <img
                             src="https://i.ibb.co.com/gbCZ3SFR/man-9.jpg"
                             alt="Team Member"
@@ -32,7 +32,7 @@ const MeetOurTeam = () => {
                         <h3 className="text-xl font-bold">Jane Smith</h3>
                         <p className="text-[#777777]">Chief Operating Officer</p>
                     </div>
-                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"} bg-gray-100 shadow-lg rounded-lg p-6`}>
+                    <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f] border border-primary-color"} shadow-lg rounded-lg p-6`}>
                         <img
                             src="https://i.ibb.co.com/qYCwHB5s/man-2.jpg"
                             alt="Team Member"
