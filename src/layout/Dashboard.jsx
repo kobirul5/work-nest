@@ -16,9 +16,9 @@ const Dashboard = () => {
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
-        <div className={`flex roboto flex-col md:flex-row  mx-auto`}>
-            
-            <div className="min-w-[250px] min-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5 pb-0 gap-4" >
+        <div className={`flex roboto flex-col md:flex-row  mx-auto overflow-y-scroll custom-scrollbar`}>
+            {/*  DashBoard side bar */}
+            <div className="min-w-[250px] max-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5  gap-4 overflow-y-scroll custom-scrollbar pb-10" >
                 <UserProfile></UserProfile>
                 <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
                 {/* employ: TODO: fixed it  */}
@@ -46,11 +46,12 @@ const Dashboard = () => {
                 <div className="border border-t"></div>
                 <Link to="/" className="flex items-center gap-3 text-lg font-bold" ><BiHomeAlt></BiHomeAlt>Home</Link>
                 <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
-                <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog/>Blog</Link>
+                <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog />Blog</Link>
             </div>
             <Toaster></Toaster>
+            {/*  main */}
             <section className="flex-grow px-5 bg-w w-full lg:max-h-screen lg:overflow-y-scroll overflow-x-auto custom-scrollbar ">
-                <DashboardNav/>
+                <DashboardNav />
                 <Outlet></Outlet>
             </section>
         </div>
