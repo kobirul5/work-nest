@@ -5,13 +5,15 @@ import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import loginImage from "../../assets/images/login.jpg"
+import { ThemeContext } from '../../providers/ThemeProvider';
 
 const imageHostingKay = import.meta.env.VITE_IMAGE_HOSTING_KAY
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKay}`
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { userCreate, updateUserProfile, loading, setLoading } = useContext(AuthContext);
+    const { userCreate, updateUserProfile, } = useContext(AuthContext);
+    const {theme} =useContext(ThemeContext)
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic();
 
@@ -72,8 +74,8 @@ const SignUp = () => {
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold pt-20 text-white">Sign Up now!</h1>
                 </div>
-                <div
-                    className="card bg-base-100 w-full  lg:w-[800px] shrink-0"
+                <div 
+                    className={`card w-full ${theme === "light"? "bg-white": "bg-[#161616] text-[#777777]"}  lg:w-[800px] shrink-0`}
                 >
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-4 md:grid md:grid-cols-2">
                         {/* name */}

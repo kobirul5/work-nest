@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -102,7 +102,7 @@ const GoogleLogin = () => {
             <button onClick={() => {
                 handleGoogleLogin()
                 // document.getElementById('my_modal_5').showModal()
-            }} className="btn btn-outline w-full hover:bg-primary-color"><FaGoogle></FaGoogle></button>
+            }} className="btn btn-outline w-full hover:bg-primary-color "><FcGoogle className="text-xl"/> Continue With Google</button>
             {/* modal */}
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
