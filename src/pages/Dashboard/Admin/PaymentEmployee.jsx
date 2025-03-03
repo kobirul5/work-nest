@@ -3,11 +3,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from 'react-hot-toast';
 import Heading from '../../Shared/Heading/Heading';
 import usePayroll from '../../../hooks/usePayroll';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaEdit } from "react-icons/fa";
+import { ThemeContext } from '../../../providers/ThemeProvider';
  
 const PaymentEmployee = () => {
     const axiosSecure = useAxiosSecure()
+    const {theme} = useContext(ThemeContext)
     const [paymentData, refetch] = usePayroll()
     const [newSalary, setNewSalary] = useState(null)
     const [salaryCheck, setSalaryCheck] = useState(null)
@@ -101,7 +103,7 @@ const PaymentEmployee = () => {
             accessorKey: "Pay",
             cell: ({ row }) => (
                 row.original.paymentStatus === "success" ? <p>Paid</p> : <button
-                    className="btn hover:bg-primary-color hover:text-white text-black border-primary-color"
+                    className="btn hover:bg-primary-color hover:text-white text-[#01a1a1] border-primary-color hover:border-primary-color"
                     onClick={() => handlePay(row.original)}
                 >
                     Pay
@@ -188,12 +190,12 @@ const PaymentEmployee = () => {
                 {paymentData?.map((employee) => (
                     <div
                         key={employee._id}
-                        className="border border-[#096e6e] bg-opacity-90 shadow-md rounded-md p-4 hover:shadow-lg transition "
+                        className={`border border-[#096e6e] bg-opacity-90 shadow-md rounded-md p-4 hover:shadow-lg transition ${theme == "light" ? "bg-white":"bg-[#1f1f1f] border border-primary-color"}`}
                     >
                         <h3 className="text-lg font-semibold">{employee.name}</h3>
-                        <p className="">{employee.designation}</p>
-                        <p>Salary: ${employee.salary}</p>
-                        <p>
+                        <p className="text-[#777777]">{employee.designation}</p>
+                        <p className="text-[#777777]">Salary: ${employee.salary}</p>
+                        <p className="text-[#777777]">
                             Salary Month:{" "}
                             {employee.paymentDate
                                 ? new Date(employee.paymentDate).toLocaleDateString("en-US", {
@@ -202,7 +204,7 @@ const PaymentEmployee = () => {
                                 })
                                 : "Not Paid"}
                         </p>
-                        <p className="">
+                        <p className="text-[#777777]">
                             Pay Date:{" "}
                             {employee.paymentDate
                                 ? new Date(employee.paymentDate).toLocaleDateString("en-US", {
@@ -215,7 +217,7 @@ const PaymentEmployee = () => {
 
                         <div className="mt-4 flex justify-between">
                             <button
-                                className="btn btn-outline hover:bg-primary-color border-primary-color "
+                                className="btn btn-outline hover:bg-primary-color border-primary-color hover:text-white"
                                 onClick={() => handlePay(employee)}
                                 disabled={employee.paymentStatus === "success"}
                             >
