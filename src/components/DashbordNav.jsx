@@ -6,9 +6,11 @@ import { BiMessage } from "react-icons/bi";
 import { Link } from "react-router-dom"
 import LogoutBtn from "./LogoutBtn";
 import DropDown from "./DropDown";
+import { ThemeContext } from "../providers/ThemeProvider";
 
 const DashboardNav = () => {
     const { user } = useContext(AuthContext)
+    const { theme, toggleTheme } = useContext(ThemeContext)
     const [allUser] = useAllUsers()
     const filterUser = allUser.find((item) => item?.email === user?.email)
     const notifications = [
@@ -31,7 +33,11 @@ const DashboardNav = () => {
         <div className="navbar bg-primary-color rounded-full sticky top-4 z-20">
             <div className="flex-1">
                 <DropDown></DropDown>
-                <Link to="/dashboard" className="px-4 text-white">Dashboard</Link>
+                <Link to="/dashboard" className=" px-1 md:px-4 text-white">Dashboard</Link>
+                <input type="checkbox"
+                        onChange={toggleTheme}
+                        checked={theme === 'light'? true: false} 
+                        className="toggle border-primary-color bg-primary-color checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500 " />
             </div>
             <div className="flex-none space-x-3 bg-primary-color">
                 {/* massage */}

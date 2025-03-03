@@ -16,7 +16,7 @@ const DropDown = () => {
     return (
         <div>
             <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn rounded-full border-none lg:hidden text-white bg-transparent ">
+                <div tabIndex={0} role="button" className="btn px-2 rounded-full border-none lg:hidden text-white bg-transparent ">
                     <FaBars />
                 </div>
                 <ul

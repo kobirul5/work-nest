@@ -8,9 +8,8 @@ import { ThemeContext } from '../../../providers/ThemeProvider';
 const Navbar = () => {
     const { user } = useContext(AuthContext)
     const location = useLocation()
-
     const { theme, toggleTheme } = useContext(ThemeContext)
-    console.log(theme)
+
 
     const navbarLinks = [
         { name: "Home", pathName: "/" },
