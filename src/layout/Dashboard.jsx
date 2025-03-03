@@ -9,14 +9,18 @@ import { MdContactPhone, MdPeople } from "react-icons/md";
 import { BiHomeAlt, BiMessage } from "react-icons/bi";
 import useVerifyAdmin from "../hooks/useVerifyAdmin";
 import DashboardNav from "../components/DashbordNav";
+import { ThemeContext } from "../providers/ThemeProvider";
+
+
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
+    const {theme} = useContext(ThemeContext)
     const [allUser] = useAllUsers()
     const [verifyAdmin] = useVerifyAdmin()
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
-        <div className={`flex roboto flex-col md:flex-row  mx-auto overflow-y-scroll custom-scrollbar`}>
+        <div className={`flex roboto flex-col md:flex-row  mx-auto overflow-y-scroll custom-scrollbar ${theme == "light" ? "text-[#1d1d1d]":"bg-[#161616]"} text-[#01a1a1]`}>
             {/*  DashBoard side bar */}
             <div className="min-w-[250px] max-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5  gap-4 overflow-y-scroll custom-scrollbar pb-10" >
                 <UserProfile></UserProfile>
