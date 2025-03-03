@@ -173,7 +173,7 @@ const EmployWorkSheet = () => {
                                 day: "2-digit",
                                 year: "numeric",
                             })}</td>
-                            <td className=" flex justify-center gap-5">
+                            <td className=" flex justify-center gap-5 border">
                                 <button
                                     className="btn btn-sm btn-info mr-2"
                                     onClick={() => setModalData(t)}

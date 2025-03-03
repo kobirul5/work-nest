@@ -105,7 +105,7 @@ const EmployList = () => {
             accessorKey: "Pay",
             cell: ({ row }) => (
                 <button disabled={!row.original.isVerified}
-                    className="btn hover:bg-primary-color hover:text-white text-black   border-primary-color"
+                    className="btn hover:bg-primary-color hover:text-white text-[#01a1a1] bg-transparent   border-primary-color"
                     onClick={() => {
                         setPaymentEmploy(row.original)
                         document.getElementById('pay_modal').showModal()
