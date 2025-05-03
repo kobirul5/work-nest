@@ -3,6 +3,7 @@ import {
   FaUsers, 
 } from 'react-icons/fa';
 import { ThemeContext } from "../../../providers/ThemeProvider";
+import { Link, Element } from 'react-scroll';
 
 
 
@@ -23,14 +24,14 @@ const HeroAllProduct = () => {
                 <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
                     Streamline your workforce management with our all-in-one cloud solution. Fast deployment, zero maintenance.
                 </p>
-                <button className={`group flex items-center gap-2 mx-auto px-8 py-4 rounded-xl text-lg font-semibold transition-all 
+                <Link to="price" smooth={true} duration={500} className={` btn flex items-center  rounded-xl text-lg font-semibold transition-all 
                 ${theme === 'light'
                         ? 'bg-white text-primary-color hover:bg-opacity-95 shadow-lg hover:shadow-xl'
                         : 'bg-[#1f1f1f] text-white hover:bg-[#1f1f1f]'}
               `}>
                     <span>Start Free Trial</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </button>
+                </Link >
                 <div className="mt-8 text-sm opacity-80">No credit card required · 14-day free trial</div>
             </div>
         </header>
