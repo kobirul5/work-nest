@@ -14,16 +14,19 @@ import { ThemeContext } from "../providers/ThemeProvider";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
-    const {theme} = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext)
     const [allUser] = useAllUsers()
     const [verifyAdmin] = useVerifyAdmin()
     const filterData = allUser.find((item) => item?.email === user?.email)
 
     return (
-        <div className={`flex roboto flex-col md:flex-row  mx-auto overflow-y-scroll custom-scrollbar ${theme == "light" ? "text-[#1d1d1d]":"bg-[#161616]"} text-[#01a1a1]`}>
+        <div className={`flex roboto flex-col md:flex-row  mx-auto overflow-y-scroll custom-scrollbar ${theme == "light" ? "text-[#1d1d1d]" : "bg-[#161616]"} text-[#01a1a1]`}>
             {/*  DashBoard side bar */}
             <div className="min-w-[250px] max-h-screen hidden lg:flex flex-col  text-white bg-[#014E4E] p-5  gap-4 overflow-y-scroll custom-scrollbar pb-10" >
-                <UserProfile></UserProfile>
+                <div>
+                    <h2 className="text-2xl md:text-4xl text-center mt-2">WorkNest</h2>
+                </div>
+                <div className="border border-t"></div>
                 <Link to="/dashboard" className="flex items-center gap-3 text-lg font-bold"><FaHome></FaHome> Dashboard Home</Link>
                 {/* employ: TODO: fixed it  */}
                 {
@@ -51,6 +54,10 @@ const Dashboard = () => {
                 <Link to="/" className="flex items-center gap-3 text-lg font-bold" ><BiHomeAlt></BiHomeAlt>Home</Link>
                 <Link to="/contact-us" className="flex items-center gap-3 text-lg font-bold" ><MdContactPhone></MdContactPhone> Contact Us</Link>
                 <Link to="/blog" className="flex items-center gap-3 text-lg font-bold" ><FaBlog />Blog</Link>
+          
+                <div className=" fixed bottom-5 ">
+                    <UserProfile></UserProfile>
+                </div>
             </div>
             <Toaster></Toaster>
             {/*  main */}

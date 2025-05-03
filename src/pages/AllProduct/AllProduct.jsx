@@ -5,11 +5,7 @@ import {
   FaChartLine, 
   FaCrown, 
   FaQuoteLeft, 
-  FaQuestionCircle, 
-  FaFacebook, 
-  FaTwitter, 
-  FaLinkedin 
-} from 'react-icons/fa';
+  FaQuestionCircle, } from 'react-icons/fa';
 import { ThemeContext } from "../../providers/ThemeProvider";
 
 
@@ -43,7 +39,7 @@ const AllProduct = () => {
               $19<span className={`${theme === 'light' ? 'text-gray-500' : 'text-gray-400'} text-sm`}>/month</span>
             </div>
             <ul className={`space-y-3 mb-8 ${theme === 'light' ? 'text-gray-600' : 'text-gray-300'}`}>
-              <li>✓ Up to 10 employees</li>
+              <li>✓ Up to 200 employees</li>
               <li>✓ Attendance tracking</li>
               <li>✓ Basic reporting</li>
             </ul>
@@ -64,7 +60,7 @@ const AllProduct = () => {
               $49<span className={`${theme === 'light' ? 'text-gray-500' : 'text-gray-400'} text-sm`}>/month</span>
             </div>
             <ul className={`space-y-3 mb-8 ${theme === 'light' ? 'text-gray-600' : 'text-gray-300'}`}>
-              <li>✓ Up to 50 employees</li>
+              <li>✓ Up to 500 employees</li>
               <li>✓ Advanced analytics</li>
               <li>✓ Mobile app access</li>
             </ul>
