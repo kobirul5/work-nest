@@ -20,6 +20,7 @@ import AdminPrivate from "./AdminPrivate";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 import Blog from "../pages/Blogs/Blogs/Blog";
 import Profile from "../pages/Profile/Profile";
+import AllProduct from "../pages/AllProduct/AllProduct";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile/>
+            },
+            {
+                path: "/all-product",
+                element: <AllProduct/>
             }
         ]
     },
