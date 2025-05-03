@@ -3,6 +3,8 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import toast, { Toaster } from 'react-hot-toast';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { ThemeContext } from '../../providers/ThemeProvider';
+import HeroContactU from './Components/HeroContactU';
+import { Element } from 'react-scroll';
 const ContactUs = () => {
     const  axiosPublic = useAxiosPublic()
     const {theme} = useContext(ThemeContext)
@@ -28,9 +30,11 @@ const ContactUs = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-16 pt-24">
-            <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="">
+            <div>
+                <HeroContactU/>
+            </div>
+            <Element name='contact-form' className="container mx-auto px-4 py-16 pt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Contact Information */}
                 <div className={`${theme == "light" ? "bg-white":"bg-[#1f1f1f]"}  shadow-lg rounded-lg p-6`}>
                     <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
@@ -88,7 +92,7 @@ const ContactUs = () => {
                         <button type="submit" className="btn bg-primary-color text-white w-full">Send Message</button>
                     </form>
                 </div>
-            </div>
+            </Element >
         </div>
     );
 };
