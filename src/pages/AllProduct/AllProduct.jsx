@@ -18,11 +18,11 @@ const AllProduct = () => {
       
       {/* Hero Section */}
       <HeroAllProduct/>
+      {/* Pricing Section */}
+        <Pricing/>
 
       {/* Features Section */}
       <Features/>
-      {/* Pricing Section */}
-        <Pricing/>
       {/* Testimonials Section */}
       <section className="py-20 px-4">
        <Testimonial/>

@@ -23,7 +23,7 @@ const Features = () => {
         { icon: FaRegSmile, title: "Engagement", desc: "Employee satisfaction tracking" },
     ]
     return (
-        <section className="py-20 px-4">
+        <section className="pt-20 px-4">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
                     <Heading

@@ -11,13 +11,13 @@ const Pricing = () => {
 
     const { theme } = useContext(ThemeContext);
     const services = [
-        { title: "Starter", price: 29, features: ["Up to 50 employees", "Basic HR features", "Email support", "3 team members"], popular: false },
-        { title: "Professional", price: 99, features: ["Up to 200 employees", "Advanced analytics", "Priority support", "10 team members"], popular: true },
+        { title: "Starter", price: 29, features: ["Up to 200 employees", "Basic HR features", "Email support", "3 team members"], popular: false },
+        { title: "Professional", price: 99, features: ["Up to 500 employees", "Advanced analytics", "Priority support", "10 team members"], popular: true },
         { title: "Enterprise", price: 299, features: ["Unlimited employees", "Custom workflows", "24/7 support", "Unlimited team"], popular: false },
     ]
 
     return (
-        <Element name="price" className=" px-4  dark:from-gray-800 dark:to-gray-900">
+        <Element name="price" className=" px-4 pt-20  dark:from-gray-800 dark:to-gray-900">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
                     <Heading

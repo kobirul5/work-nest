@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { 
-  FaUsers, 
+import {
+    FaUsers,
 } from 'react-icons/fa';
 import { ThemeContext } from "../../../providers/ThemeProvider";
-import { Link, Element } from 'react-scroll';
+import { Link } from 'react-scroll';
+import heroImage from "../../../assets/images/office.jpg"
 
 
 
@@ -12,8 +13,13 @@ const HeroAllProduct = () => {
 
 
     return (
-        <header className={`relative overflow-hidden bg-primary-color text-white py-24 px-4`}>
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmIi8+PC9zdmc+')" }}></div>
+        <header 
+        style={{
+            backgroundImage:
+                `url(${heroImage})`,
+        }}
+        className={`relative overflow-hidden object-cover bg-cover text-white py-24 px-4`}>
+            <div className="absolute inset-0 opacity-70 bg-primary-color" ></div>
             <div className="max-w-6xl mx-auto text-center relative">
                 <div className="inline-block p-6 rounded-full bg-white/10 mb-8">
                     <FaUsers className="text-5xl animate-bounce" />
