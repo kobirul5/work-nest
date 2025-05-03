@@ -7,10 +7,12 @@ import GoogleLogin from "../../components/GoogleLogin";
 import useAllUsers from "../../hooks/useAllUsers";
 import loginImage from "../../assets/images/login.jpg"
 import { ThemeContext } from "../../providers/ThemeProvider";
+import { FaEye } from "react-icons/fa";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const {theme} = useContext(ThemeContext)
+    const [showPassword, setShowPassword] = useState(false)
     const [allUser] = useAllUsers()
     const { userLogin } = useContext(AuthContext);
     const location = useLocation()
@@ -62,7 +64,7 @@ const Login = () => {
             style={{
                 backgroundImage: `url(${loginImage})`,
             }}
-            className="hero min-h-screen">
+            className="hero min-h-screen relative">
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content flex-col mt-20">
                 <div className="text-center lg:text-left">
@@ -92,12 +94,12 @@ const Login = () => {
                         </div>
 
                         {/* password */}
-                        <div className="form-control">
+                        <div className="form-control ">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
                             <input 
-                            type="password"
+                            type={showPassword ? "text":"password"}
                                 value={roleInfo?.password}
                                 onChange={(e) => setRoleInfo({...roleInfo, password: e.target.value})}
                                 {...register("password", {
@@ -106,11 +108,13 @@ const Login = () => {
                                 placeholder="password" 
                                 className="input input-bordered" />
                             {errors.password?.type === "required" && <span className='text-red-600'>Password is Required</span>}
+                           
                         </div>
-                        <div className="form-control mt-6">
-                            <button className="btn bg-primary-color text-white hover:text-black hover:border-primary-color">Login</button>
+                        <div  className="form-control mt-6">
+                            <button type="submit" className="btn bg-primary-color text-white hover:text-black hover:border-primary-color">Login</button>
                         </div>
                     </form>
+                    <button onClick={()=>setShowPassword(!showPassword)} className="absolute right-[45px] bottom-[215px]"><FaEye/></button>
                     <div className="px-8 pb-8 space-y-2">
                         <Link to="/auth/signUp">Don't Have a account? Sign Up</Link>
                         <GoogleLogin></GoogleLogin>
