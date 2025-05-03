@@ -1,11 +1,6 @@
 import { useContext } from "react";
 import { 
-  FaUsers, 
-  FaClock, 
-  FaChartLine, 
-  FaCrown, 
   FaQuoteLeft, 
-  FaQuestionCircle, 
   FaCheckCircle,
   FaRegSmile
 } from 'react-icons/fa';
@@ -17,7 +12,7 @@ const AllProduct = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`min-h-screen ${theme === 'light' ? 'bg-gray-50' : 'bg-gray-900'}`}>
+    <div className={`min-h-screen ${theme === 'light' ? '' : ''}`}>
       
       {/* Hero Section */}
       <HeroAllProduct/>
