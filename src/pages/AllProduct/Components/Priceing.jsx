@@ -5,10 +5,12 @@ import {
 import { ThemeContext } from "../../../providers/ThemeProvider";
 import Heading from "../../Shared/Heading/Heading";
 import { Link, Element } from 'react-scroll';
+import { useLocation } from "react-router-dom";
 
 
 const Pricing = () => {
 
+    const location = useLocation()
     const { theme } = useContext(ThemeContext);
     const services = [
         { title: "Starter", price: 29, features: ["Up to 200 employees", "Basic HR features", "Email support", "3 team members"], popular: false },
@@ -17,7 +19,7 @@ const Pricing = () => {
     ]
 
     return (
-        <Element name="price" className=" px-4 pt-20  dark:from-gray-800 dark:to-gray-900">
+        <Element name="price" className={` px-4 ${location.pathname !== "/"  && "pt-20"}  `}>
             <div className="container mx-auto">
                 <div className="text-center mb-16">
                     <Heading

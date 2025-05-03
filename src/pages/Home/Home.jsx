@@ -1,3 +1,4 @@
+import Pricing from "../AllProduct/Components/Priceing";
 import Blog from "../Blogs/Blogs/Blog";
 import Banner from "./Banner";
 import BenefitsSection from "./Benefits/BenefitsSection";
@@ -13,6 +14,7 @@ const Home = () => {
             <Banner></Banner>
             <section className="my-14 space-y-20 px-4 container mx-auto">
                 <Service></Service>
+                <Pricing/>
                 <Testimonial></Testimonial>
                 <Blog></Blog>
                 <MeetOurTeam></MeetOurTeam>

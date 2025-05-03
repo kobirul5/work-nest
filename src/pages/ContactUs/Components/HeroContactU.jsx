@@ -1,8 +1,8 @@
 import { ThemeContext } from "../../../providers/ThemeProvider";
 import { Link } from 'react-scroll';
-import heroImage from "../../../assets/images/office.jpg"
+import heroImage from "../../../assets/images/contactus.jpg"
 import { useContext } from 'react';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa';
 
 
 const HeroContactU = () => {
